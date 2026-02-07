@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var tile_size := 16
 @export var tilemap: TileMapLayer
 
-@export var beat_window := 0.15
+@export var beat_window := 0.15 
 
 @export var flash_color: Color = Color(1, 1, 0)
 @export var flash_duration: float = 0.1
@@ -40,17 +40,23 @@ func _ready():
 	if tilemap:
 		_initialize_position()
 
-func _on_beat(beat_count: int):
-	last_beat_time = Engine.get_physics_frames()
+func _on_beat(_beat_count: int):
+	last_beat_time = Time.get_unix_time_from_system()
+
+func attack():
+	print("")
 
 func _on_phase_changed(phase: int):
+	if phase == 3:
+		attack()
+		return;
 	can_act = (phase == my_phase)
 
 	if can_act:
 		_start_flash()
-
+	
 	if buffered_direction != Vector2i.ZERO:
-		var time_since_beat = Engine.get_physics_frames() - last_beat_time
+		var time_since_beat = Time.get_unix_time_from_system() - last_beat_time
 		if abs(time_since_beat) <= beat_window:
 			try_move(buffered_direction)
 			buffered_direction = Vector2i.ZERO

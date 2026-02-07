@@ -5,8 +5,8 @@ signal phase_changed(phase: int)
 
 @export var bpm: float = 120.0
 
-#both players + enemies
-const PHASES := 3
+#both players + enemies + attack all
+const PHASES := 4
 
 var beat_count := 0
 var phase := -1
@@ -38,7 +38,8 @@ func _on_beat():
 		var pitch_variation := 1.0
 		match phase:
 			0: pitch_variation = 1.0
-			1: pitch_variation = 1.2
-			2: pitch_variation = 0.8
+			1: pitch_variation = 0.8
+			2: pitch_variation = 0.9
+			3: pitch_variation = 0.5
 		_audio_player.pitch_scale = pitch_variation
 		_audio_player.play()

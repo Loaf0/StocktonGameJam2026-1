@@ -2,7 +2,8 @@
 
 [ext_resource type="TileSet" uid="uid://d16yo2pice2m4" path="res://scenes/maps/test_tile_set.tres" id="1_jaqtf"]
 [ext_resource type="Script" uid="uid://bd63lux0o1nwj" path="res://scripts/dungeon.gd" id="1_suivh"]
-[ext_resource type="PackedScene" uid="uid://qlolheke45t8" path="res://scenes/player/character_container.tscn" id="2_cne6s"]
+[ext_resource type="PackedScene" uid="uid://djrxlocjpshxj" path="res://scenes/player/character_container.tscn" id="2_cne6s"]
+[ext_resource type="Script" uid="uid://cw4iolrrtje6q" path="res://scenes/maps/dungeon_generator.gd" id="4_dlq7p"]
 
 [node name="Node2D" type="Node2D" unique_id=1208966285 node_paths=PackedStringArray("tilemap")]
 script = ExtResource("1_suivh")
@@ -13,3 +14,8 @@ tile_map_data = PackedByteArray("AAD4////AAAEAAQAAQD4/wAAAAADAAQAAwD4/wEAAAADAAQ
 tile_set = ExtResource("1_jaqtf")
 
 [node name="CharacterContainer" parent="." unique_id=1429600210 instance=ExtResource("2_cne6s")]
+
+[node name="DungeonGenerator" type="Node2D" parent="." unique_id=334305168 node_paths=PackedStringArray("tilemap", "player")]
+script = ExtResource("4_dlq7p")
+tilemap = NodePath("../TileMapLayer")
+player = NodePath("../CharacterContainer")
