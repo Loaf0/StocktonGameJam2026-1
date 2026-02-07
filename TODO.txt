@@ -1,0 +1,35 @@
+# Things to do
+
+Core gameplay
+	Beat Manager system ✅
+	sync to song 
+
+Dungeon Generator
+	base implementation ✅
+	Add collision to walls for dungeon generator
+	attach finished tilemap to dungeon gen
+
+Enemies
+	set up pathing on the generated dungeon ✅
+	create unique behavior based on the slides
+		mushroom basic 1x1 forward attack
+		skeleton swings 1x3 attack towards direction
+		candle Shoots wave of fire mesure one wick turns on, mesure two attacks wave of fire bomber man style 4 directionsal
+		wizard shoots orb at players
+
+Players
+	base player movement on beat ✅
+	Ranger dodges half the time
+	Knight takes half dmg
+	set up attacks use conditional based on char1/char2 for attack types
+	on failed timing do stun animation and do not attack that turn (neutral doesnt mean failed)
+
+Items/Interactables
+	Keys and locked doors maybe would have to put into dungeon generator
+	Hearts have a chance of dropping on death from player
+
+UI/UX
+	main menu
+	pause menu
+	hud
+	dmg number effect on hit

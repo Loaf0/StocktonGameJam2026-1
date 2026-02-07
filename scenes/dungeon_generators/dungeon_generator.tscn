@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://14l1bfc7kag5"]
+
+[ext_resource type="Script" uid="uid://cw4iolrrtje6q" path="res://scenes/maps/dungeon_generator.gd" id="1_crv1b"]
+
+[node name="DungeonGenerator" type="Node2D" unique_id=761363650 node_paths=PackedStringArray("tilemap", "player")]
+script = ExtResource("1_crv1b")
+tilemap = NodePath("")
+player = NodePath("")

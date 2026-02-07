@@ -6,7 +6,7 @@ extends Node2D
 const DUNGEON_WIDTH = 80
 const DUNGEON_HEIGHT = 80
 
-enum TileType { EMPTY, FLOOR, WALL }
+enum TileType {EMPTY, FLOOR, WALL}
 
 var dungeon_grid = []
 
