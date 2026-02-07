@@ -7,3 +7,4 @@ func _ready() -> void:
 	for node in get_tree().get_nodes_in_group("req_tile_map"):
 		if node.has_method("set_tile_map"):
 			node.set_tile_map(tilemap)
+			print("assigned tile map to " + str(node) )
