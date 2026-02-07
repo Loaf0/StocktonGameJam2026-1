@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://djrxlocjpshxj"]
 
-[ext_resource type="Script" path="res://scenes/player/character_container.gd" id="1_pqffl"]
+[ext_resource type="Script" uid="uid://w1ebvxxwru0e" path="res://scenes/player/character_container.gd" id="1_pqffl"]
 [ext_resource type="Script" uid="uid://blrix1n4twjdb" path="res://scenes/player/character.gd" id="2_o753y"]
 [ext_resource type="Texture2D" uid="uid://fl7jp4vfdh3o" path="res://assets/kenny/kenney_tiny-dungeon/Tilemap/tilemap.png" id="3_h83ca"]
 
@@ -10,6 +10,7 @@
 script = ExtResource("1_pqffl")
 
 [node name="Player1" type="CharacterBody2D" parent="." unique_id=1529302393]
+unique_name_in_owner = true
 position = Vector2(-16, 0)
 script = ExtResource("2_o753y")
 
@@ -25,6 +26,7 @@ region_rect = Rect2(51, 136, 16, 16)
 one_shot = true
 
 [node name="Player2" type="CharacterBody2D" parent="." unique_id=935135042]
+unique_name_in_owner = true
 position = Vector2(16, 0)
 script = ExtResource("2_o753y")
 my_phase = 1

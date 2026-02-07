@@ -15,4 +15,6 @@ tile_set = ExtResource("1_jaqtf")
 
 [node name="CharacterContainer" parent="." unique_id=1429600210 instance=ExtResource("2_cne6s")]
 
-[node name="DungeonGenerator" parent="." unique_id=761363650 instance=ExtResource("4_dlq7p")]
+[node name="DungeonGenerator" parent="." unique_id=761363650 node_paths=PackedStringArray("tilemap", "player") instance=ExtResource("4_dlq7p")]
+tilemap = NodePath("../TileMapLayer")
+player = NodePath("../CharacterContainer")
