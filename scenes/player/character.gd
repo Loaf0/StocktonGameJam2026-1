@@ -34,6 +34,7 @@ var input_attack: String = "attack1"
 
 @onready var sprite = $Sprite2D
 @onready var flash_timer: Timer = $Timer
+@onready var label = $Label
 
 func _ready():
 	add_to_group("req_tile_map")
@@ -70,15 +71,19 @@ func attack():
 	pass 
 
 func _on_phase_changed(phase: int):
+	var pre_phase := (my_phase - 1 + BeatManager.PHASES) % BeatManager.PHASES
+	label.visible = phase == pre_phase
+	
 	if phase == 3:
 		attack()
 		return
-
+		
 	can_act = (phase == my_phase)
 
 	if can_act:
 		acted_this_beat = false
 		_start_flash()
+		
 
 func _physics_process(_delta: float):
 	if is_moving or not buffer_active:

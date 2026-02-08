@@ -478,8 +478,7 @@ offset_left = -33.0
 offset_top = -24.0
 offset_right = 32.0
 offset_bottom = 3.0
-text = "Stunned
-"
+text = "Up Next"
 label_settings = SubResource("LabelSettings_2ivie")
 horizontal_alignment = 1
 
@@ -494,6 +493,7 @@ shape = SubResource("CircleShape2D_uxwpo")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Player2" unique_id=548279231]
 sprite_frames = SubResource("SpriteFrames_47s7v")
+script = ExtResource("4_q642i")
 
 [node name="Timer" type="Timer" parent="Player2" unique_id=1597596672]
 one_shot = true
@@ -504,8 +504,7 @@ offset_left = -32.0
 offset_top = -24.0
 offset_right = 33.0
 offset_bottom = 3.0
-text = "Stunned
-"
+text = "Up Next"
 label_settings = SubResource("LabelSettings_2ivie")
 horizontal_alignment = 1
 

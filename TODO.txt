@@ -31,7 +31,7 @@ Items/Interactables
 	Hearts have a chance of dropping on death from player
 
 UI/UX
-	main menu
+	main menu - pulse to music 
 	pause menu
 	hud
 	dmg number effect on hit
