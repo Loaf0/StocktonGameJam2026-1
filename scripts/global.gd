@@ -7,3 +7,5 @@ var beat_assist : bool = true
 var two_player_mode : bool = false
 
 var max_distance_tiles = 16
+
+var occupied_cells : Dictionary = {}

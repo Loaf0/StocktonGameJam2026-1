@@ -3,11 +3,13 @@ extends CharacterBody2D
 signal player_moved
 
 @export var my_phase: int
-@export var tile_size := 16
 @export var tilemap: TileMapLayer
 @export var beat_window := 0.1
-
+var acted_this_beat := false
 var facing_direction: Vector2i = Vector2i.DOWN
+@export var move_duration := 0.12
+var is_moving := false
+var move_tween: Tween
 
 var flash_color: Color
 @export var flash_duration: float = 0.1
@@ -65,17 +67,49 @@ func _on_phase_changed(phase: int):
 	if phase == 3:
 		attack()
 		return
+
 	can_act = (phase == my_phase)
 
 	if can_act:
+		acted_this_beat = false
 		_start_flash()
 
 func _physics_process(_delta: float):
-	if buffered_direction != Vector2i.ZERO:
-		var time_since_beat = Time.get_unix_time_from_system() - last_beat_time
-		if can_act or (time_since_beat > 0 and time_since_beat <= beat_window):
-			try_move(buffered_direction)
-			buffered_direction = Vector2i.ZERO
+	if is_moving:
+		return
+
+	if acted_this_beat:
+		return
+
+	if buffered_direction == Vector2i.ZERO:
+		return
+
+	var time_since_beat = Time.get_unix_time_from_system() - last_beat_time
+
+	if can_act or (time_since_beat > 0 and time_since_beat <= beat_window):
+		try_resolve_buffer()
+
+func try_resolve_buffer():
+	acted_this_beat = true
+	can_act = false
+
+	var direction := buffered_direction
+	buffered_direction = Vector2i.ZERO
+
+	facing_direction = direction
+	var target_cell = grid_position + direction
+
+	if is_blocked(target_cell) or not can_move_within_leash(target_cell):
+		_update_facing_visual(false)
+		return
+
+	var from_pos := global_position
+	grid_position = target_cell
+	var to_pos := tilemap.map_to_local(grid_position)
+
+	_update_facing_visual(true)
+	animate_move(from_pos, to_pos)
+	emit_signal("player_moved")
 
 func _start_flash():
 	sprite.modulate = flash_color
@@ -98,14 +132,21 @@ func _unhandled_input(event):
 		_buffer_input(Vector2i.RIGHT)
 
 func _buffer_input(direction: Vector2i):
-	facing_direction = direction
-	_update_facing_visual()
-
 	buffered_direction = direction
 	buffered_time = Engine.get_physics_frames()
 
-func _update_facing_visual():
-	pass #till we have sprites
+func _update_facing_visual(moving: bool = false):
+	var prefix := "walk_" if moving else "idle_"
+
+	match facing_direction:
+		Vector2i.UP:
+			sprite.play(prefix + "up")
+		Vector2i.DOWN:
+			sprite.play(prefix + "down")
+		Vector2i.LEFT:
+			sprite.play(prefix + "left")
+		Vector2i.RIGHT:
+			sprite.play(prefix + "right")
 
 func try_move(direction: Vector2i):
 	if not can_act or tilemap == null:
@@ -113,20 +154,24 @@ func try_move(direction: Vector2i):
 
 	var target = grid_position + direction
 
-	if is_blocked(target):
-		return
+	facing_direction = direction
 
-	if not can_move_within_leash(target):
+	if is_blocked(target) or not can_move_within_leash(target):
+		_update_facing_visual(false)
 		return
 
 	grid_position = target
 	global_position = tilemap.map_to_local(grid_position)
 	can_act = false
+
+	_update_facing_visual(true)
 	emit_signal("player_moved")
 
 func is_blocked(cell: Vector2i) -> bool:
 	var tile_data = tilemap.get_cell_tile_data(cell)
 	if tile_data == null:
+		return true
+	if Global.occupied_cells.has(cell):
 		return true
 	return tile_data.get_custom_data("solid") == true
 
@@ -158,3 +203,23 @@ func _initialize_position():
 	grid_position = tilemap.local_to_map(global_position)
 	global_position = tilemap.map_to_local(grid_position)
 	initialized = true
+
+func animate_move(from_pos: Vector2, to_pos: Vector2):
+	is_moving = true
+
+	if move_tween and move_tween.is_running():
+		move_tween.kill()
+
+	move_tween = create_tween()
+	move_tween.set_trans(Tween.TRANS_QUAD)
+	move_tween.set_ease(Tween.EASE_OUT)
+
+	var mid := (from_pos + to_pos) * 0.5 + Vector2(0, -6)
+
+	move_tween.tween_property(self, "global_position", mid, move_duration * 0.5)
+	move_tween.tween_property(self, "global_position", to_pos, move_duration * 0.5)
+
+	move_tween.finished.connect(_on_move_finished)
+
+func _on_move_finished():
+	is_moving = false
