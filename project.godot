@@ -21,6 +21,11 @@ BeatManager="*uid://dskt8gddcg0y0"
 Global="*uid://c6iamvuvtcbtw"
 LevelTransition="*uid://chtr7txyosdji"
 
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
 [input]
 
 up1={

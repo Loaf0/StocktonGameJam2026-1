@@ -4,7 +4,7 @@ signal player_moved
 
 @export var my_phase: int
 @export var tilemap: TileMapLayer
-@export var beat_window := 0.1
+@export var beat_window := 0.12
 @export var move_duration := 0.12
 
 var acted_this_beat := false
@@ -21,7 +21,8 @@ var previous_cell: Vector2i
 var buffered_direction: Vector2i = Vector2i.ZERO
 var buffered_time: float = 0.00
 var initialized := false
-var last_beat_time := 0.0
+var buffer_active := false
+var buffer_timer := 0.0
 var can_act := false
 
 var input_up: String = "up1"
@@ -33,11 +34,13 @@ var input_attack: String = "attack1"
 
 @onready var sprite = $Sprite2D
 @onready var flash_timer: Timer = $Timer
+@onready var label = $Label
 
 func _ready():
 	add_to_group("req_tile_map")
 	add_to_group("player")
-	flash_color = Color(0.24, 0.463, 1.0, 1.0) if my_phase == 0 else Color(1.0, 0.255, 0.0, 1.0)
+	flash_color = Color(0.24, 0.463, 1.0, 0.5) if my_phase == 0 else Color(1.0, 0.255, 0.0, 0.5)
+	
 	BeatManager.phase_changed.connect(_on_phase_changed)
 	BeatManager.beat.connect(_on_beat)
 	
@@ -59,35 +62,38 @@ func _ready():
 		input_attack = "attack2"
 
 func _on_beat(_beat_count: int):
-	last_beat_time = Time.get_unix_time_from_system()
+	if can_act:
+		if buffered_direction != Vector2i.ZERO and buffer_active:
+			try_resolve_buffer()
+
 
 func attack():
 	pass 
 
 func _on_phase_changed(phase: int):
+	var pre_phase := (my_phase - 1 + BeatManager.PHASES) % BeatManager.PHASES
+	label.visible = phase == pre_phase
+	
 	if phase == 3:
 		attack()
 		return
-
+		
 	can_act = (phase == my_phase)
 
 	if can_act:
 		acted_this_beat = false
 		_start_flash()
+		
 
 func _physics_process(_delta: float):
-	if is_moving:
+	if is_moving or not buffer_active:
 		return
 
-	if acted_this_beat:
+	buffer_timer -= _delta
+	if buffer_timer <= 0:
+		clear_buffer()
 		return
-
-	if buffered_direction == Vector2i.ZERO:
-		return
-
-	var time_since_beat = Time.get_unix_time_from_system() - last_beat_time
-
-	if can_act or (time_since_beat > 0 and time_since_beat <= beat_window):
+	if can_act and buffered_direction != Vector2i.ZERO:
 		try_resolve_buffer()
 
 func try_resolve_buffer():
@@ -110,7 +116,6 @@ func try_resolve_buffer():
 	var from_pos := tilemap.map_to_local(previous_cell)
 	var to_pos := tilemap.map_to_local(grid_position)
 
-	# Add new cell immediately
 	Global.occupied_cells[target_cell] = self
 
 	_update_facing_visual(true)
@@ -138,7 +143,9 @@ func _unhandled_input(event):
 
 func _buffer_input(direction: Vector2i):
 	buffered_direction = direction
-	buffered_time = Time.get_unix_time_from_system()
+	buffer_timer = beat_window
+	buffer_active = true
+
 
 func _update_facing_visual(moving: bool = false):
 	var prefix := "walk_" if moving else "idle_"
@@ -182,6 +189,8 @@ func is_blocked(cell: Vector2i) -> bool:
 
 func clear_buffer():
 	buffered_direction = Vector2i.ZERO
+	buffer_active = false
+	buffer_timer = 0.0
 
 func can_move_within_leash(target_cell: Vector2i) -> bool:
 	var other_player = _get_other_player()

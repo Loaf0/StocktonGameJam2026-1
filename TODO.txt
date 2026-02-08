@@ -18,6 +18,7 @@ Enemies
 		wizard shoots orb at players
 
 Players
+	beat anims
 	base player movement on beat ✅
 	Ranger dodges half the time
 	Knight takes half dmg
@@ -30,7 +31,7 @@ Items/Interactables
 	Hearts have a chance of dropping on death from player
 
 UI/UX
-	main menu
+	main menu - pulse to music 
 	pause menu
 	hud
 	dmg number effect on hit

@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bw2akpjviyb0u"]
+
+[ext_resource type="Script" uid="uid://butf51v8glqtf" path="res://scenes/ui/beat_bar.gd" id="1_5tyky"]
+[ext_resource type="Texture2D" uid="uid://by4vxdvb5xxj" path="res://assets/ui/MetronomeBackground.png" id="2_g4axt"]
+
+[node name="BeatBar" type="CanvasLayer" unique_id=2094879700]
+script = ExtResource("1_5tyky")
+
+[node name="MetronomeBackground" type="Sprite2D" parent="." unique_id=252605794]
+position = Vector2(578, 606)
+scale = Vector2(2.26, 2.26)
+texture = ExtResource("2_g4axt")
+
+[node name="Icons" type="Control" parent="." unique_id=505744496]
+layout_mode = 3
+anchor_top = 0.87000006
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.2399292
+grow_horizontal = 2
+grow_vertical = 0

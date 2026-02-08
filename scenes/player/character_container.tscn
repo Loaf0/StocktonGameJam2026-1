@@ -4,7 +4,8 @@
 [ext_resource type="Script" uid="uid://blrix1n4twjdb" path="res://scenes/player/character.gd" id="2_o753y"]
 [ext_resource type="Texture2D" uid="uid://dof5wctbtyxss" path="res://assets/sprites/entities/Mage.png" id="3_mcinn"]
 [ext_resource type="Texture2D" uid="uid://c85hhkti08640" path="res://assets/sprites/entities/Knight.png" id="4_2ivie"]
-[ext_resource type="Script" path="res://scenes/player/camera.gd" id="5_2ivie"]
+[ext_resource type="Script" uid="uid://b4e158hic5jg3" path="res://scripts/bpm_based_step_animation.gd" id="4_q642i"]
+[ext_resource type="Script" uid="uid://dnwul77l62pk0" path="res://scenes/player/camera.gd" id="5_2ivie"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uxwpo"]
 radius = 14.3178215
@@ -134,7 +135,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_down",
-"speed": 5.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -142,7 +143,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_left",
-"speed": 5.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -150,7 +151,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_right",
-"speed": 5.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -158,7 +159,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_up",
-"speed": 5.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -175,7 +176,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_down",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -192,7 +193,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_left",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -209,7 +210,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_right",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -226,7 +227,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_up",
-"speed": 5.0
+"speed": 0.0
 }]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2ivie"]
@@ -349,7 +350,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -357,7 +358,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_down",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -365,7 +366,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_left",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -373,7 +374,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_right",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -381,7 +382,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_up",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -398,7 +399,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_down",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -415,7 +416,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_left",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -432,7 +433,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_right",
-"speed": 5.0
+"speed": 0.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -449,7 +450,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_up",
-"speed": 5.0
+"speed": 0.0
 }]
 
 [node name="CharacterContainer" type="Node2D" unique_id=1429600210]
@@ -459,17 +460,14 @@ script = ExtResource("1_pqffl")
 unique_name_in_owner = true
 position = Vector2(-16, 0)
 script = ExtResource("2_o753y")
-my_phase = null
-beat_window = null
-move_duration = null
-flash_duration = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player1" unique_id=779279765]
 shape = SubResource("CircleShape2D_uxwpo")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Player1" unique_id=974364147]
 sprite_frames = SubResource("SpriteFrames_txh7p")
-animation = &"idle_down"
+animation = &"walk_down"
+script = ExtResource("4_q642i")
 
 [node name="Timer" type="Timer" parent="Player1" unique_id=1185237014]
 one_shot = true
@@ -480,8 +478,7 @@ offset_left = -33.0
 offset_top = -24.0
 offset_right = 32.0
 offset_bottom = 3.0
-text = "Stunned
-"
+text = "Up Next"
 label_settings = SubResource("LabelSettings_2ivie")
 horizontal_alignment = 1
 
@@ -490,16 +487,13 @@ unique_name_in_owner = true
 position = Vector2(16, 0)
 script = ExtResource("2_o753y")
 my_phase = 1
-beat_window = null
-move_duration = null
-flash_duration = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player2" unique_id=1574699231]
 shape = SubResource("CircleShape2D_uxwpo")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Player2" unique_id=548279231]
 sprite_frames = SubResource("SpriteFrames_47s7v")
-animation = &"idle_down"
+script = ExtResource("4_q642i")
 
 [node name="Timer" type="Timer" parent="Player2" unique_id=1597596672]
 one_shot = true
@@ -510,8 +504,7 @@ offset_left = -32.0
 offset_top = -24.0
 offset_right = 33.0
 offset_bottom = 3.0
-text = "Stunned
-"
+text = "Up Next"
 label_settings = SubResource("LabelSettings_2ivie")
 horizontal_alignment = 1
 
