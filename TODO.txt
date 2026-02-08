@@ -21,6 +21,7 @@ Players
 	base player movement on beat ✅
 	Ranger dodges half the time
 	Knight takes half dmg
+	Show leash circle around players if they hit range
 	set up attacks use conditional based on char1/char2 for attack types
 	on failed timing do stun animation and do not attack that turn (neutral doesnt mean failed)
 

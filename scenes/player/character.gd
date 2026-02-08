@@ -33,6 +33,7 @@ var input_attack: String = "attack1"
 
 func _ready():
 	add_to_group("req_tile_map")
+	add_to_group("player")
 	flash_color = Color(0.24, 0.463, 1.0, 1.0) if my_phase == 0 else Color(1.0, 0.255, 0.0, 1.0)
 	BeatManager.phase_changed.connect(_on_phase_changed)
 	BeatManager.beat.connect(_on_beat)
@@ -111,7 +112,11 @@ func try_move(direction: Vector2i):
 		return
 
 	var target = grid_position + direction
+
 	if is_blocked(target):
+		return
+
+	if not can_move_within_leash(target):
 		return
 
 	grid_position = target
@@ -120,13 +125,28 @@ func try_move(direction: Vector2i):
 	emit_signal("player_moved")
 
 func is_blocked(cell: Vector2i) -> bool:
-	if tilemap == null:
-		return true
 	var tile_data = tilemap.get_cell_tile_data(cell)
-	return tile_data == null
+	if tile_data == null:
+		return true
+	return tile_data.get_custom_data("solid") == true
 
 func clear_buffer():
 	buffered_direction = Vector2i.ZERO
+
+func can_move_within_leash(target_cell: Vector2i) -> bool:
+	var other_player = _get_other_player()
+	if other_player == null:
+		return true
+
+	var dist = target_cell.distance_to(other_player.grid_position)
+	print(dist)
+	return dist <= Global.max_distance_tiles
+
+func _get_other_player():
+	for node in get_tree().get_nodes_in_group("player"):
+		if node != self:
+			return node
+	return null
 
 func set_tile_map(new_tilemap: TileMapLayer):
 	tilemap = new_tilemap
