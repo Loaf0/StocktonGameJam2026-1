@@ -9,3 +9,5 @@ var two_player_mode : bool = false
 var max_distance_tiles = 16
 
 var occupied_cells : Dictionary = {}
+
+var enemy_intent_cells : Dictionary = {}

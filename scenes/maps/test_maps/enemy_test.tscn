@@ -1,20 +1,21 @@
-[gd_scene format=4 uid="uid://32lt7hq0q7h6"]
+[gd_scene format=4 uid="uid://dsfgmtl22kgem"]
 
-[ext_resource type="Script" uid="uid://bd63lux0o1nwj" path="res://scripts/dungeon.gd" id="1_bkm8d"]
-[ext_resource type="Texture2D" uid="uid://d8riw06s55de" path="res://assets/sprites/tileset/Tiles.png" id="2_1on00"]
-[ext_resource type="PackedScene" uid="uid://djrxlocjpshxj" path="res://scenes/player/character_container.tscn" id="3_74le1"]
-[ext_resource type="PackedScene" uid="uid://14l1bfc7kag5" path="res://scenes/dungeon_generators/dungeon_generator.tscn" id="4_1on00"]
+[ext_resource type="Script" uid="uid://bd63lux0o1nwj" path="res://scripts/dungeon.gd" id="1_lxddo"]
+[ext_resource type="Texture2D" uid="uid://d8riw06s55de" path="res://assets/sprites/tileset/Tiles.png" id="2_r5fnm"]
+[ext_resource type="PackedScene" uid="uid://djrxlocjpshxj" path="res://scenes/player/character_container.tscn" id="3_ier5j"]
+[ext_resource type="Script" uid="uid://tdp65ebwh5tb" path="res://scenes/enemies/enemy_manager.gd" id="4_ier5j"]
+[ext_resource type="PackedScene" uid="uid://bqa1074lpp3ab" path="res://scenes/enemies/base_enemy.tscn" id="4_r5fnm"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0jfhv"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_1on00"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_lxddo"]
 vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
 agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3nlp5"]
-texture = ExtResource("2_1on00")
+texture = ExtResource("2_r5fnm")
 0:4/size_in_atlas = Vector2i(2, 2)
 0:4/0 = 0
 0:4/0/terrain_set = 0
@@ -127,7 +128,7 @@ texture = ExtResource("2_1on00")
 6:6/0/custom_data_0 = true
 8:6/size_in_atlas = Vector2i(2, 2)
 8:6/0 = 0
-8:6/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1on00")
+8:6/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_lxddo")
 
 [sub_resource type="TileSet" id="TileSet_0jfhv"]
 tile_size = Vector2i(32, 32)
@@ -142,15 +143,23 @@ custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_3nlp5")
 
 [node name="Node2D" type="Node2D" unique_id=1208966285 node_paths=PackedStringArray("tilemap")]
-script = ExtResource("1_bkm8d")
+script = ExtResource("1_lxddo")
 tilemap = NodePath("TileMapLayer")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1886383761]
-tile_map_data = PackedByteArray("AAD9/wEAAAACAAYAAAD+/wEAAAACAAYAAAD//wEAAAACAAYAAAAAAAEAAAACAAYAAAABAAEAAAACAAYAAAACAAEAAAACAAYAAAADAAEAAAACAAYAAAAEAAEAAAACAAYAAAAFAAEAAAACAAYAAAD8/wEAAAACAAYAAAD7/wEAAAAAAAQAAAD7/wAAAAAGAAIAAAD7////AAAGAAIAAAD7//7/AAAGAAIAAAAGAAEAAAAEAAQAAAAGAAAAAAAGAAIAAAAGAP//AAAGAAIAAAAGAP7/AAAGAAIAAAAGAP3/AAAGAAIAAAADAP//AAACAAYAAAACAP//AAAAAAYAAAAEAP//AAAEAAYAAAD9//7/AAAAAAYAAAD+//7/AAACAAYAAAD///7/AAAEAAYAAAACAPz/AAAGAAYAAAAEAP3/AAAGAAYAAAAGAPr/AAAKAAQAAAD7//r/AAAIAAQAAAD7//v/AAAGAAIAAAD7//z/AAAGAAIAAAD7//3/AAAGAAIAAAAGAPz/AAAKAAAAAAAFAPz/AAAAAAYAAAAGAPv/AAAGAAIAAAD8//r/AAACAAYAAAD9//r/AAACAAYAAAD+//r/AAACAAYAAAD///r/AAACAAYAAAAAAPr/AAACAAYAAAABAPr/AAACAAYAAAACAPr/AAACAAYAAAADAPr/AAACAAYAAAAEAPr/AAACAAYAAAAFAPr/AAACAAYAAAD8/wAAAAAIAAYAAAD9/wAAAAAIAAYAAAD+/wAAAAAIAAYAAAD//wAAAAAIAAYAAAAAAAAAAAAIAAYAAAABAAAAAAAIAAYAAAACAAAAAAAIAAYAAAADAAAAAAAIAAYAAAAEAAAAAAAIAAYAAAAFAAAAAAAIAAYAAAAFAP//AAAIAAYAAAAFAP7/AAAIAAYAAAAFAP3/AAAIAAYAAAAEAP7/AAAIAAYAAAADAP7/AAAIAAYAAAACAP7/AAAIAAYAAAABAP7/AAAIAAYAAAABAP//AAAIAAYAAAAAAP//AAAIAAYAAAD/////AAAIAAYAAAD+////AAAIAAYAAAD9////AAAIAAYAAAD8////AAAIAAYAAAD8//7/AAAIAAYAAAD8//3/AAAIAAYAAAD8//z/AAAIAAYAAAD8//v/AAAIAAYAAAD9//v/AAAIAAYAAAD+//v/AAAIAAYAAAD+//z/AAAIAAYAAAD9//z/AAAIAAYAAAD9//3/AAAIAAYAAAD+//3/AAAIAAYAAAD///3/AAAIAAYAAAD///z/AAAIAAYAAAD///v/AAAIAAYAAAAAAPv/AAAIAAYAAAABAPv/AAAIAAYAAAACAPv/AAAIAAYAAAADAPv/AAAIAAYAAAAEAPv/AAAIAAYAAAAFAPv/AAAIAAYAAAAEAPz/AAAIAAYAAAADAPz/AAAIAAYAAAADAP3/AAAIAAYAAAACAP3/AAAIAAYAAAABAP3/AAAIAAYAAAAAAP3/AAAIAAYAAAAAAPz/AAAIAAYAAAAAAP7/AAAIAAYAAAABAPz/AAAIAAYAAAA=")
+tile_map_data = PackedByteArray("AAAAAAAAAAAIAAQAAAAAAAEAAAAGAAIAAAABAAAAAAACAAYAAAABAAEAAAAIAAYAAAACAAAAAAACAAYAAAACAAEAAAAIAAYAAAADAAAAAAACAAYAAAADAAEAAAAIAAYAAAAEAAAAAAACAAYAAAAEAAEAAAAIAAYAAAAFAAAAAAACAAYAAAAFAAEAAAAIAAYAAAAGAAAAAAACAAYAAAAGAAEAAAAIAAYAAAAAAAIAAAAGAAIAAAAAAAMAAAAGAAIAAAAAAAQAAAAGAAIAAAAAAAUAAAAGAAIAAAAAAAYAAAAGAAIAAAAAAAcAAAAAAAQAAAABAAIAAAAIAAYAAAABAAMAAAAIAAYAAAABAAQAAAAIAAYAAAABAAUAAAAIAAYAAAABAAYAAAAIAAYAAAABAAcAAAACAAYAAAACAAIAAAAIAAYAAAACAAMAAAAIAAYAAAACAAQAAAAAAAYAAAACAAUAAAAIAAYAAAACAAYAAAAIAAYAAAACAAcAAAACAAYAAAADAAIAAAAIAAYAAAADAAMAAAAIAAYAAAADAAQAAAACAAYAAAADAAUAAAAIAAYAAAADAAYAAAAIAAYAAAADAAcAAAACAAYAAAAEAAIAAAAIAAYAAAAEAAMAAAAIAAYAAAAEAAQAAAAEAAYAAAAEAAUAAAAIAAYAAAAEAAYAAAAIAAYAAAAEAAcAAAACAAYAAAAFAAIAAAAIAAYAAAAFAAMAAAAIAAYAAAAFAAQAAAAIAAYAAAAFAAUAAAAIAAYAAAAFAAYAAAAIAAYAAAAFAAcAAAACAAYAAAAGAAIAAAAIAAYAAAAGAAMAAAAIAAYAAAAGAAQAAAAIAAYAAAAGAAUAAAAIAAYAAAAGAAYAAAAIAAYAAAAGAAcAAAACAAYAAAAHAAAAAAACAAYAAAAHAAEAAAAIAAYAAAAHAAIAAAAGAAYAAAAHAAMAAAAIAAYAAAAHAAQAAAAIAAYAAAAHAAUAAAAAAAYAAAAHAAYAAAAIAAYAAAAHAAcAAAACAAYAAAAIAAAAAAACAAYAAAAIAAEAAAAIAAYAAAAIAAIAAAAIAAYAAAAIAAMAAAAIAAYAAAAIAAQAAAAIAAYAAAAIAAUAAAACAAYAAAAIAAYAAAAIAAYAAAAIAAcAAAACAAYAAAAJAAAAAAACAAYAAAAJAAEAAAAIAAYAAAAJAAIAAAAIAAYAAAAJAAMAAAAGAAYAAAAJAAQAAAAIAAYAAAAJAAUAAAAEAAYAAAAJAAYAAAAIAAYAAAAJAAcAAAACAAYAAAAKAAAAAAACAAYAAAAKAAEAAAAIAAYAAAAKAAIAAAAAAAYAAAAKAAMAAAAIAAYAAAAKAAQAAAAIAAYAAAAKAAUAAAAIAAYAAAAKAAYAAAAIAAYAAAAKAAcAAAACAAYAAAALAAAAAAAKAAQAAAALAAEAAAAGAAIAAAALAAIAAAAKAAAAAAALAAMAAAAGAAIAAAALAAQAAAAGAAIAAAALAAUAAAAGAAIAAAALAAYAAAAGAAIAAAALAAcAAAAEAAQAAAA=")
 tile_set = SubResource("TileSet_0jfhv")
 
-[node name="CharacterContainer" parent="." unique_id=1429600210 instance=ExtResource("3_74le1")]
+[node name="CharacterContainer" parent="." unique_id=1429600210 instance=ExtResource("3_ier5j")]
+position = Vector2(229, 206)
 
-[node name="DungeonGenerator" parent="." unique_id=761363650 node_paths=PackedStringArray("tilemap", "player") instance=ExtResource("4_1on00")]
-tilemap = NodePath("../TileMapLayer")
-player = NodePath("../CharacterContainer")
+[node name="EnemyManager" type="Node2D" parent="." unique_id=1691944424]
+script = ExtResource("4_ier5j")
+
+[node name="BaseEnemy" parent="EnemyManager" unique_id=141113670 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
+position = Vector2(174, 112)
+tilemap = NodePath("../../TileMapLayer")
+
+[node name="BaseEnemy2" parent="EnemyManager" unique_id=1501729338 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
+position = Vector2(239, 113)
+tilemap = NodePath("../../TileMapLayer")

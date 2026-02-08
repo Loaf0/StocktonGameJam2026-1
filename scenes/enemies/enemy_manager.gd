@@ -1,0 +1,11 @@
+extends Node2D
+
+func _ready() -> void:
+	BeatManager.phase_changed.connect(_on_phase_changed)
+
+
+func _on_phase_changed(phase: int):
+	for enemy in get_tree().get_nodes_in_group("enemy"):
+		await get_tree().process_frame
+		enemy.on_phase_changed(phase)
+	Global.enemy_intent_cells.clear()
