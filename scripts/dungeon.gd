@@ -17,7 +17,7 @@ func refresh_occupancy():
 	Global.occupied_cells.clear()
 	for actor in get_tree().get_nodes_in_group("player") + get_tree().get_nodes_in_group("enemy"):
 		Global.occupied_cells[actor.grid_position] = actor
-	print(Global.occupied_cells)
+	#print(Global.occupied_cells)
 
 func _on_phase_changed(phase: int):
 	if phase != 3:

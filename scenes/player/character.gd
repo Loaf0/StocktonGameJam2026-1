@@ -184,7 +184,7 @@ func can_move_within_leash(target_cell: Vector2i) -> bool:
 		return true
 
 	var dist = target_cell.distance_to(other_player.grid_position)
-	print(dist)
+	#print(dist)
 	return dist <= Global.max_distance_tiles
 
 func _get_other_player():

@@ -32,8 +32,8 @@ func generate_dungeon():
 	var tries = 0
 	
 	while rooms.size() < 10 and tries < max_attempts:
-		var w = randi_range(8, 16)
-		var h = randi_range(8, 16)
+		var w = randi_range(8, 32)
+		var h = randi_range(8, 32)
 		var x = randi_range(1, DUNGEON_WIDTH - w - 1)
 		var y = randi_range(1, DUNGEON_HEIGHT - h - 1)
 		var room = Rect2(x, y, w, h)
@@ -117,4 +117,4 @@ func create_dungeon():
 	render_dungeon()
 
 func place_player(rooms : Array[Rect2]):
-	player.position = rooms.pick_random().get_center() * 16
+	player.position = rooms.pick_random().get_center() * 32
