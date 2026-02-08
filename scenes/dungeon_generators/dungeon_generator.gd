@@ -32,8 +32,8 @@ func generate_dungeon():
 	var tries = 0
 	
 	while rooms.size() < 10 and tries < max_attempts:
-		var w = randi_range(8, 32)
-		var h = randi_range(8, 32)
+		var w = randi_range(8, 16)
+		var h = randi_range(8, 16)
 		var x = randi_range(1, DUNGEON_WIDTH - w - 1)
 		var y = randi_range(1, DUNGEON_HEIGHT - h - 1)
 		var room = Rect2(x, y, w, h)
@@ -108,8 +108,8 @@ func render_dungeon():
 		for x in range(DUNGEON_WIDTH):
 			var tile = dungeon_grid[y][x]
 			match tile:
-				TileType.FLOOR: tilemap.set_cell(Vector2i(x, y), 0, Vector2i(8,1))
-				TileType.WALL: tilemap.set_cell(Vector2i(x, y), 0, Vector2i(1,0))
+				TileType.FLOOR: tilemap.set_cell(Vector2i(x, y), 0, Vector2i(8,6))
+				TileType.WALL: tilemap.set_cell(Vector2i(x, y), 0, Vector2i(6,6))
 
 func create_dungeon():
 	place_player(generate_dungeon())
@@ -117,4 +117,4 @@ func create_dungeon():
 	render_dungeon()
 
 func place_player(rooms : Array[Rect2]):
-	player.position = rooms.pick_random().get_center() * 32
+	player.position = rooms.pick_random().get_center() * 16

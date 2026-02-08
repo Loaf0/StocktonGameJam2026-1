@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://damn8tiwcswt1"]
+
+[ext_resource type="Script" uid="uid://b71313trp45m3" path="res://scripts/button_effects_module.gd" id="1_sl1te"]
+
+[node name="MainMenu" type="CanvasLayer" unique_id=288322381]
+
+[node name="Button" type="Button" parent="." unique_id=1889999089]
+anchors_preset = -1
+anchor_left = 0.377
+anchor_top = 0.45200002
+anchor_right = 0.62100005
+anchor_bottom = 0.54800004
+offset_left = 2.695984
+offset_top = 0.10397339
+offset_right = -0.39208984
+offset_bottom = -0.104034424
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Start"
+
+[node name="button_effects_module" type="Node" parent="Button" unique_id=872087788]
+script = ExtResource("1_sl1te")
+metadata/_custom_type_script = "uid://b71313trp45m3"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1112157099]

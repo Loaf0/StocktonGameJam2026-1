@@ -5,23 +5,24 @@ signal player_moved
 @export var my_phase: int
 @export var tilemap: TileMapLayer
 @export var beat_window := 0.1
+@export var move_duration := 0.12
+
 var acted_this_beat := false
 var facing_direction: Vector2i = Vector2i.DOWN
-@export var move_duration := 0.12
 var is_moving := false
+
+@export var flash_duration: float = 0.1
+var _default_modulate: Color
+var flash_color: Color
 var move_tween: Tween
 
-var flash_color: Color
-@export var flash_duration: float = 0.1
-
 var grid_position: Vector2i
+var previous_cell: Vector2i
 var buffered_direction: Vector2i = Vector2i.ZERO
-var buffered_time: float = 0.0
-var can_act := false
+var buffered_time: float = 0.00
 var initialized := false
 var last_beat_time := 0.0
-
-var _default_modulate: Color
+var can_act := false
 
 var input_up: String = "up1"
 var input_down: String = "down1"
@@ -99,17 +100,21 @@ func try_resolve_buffer():
 	facing_direction = direction
 	var target_cell = grid_position + direction
 
+	emit_signal("player_moved") # up here so if they didnt move the buffer wont overflow
 	if is_blocked(target_cell) or not can_move_within_leash(target_cell):
 		_update_facing_visual(false)
 		return
 
-	var from_pos := global_position
+	previous_cell = grid_position
 	grid_position = target_cell
+	var from_pos := tilemap.map_to_local(previous_cell)
 	var to_pos := tilemap.map_to_local(grid_position)
+
+	# Add new cell immediately
+	Global.occupied_cells[target_cell] = self
 
 	_update_facing_visual(true)
 	animate_move(from_pos, to_pos)
-	emit_signal("player_moved")
 
 func _start_flash():
 	sprite.modulate = flash_color
@@ -133,7 +138,7 @@ func _unhandled_input(event):
 
 func _buffer_input(direction: Vector2i):
 	buffered_direction = direction
-	buffered_time = Engine.get_physics_frames()
+	buffered_time = Time.get_unix_time_from_system()
 
 func _update_facing_visual(moving: bool = false):
 	var prefix := "walk_" if moving else "idle_"
@@ -223,3 +228,8 @@ func animate_move(from_pos: Vector2, to_pos: Vector2):
 
 func _on_move_finished():
 	is_moving = false
+
+	if previous_cell in Global.occupied_cells:
+		Global.occupied_cells.erase(previous_cell)
+
+	Global.occupied_cells[grid_position] = self

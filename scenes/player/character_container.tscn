@@ -229,6 +229,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="LabelSettings" id="LabelSettings_2ivie"]
+font_size = 8
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_hkf5u"]
 atlas = ExtResource("4_2ivie")
 region = Rect2(0, 0, 32, 32)
@@ -456,6 +459,10 @@ script = ExtResource("1_pqffl")
 unique_name_in_owner = true
 position = Vector2(-16, 0)
 script = ExtResource("2_o753y")
+my_phase = null
+beat_window = null
+move_duration = null
+flash_duration = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player1" unique_id=779279765]
 shape = SubResource("CircleShape2D_uxwpo")
@@ -467,11 +474,25 @@ animation = &"idle_down"
 [node name="Timer" type="Timer" parent="Player1" unique_id=1185237014]
 one_shot = true
 
+[node name="Label" type="Label" parent="Player1" unique_id=1766395551]
+visible = false
+offset_left = -33.0
+offset_top = -24.0
+offset_right = 32.0
+offset_bottom = 3.0
+text = "Stunned
+"
+label_settings = SubResource("LabelSettings_2ivie")
+horizontal_alignment = 1
+
 [node name="Player2" type="CharacterBody2D" parent="." unique_id=935135042]
 unique_name_in_owner = true
 position = Vector2(16, 0)
 script = ExtResource("2_o753y")
 my_phase = 1
+beat_window = null
+move_duration = null
+flash_duration = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player2" unique_id=1574699231]
 shape = SubResource("CircleShape2D_uxwpo")
@@ -482,6 +503,17 @@ animation = &"idle_down"
 
 [node name="Timer" type="Timer" parent="Player2" unique_id=1597596672]
 one_shot = true
+
+[node name="Label" type="Label" parent="Player2" unique_id=2010690508]
+visible = false
+offset_left = -32.0
+offset_top = -24.0
+offset_right = 33.0
+offset_bottom = 3.0
+text = "Stunned
+"
+label_settings = SubResource("LabelSettings_2ivie")
+horizontal_alignment = 1
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1079541686]
 zoom = Vector2(2, 2)
