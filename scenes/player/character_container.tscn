@@ -134,7 +134,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_down",
-"speed": 5.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -142,7 +142,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_left",
-"speed": 5.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -150,7 +150,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_right",
-"speed": 5.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -158,7 +158,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_up",
-"speed": 5.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -175,7 +175,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_down",
-"speed": 5.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -192,7 +192,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_left",
-"speed": 5.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -209,7 +209,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_right",
-"speed": 5.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -226,7 +226,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_up",
-"speed": 5.0
+"speed": 4.0
 }]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2ivie"]
@@ -459,17 +459,13 @@ script = ExtResource("1_pqffl")
 unique_name_in_owner = true
 position = Vector2(-16, 0)
 script = ExtResource("2_o753y")
-my_phase = null
-beat_window = null
-move_duration = null
-flash_duration = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player1" unique_id=779279765]
 shape = SubResource("CircleShape2D_uxwpo")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Player1" unique_id=974364147]
 sprite_frames = SubResource("SpriteFrames_txh7p")
-animation = &"idle_down"
+animation = &"idle_up"
 
 [node name="Timer" type="Timer" parent="Player1" unique_id=1185237014]
 one_shot = true
@@ -490,9 +486,6 @@ unique_name_in_owner = true
 position = Vector2(16, 0)
 script = ExtResource("2_o753y")
 my_phase = 1
-beat_window = null
-move_duration = null
-flash_duration = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player2" unique_id=1574699231]
 shape = SubResource("CircleShape2D_uxwpo")

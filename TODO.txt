@@ -18,6 +18,7 @@ Enemies
 		wizard shoots orb at players
 
 Players
+	beat anims
 	base player movement on beat ✅
 	Ranger dodges half the time
 	Knight takes half dmg
