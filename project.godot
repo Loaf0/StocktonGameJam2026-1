@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 BeatManager="*uid://dskt8gddcg0y0"
 Global="*uid://c6iamvuvtcbtw"
+LevelTransition="*uid://chtr7txyosdji"
 
 [input]
 
