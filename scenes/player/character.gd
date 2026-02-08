@@ -4,7 +4,7 @@ signal player_moved
 
 @export var my_phase: int
 @export var tilemap: TileMapLayer
-@export var beat_window := 0.08
+@export var beat_window := 0.12
 @export var move_duration := 0.12
 
 var acted_this_beat := false
