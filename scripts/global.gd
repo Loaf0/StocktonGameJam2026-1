@@ -1,5 +1,8 @@
 extends Node
 
+var sfx_volume : float = 1.0
+var music_volume : float = 1.0
+
 #show flashes on character to help time beats
 var beat_assist : bool = true
 
@@ -20,3 +23,6 @@ func add_score(value : int):
 	curr_score += value * score_multiplier
 
 #connect some signal to show when failed actions
+
+func _ready() -> void:
+	Save.load_settings()

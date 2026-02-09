@@ -13,17 +13,24 @@ config_version=5
 config/name="StocktonGameJam2026-1"
 run/main_scene="uid://0qwph8f6ugc"
 config/features=PackedStringArray("4.6", "Forward Plus")
+boot_splash/show_image=false
 config/icon="res://icon.svg"
+
+[audio]
+
+buses/default_bus_layout="uid://d2qp6osqbousw"
 
 [autoload]
 
 BeatManager="*uid://dskt8gddcg0y0"
 Global="*uid://c6iamvuvtcbtw"
 LevelTransition="*uid://chtr7txyosdji"
+Save="*uid://cj1d12yf8j3yk"
 
 [display]
 
 window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [input]
 

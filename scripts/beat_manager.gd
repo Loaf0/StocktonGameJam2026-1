@@ -24,6 +24,7 @@ func _ready():
 	
 	_audio_player = AudioStreamPlayer.new()
 	_audio_player.stream = test_sfx
+	_audio_player.bus = "Music"
 	add_child(_audio_player)
 
 func _on_beat():

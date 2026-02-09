@@ -13,3 +13,5 @@ func _process(delta):
 
 	var mid = (player1.global_position + player2.global_position) * 0.5
 	global_position = global_position.lerp(mid, delta * camera_lerp)
+
+#edit to give bias to enemies
