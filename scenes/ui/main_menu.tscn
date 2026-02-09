@@ -5,7 +5,21 @@
 [ext_resource type="FontFile" uid="uid://drf8cub21w07x" path="res://assets/font/ARCADE_N.TTF" id="2_uhagc"]
 [ext_resource type="Texture2D" uid="uid://ddi5os42o0bb6" path="res://assets/ui/main_menu/spritesheet-table-1920-1080.png" id="3_m1kxf"]
 [ext_resource type="PackedScene" uid="uid://cenaqrhx866th" path="res://scenes/ui/crt_vfx.tscn" id="4_m1kxf"]
+[ext_resource type="Shader" uid="uid://bm55ncrd1j05u" path="res://scripts/shaders/radial_transparancy_mask.gdshader" id="4_q85j6"]
 [ext_resource type="AudioStream" uid="uid://c1ungpxciaort" path="res://assets/ui/main_menu/StartUp.mp3" id="5_x2yvf"]
+[ext_resource type="Shader" uid="uid://c0vrp3laxd8nu" path="res://scripts/shaders/main_menu_background.gdshader" id="6_btxxm"]
+[ext_resource type="Script" uid="uid://bd5xy1y65nc2i" path="res://scenes/ui/main_menu_background.gd" id="6_wb0q5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wb0q5"]
+shader = ExtResource("6_btxxm")
+shader_parameter/freq_data = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8g5eo"]
+shader = ExtResource("4_q85j6")
+shader_parameter/mask_color = Color(0, 0, 0, 1)
+shader_parameter/radius = 0.46
+shader_parameter/softness = 0.73
+shader_parameter/center = Vector2(0.5, 0.67)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_btxxm"]
 size = Vector2(500, 200)
@@ -157,6 +171,28 @@ animations = [{
 
 [node name="MainMenu" type="CanvasLayer" unique_id=288322381]
 script = ExtResource("1_1g8jr")
+
+[node name="Background" type="CanvasLayer" parent="." unique_id=136445633]
+layer = -10
+script = ExtResource("6_wb0q5")
+
+[node name="ColorRect" type="ColorRect" parent="Background" unique_id=1071821958]
+visible = false
+material = SubResource("ShaderMaterial_wb0q5")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect2" type="ColorRect" parent="Background" unique_id=1778263741]
+material = SubResource("ShaderMaterial_8g5eo")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="IntroMenu" type="Control" parent="." unique_id=263725973]
 visible = false
@@ -509,10 +545,10 @@ sprite_frames = SubResource("SpriteFrames_5dct7")
 frame = 14
 frame_progress = 1.0
 
-[node name="CRTvfx" parent="." unique_id=30923113 instance=ExtResource("4_m1kxf")]
-
 [node name="StartUp" type="AudioStreamPlayer" parent="." unique_id=1255136064]
 stream = ExtResource("5_x2yvf")
+
+[node name="CRTvfx" parent="." unique_id=30923113 instance=ExtResource("4_m1kxf")]
 
 [connection signal="pressed" from="MainMenu/MarginContainer/VBoxContainer/Start" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MainMenu/MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
