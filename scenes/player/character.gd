@@ -71,7 +71,7 @@ func attack():
 	pass 
 
 func _on_phase_changed(phase: int):
-	var pre_phase := (my_phase - 1 + BeatManager.PHASES) % BeatManager.PHASES
+	var pre_phase = (my_phase - 1 + BeatManager.PHASES) % BeatManager.PHASES
 	label.visible = phase == pre_phase
 	
 	if phase == 3:

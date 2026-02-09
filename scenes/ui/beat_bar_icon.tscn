@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cipp3nkh1eh03"]
+
+[ext_resource type="Script" uid="uid://bgo31ja3gpuqj" path="res://scenes/ui/beat_bar_icon.gd" id="1_gp2dy"]
+
+[node name="BeatBarIcon" type="Node2D" unique_id=1699805152]
+script = ExtResource("1_gp2dy")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=636952523]

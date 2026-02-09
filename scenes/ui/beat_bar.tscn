@@ -7,8 +7,8 @@
 script = ExtResource("1_5tyky")
 
 [node name="MetronomeBackground" type="Sprite2D" parent="." unique_id=252605794]
-position = Vector2(578, 606)
-scale = Vector2(2.26, 2.26)
+position = Vector2(578.9754, 606)
+scale = Vector2(2.2616227, 2.270271)
 texture = ExtResource("2_g4axt")
 
 [node name="Icons" type="Control" parent="." unique_id=505744496]

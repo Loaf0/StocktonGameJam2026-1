@@ -23,8 +23,7 @@ LevelTransition="*uid://chtr7txyosdji"
 
 [display]
 
-window/stretch/mode="viewport"
-window/stretch/aspect="expand"
+window/stretch/mode="canvas_items"
 
 [input]
 
