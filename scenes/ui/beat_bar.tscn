@@ -1,15 +1,23 @@
 [gd_scene format=3 uid="uid://bw2akpjviyb0u"]
 
 [ext_resource type="Script" uid="uid://butf51v8glqtf" path="res://scenes/ui/beat_bar.gd" id="1_5tyky"]
-[ext_resource type="Texture2D" uid="uid://by4vxdvb5xxj" path="res://assets/ui/MetronomeBackground.png" id="2_g4axt"]
+
+[sub_resource type="Gradient" id="Gradient_606ft"]
+offsets = PackedFloat32Array(0, 0.3, 0.6, 1)
+colors = PackedColorArray(0, 0, 0.14117648, 0, 0, 0, 0, 0.5294118, 0, 0, 0, 0.5294118, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5tyky"]
+gradient = SubResource("Gradient_606ft")
+fill_from = Vector2(1, 1)
 
 [node name="BeatBar" type="CanvasLayer" unique_id=2094879700]
 script = ExtResource("1_5tyky")
 
 [node name="MetronomeBackground" type="Sprite2D" parent="." unique_id=252605794]
-position = Vector2(578.9754, 606)
-scale = Vector2(2.2616227, 2.270271)
-texture = ExtResource("2_g4axt")
+visible = false
+position = Vector2(575.99994, 614.8244)
+scale = Vector2(18, 1.0882607)
+texture = SubResource("GradientTexture2D_5tyky")
 
 [node name="Icons" type="Control" parent="." unique_id=505744496]
 layout_mode = 3

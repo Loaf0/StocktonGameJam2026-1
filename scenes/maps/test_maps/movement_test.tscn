@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bd63lux0o1nwj" path="res://scripts/dungeon.gd" id="1_suivh"]
 [ext_resource type="PackedScene" uid="uid://djrxlocjpshxj" path="res://scenes/player/character_container.tscn" id="2_cne6s"]
 [ext_resource type="Texture2D" uid="uid://d8riw06s55de" path="res://assets/sprites/tileset/Tiles.png" id="2_dlq7p"]
+[ext_resource type="PackedScene" uid="uid://bw2akpjviyb0u" path="res://scenes/ui/beat_bar.tscn" id="4_adaig"]
 [ext_resource type="PackedScene" uid="uid://cenaqrhx866th" path="res://scenes/ui/crt_vfx.tscn" id="4_db5eu"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0jfhv"]
@@ -234,5 +235,7 @@ tile_map_data = PackedByteArray("AAD9/wEAAAACAAYAAAD+/wEAAAACAAYAAAD//wEAAAACAAY
 tile_set = SubResource("TileSet_0jfhv")
 
 [node name="CharacterContainer" parent="." unique_id=1429600210 instance=ExtResource("2_cne6s")]
+
+[node name="BeatBar" parent="." unique_id=2094879700 instance=ExtResource("4_adaig")]
 
 [node name="CRTvfx" parent="." unique_id=30923113 instance=ExtResource("4_db5eu")]
