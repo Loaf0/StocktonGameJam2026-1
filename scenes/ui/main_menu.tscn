@@ -177,7 +177,6 @@ layer = -10
 script = ExtResource("6_wb0q5")
 
 [node name="ColorRect" type="ColorRect" parent="Background" unique_id=1071821958]
-visible = false
 material = SubResource("ShaderMaterial_wb0q5")
 anchors_preset = 15
 anchor_right = 1.0

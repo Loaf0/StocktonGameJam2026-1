@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://bw2akpjviyb0u" path="res://scenes/ui/beat_bar.tscn" id="4_adaig"]
 [ext_resource type="PackedScene" uid="uid://cenaqrhx866th" path="res://scenes/ui/crt_vfx.tscn" id="4_db5eu"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0jfhv"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_adaig"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3nlp5"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x2rh7"]
 texture = ExtResource("2_dlq7p")
 0:4/size_in_atlas = Vector2i(2, 2)
 0:4/0 = 0
@@ -218,13 +218,13 @@ texture = ExtResource("2_dlq7p")
 [sub_resource type="TileSet" id="TileSet_0jfhv"]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
-physics_layer_0/physics_material = SubResource("PhysicsMaterial_0jfhv")
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_adaig")
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Wall"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 custom_data_layer_0/name = "solid"
 custom_data_layer_0/type = 1
-sources/0 = SubResource("TileSetAtlasSource_3nlp5")
+sources/0 = SubResource("TileSetAtlasSource_x2rh7")
 
 [node name="Node2D" type="Node2D" unique_id=1208966285 node_paths=PackedStringArray("tilemap")]
 script = ExtResource("1_suivh")
