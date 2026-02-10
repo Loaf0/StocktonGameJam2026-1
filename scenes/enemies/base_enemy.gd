@@ -20,6 +20,7 @@ var move_tween: Tween
 
 var acted_this_beat := false
 var facing_direction: Vector2i = Vector2i.DOWN
+@onready var sprite = $Sprite2D
 var is_moving := false
 
 
@@ -46,6 +47,7 @@ func _ready():
 	await get_tree().process_frame
 	_target_player()
 	_declare_action()
+	_update_facing_visual(true)
 
 func _my_turn():
 	if acted_this_beat == false:
@@ -88,13 +90,7 @@ func _target_player() -> void:
 		target = players[1].grid_position
 
 func _move() -> void:
-	if target != target_cell:
-		move_pts = grid.get_point_path(grid_position, target)
-		move_pts = (move_pts as Array).map(func (p): return p + grid.cell_size / 2.0)
-		$Line2D.points = move_pts
-		if !Global.enemy_intent_cells.has(tilemap.local_to_map(move_pts[cur_pt+1])):
-			Global.enemy_intent_cells[tilemap.local_to_map(move_pts[cur_pt+1])] = self
-		print(Global.enemy_intent_cells)
+	_declare_action()
 	if move_pts.is_empty():
 		return
 	else:
@@ -106,7 +102,19 @@ func _move() -> void:
 			previous_cell = grid_position
 			if previous_cell in Global.occupied_cells:
 				Global.occupied_cells.erase(previous_cell)
+			facing_direction  = move_pts[cur_pt+1] - move_pts[cur_pt]
+			if facing_direction.y < 0:
+				facing_direction = Vector2i.UP
+			elif facing_direction.y > 0:
+				facing_direction = Vector2i.DOWN
+			elif facing_direction.x < 0:
+				facing_direction = Vector2i.LEFT
+			elif facing_direction.x > 0:
+				facing_direction = Vector2i.RIGHT
+			_update_facing_visual(true)
 			animate_move(move_pts[cur_pt], move_pts[cur_pt+1])
+		else:
+			_update_facing_visual(false)
 	return
 
 func animate_move(from_pos: Vector2, to_pos: Vector2):
@@ -146,4 +154,23 @@ func _attack() -> void:
 	return
 
 func _declare_action() -> void:
+	move_pts = grid.get_point_path(grid_position, target)
+	move_pts = (move_pts as Array).map(func (p): return p + grid.cell_size / 2.0)
+	$Line2D.points = move_pts
+	if !Global.enemy_intent_cells.has(tilemap.local_to_map(move_pts[cur_pt+1])):
+		Global.enemy_intent_cells[tilemap.local_to_map(move_pts[cur_pt+1])] = self
+	#print(Global.enemy_intent_cells)
 	return
+
+func _update_facing_visual(moving: bool = false):
+	var prefix := "walk_" if moving else "idle_"
+
+	match facing_direction:
+		Vector2i.UP:
+			sprite.play(prefix + "up")
+		Vector2i.DOWN:
+			sprite.play(prefix + "down")
+		Vector2i.LEFT:
+			sprite.play(prefix + "left")
+		Vector2i.RIGHT:
+			sprite.play(prefix + "right")

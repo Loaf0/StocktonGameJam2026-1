@@ -7,9 +7,6 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_n763p"]
 radius = 14.3178215
 
-[sub_resource type="LabelSettings" id="LabelSettings_n2ebm"]
-font_size = 8
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_ylyo2"]
 atlas = ExtResource("2_lkvl6")
 region = Rect2(0, 0, 32, 32)
@@ -230,6 +227,9 @@ animations = [{
 "speed": 0.0
 }]
 
+[sub_resource type="LabelSettings" id="LabelSettings_n2ebm"]
+font_size = 8
+
 [node name="BaseEnemy" type="CharacterBody2D" unique_id=141113670]
 script = ExtResource("1_lkvl6")
 my_phase = 2
@@ -240,6 +240,11 @@ default_color = Color(1, 0, 0.007843138, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1771081340]
 shape = SubResource("CircleShape2D_n763p")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=23198620]
+sprite_frames = SubResource("SpriteFrames_ixvfu")
+animation = &"idle_down"
+script = ExtResource("3_n763p")
 
 [node name="Timer" type="Timer" parent="." unique_id=165724197]
 one_shot = true
@@ -256,8 +261,3 @@ label_settings = SubResource("LabelSettings_n2ebm")
 horizontal_alignment = 1
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=854407211]
-
-[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=23198620]
-sprite_frames = SubResource("SpriteFrames_ixvfu")
-animation = &"idle_right"
-script = ExtResource("3_n763p")
