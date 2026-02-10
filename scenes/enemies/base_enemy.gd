@@ -102,7 +102,10 @@ func _move() -> void:
 		Global.occupied_cells[target_cell] = self
 		cur_pt = 0
 		if !is_blocked(tilemap.local_to_map(move_pts[cur_pt+1])):
+			#clear previous cell before next enemy moves
 			previous_cell = grid_position
+			if previous_cell in Global.occupied_cells:
+				Global.occupied_cells.erase(previous_cell)
 			animate_move(move_pts[cur_pt], move_pts[cur_pt+1])
 	return
 
@@ -127,8 +130,6 @@ func animate_move(from_pos: Vector2, to_pos: Vector2):
 func _on_move_finished():
 	is_moving = false
 	
-	if previous_cell in Global.occupied_cells:
-		Global.occupied_cells.erase(previous_cell)
 	Global.occupied_cells[grid_position] = self
 
 func is_blocked(cell: Vector2i) -> bool:
