@@ -11,6 +11,7 @@ Dungeon Generator
 
 Enemies
 	set up pathing on the generated dungeon ✅
+	beat anims ✅
 	create unique behavior based on the slides
 		mushroom basic 1x1 forward attack
 		skeleton swings 1x3 attack towards direction
@@ -18,7 +19,7 @@ Enemies
 		wizard shoots orb at players
 
 Players
-	beat anims
+	beat anims ✅
 	base player movement on beat ✅
 	Ranger dodges half the time
 	Knight takes half dmg
