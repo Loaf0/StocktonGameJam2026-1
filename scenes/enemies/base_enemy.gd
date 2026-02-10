@@ -52,6 +52,7 @@ func _ready():
 func _my_turn():
 	if acted_this_beat == false:
 		#move or attack logic here
+		_declare_action()
 		_move()
 		
 		_target_player()
@@ -90,7 +91,6 @@ func _target_player() -> void:
 		target = players[1].grid_position
 
 func _move() -> void:
-	_declare_action()
 	if move_pts.is_empty():
 		return
 	else:
