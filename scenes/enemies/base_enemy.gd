@@ -6,10 +6,8 @@ class_name Enemy
 
 @export var move_duration := 0.12
 
-@export var atk_width: int
-
 var grid: AStarGrid2D
-
+var initialized := false
 var grid_position: Vector2i
 var target: Vector2i
 var target_cell: Vector2i
@@ -24,6 +22,8 @@ var move_tween: Tween
 var acted_this_beat := false
 var facing_direction: Vector2i = Vector2i.DOWN
 @onready var sprite = $Sprite2D
+@onready var move_arrow: Line2D = $Line2D
+@onready var atk_warn: Sprite2D = $AtkWarn
 var is_moving := false
 
 var first_turn := true
@@ -101,6 +101,7 @@ func _move() -> void:
 	if move_pts.is_empty():
 		return
 	else:
+		move_arrow.clear_points()
 		if move_pts.size() > 1 and !is_blocked(tilemap.local_to_map(move_pts[cur_pt+1])):
 			# Add new cell immediately and remove old
 			if !Global.occupied_cells.has(tilemap.local_to_map(move_pts[cur_pt+1])):
@@ -116,19 +117,19 @@ func _move() -> void:
 
 func animate_move(from_pos: Vector2, to_pos: Vector2):
 	is_moving = true
-
+	
 	if move_tween and move_tween.is_running():
 		move_tween.kill()
-
+	
 	move_tween = create_tween()
 	move_tween.set_trans(Tween.TRANS_QUAD)
 	move_tween.set_ease(Tween.EASE_OUT)
-
+	
 	var mid := (from_pos + to_pos) * 0.5 + Vector2(0, -6)
-
+	
 	move_tween.tween_property(self, "global_position", mid, move_duration * 0.5)
 	move_tween.tween_property(self, "global_position", to_pos, move_duration * 0.5)
-
+	
 	move_tween.finished.connect(_on_move_finished)
 	grid_position = tilemap.local_to_map(to_pos)
 
@@ -152,9 +153,13 @@ func _attack() -> void:
 		wait_turn = false
 		return
 	if atk_turn:
-		#attack
+		#attack_anim
+		$AtkWarn/AtkBox.get_overlapping_bodies()
+		#deal dmg
 		atk_turn = false
 		wait_turn = true
+		atk_warn.position = Vector2(0,0)
+		atk_warn.visible = false
 		_draw_move_arrow()
 	return
 
@@ -171,13 +176,13 @@ func _draw_move_arrow() -> void:
 	move_pts = (move_pts as Array).map(func (p): return p + grid.cell_size / 2.0)
 	match (facing_direction):
 		Vector2i.UP:
-			$Line2D.points = (move_pts as Array).map(func (p): return p - Vector2(0, (grid.cell_size.y / 2.0)))
+			move_arrow.points = (move_pts as Array).map(func (p): return p - Vector2(0, (grid.cell_size.y / 2.0)))
 		Vector2i.DOWN:
-			$Line2D.points = (move_pts as Array).map(func (p): return p + Vector2(0, (grid.cell_size.y / 2.0)))
+			move_arrow.points = (move_pts as Array).map(func (p): return p + Vector2(0, (grid.cell_size.y / 2.0)))
 		Vector2i.LEFT:
-			$Line2D.points = (move_pts as Array).map(func (p): return p - Vector2((grid.cell_size.x / 2.0), 0))
+			move_arrow.points = (move_pts as Array).map(func (p): return p - Vector2((grid.cell_size.x / 2.0), 0))
 		Vector2i.RIGHT:
-			$Line2D.points = (move_pts as Array).map(func (p): return p + Vector2((grid.cell_size.x / 2.0), 0))
+			move_arrow.points = (move_pts as Array).map(func (p): return p + Vector2((grid.cell_size.x / 2.0), 0))
 	
 	if move_pts.size() > 1 and !Global.enemy_intent_cells.has(tilemap.local_to_map(move_pts[cur_pt+1])):
 		Global.enemy_intent_cells[tilemap.local_to_map(move_pts[cur_pt+1])] = self
@@ -185,10 +190,18 @@ func _draw_move_arrow() -> void:
 	
 
 func _draw_attack_warning() -> void:
-	#use attack width
+	atk_warn.visible = true
 	#draw
-	
-	pass
+	match (facing_direction):
+		Vector2i.UP:
+			atk_warn.position = Vector2(0,-32)
+		Vector2i.DOWN:
+			atk_warn.position = Vector2(0,32)
+		Vector2i.LEFT:
+			atk_warn.position = Vector2(-32,0)
+		Vector2i.RIGHT:
+			atk_warn.position = Vector2(32,0)
+	return
 
 func _update_facing_dir(arrow:int = 0) -> void:
 	if move_pts.size() < 2:
@@ -204,8 +217,8 @@ func _update_facing_dir(arrow:int = 0) -> void:
 		elif facing_direction.x > 0:
 			facing_direction = Vector2i.RIGHT
 
-func _update_facing_visual(moving: bool = false):
-	var prefix := "walk_" if moving else "idle_"
+func _update_facing_visual(_moving: bool = false):
+	var prefix := "walk_"
 
 	match facing_direction:
 		Vector2i.UP:
@@ -216,3 +229,14 @@ func _update_facing_visual(moving: bool = false):
 			sprite.play(prefix + "left")
 		Vector2i.RIGHT:
 			sprite.play(prefix + "right")
+
+func set_tile_map(new_tilemap: TileMapLayer):
+	tilemap = new_tilemap
+	_initialize_position()
+
+func _initialize_position():
+	if initialized or tilemap == null:
+		return
+	grid_position = tilemap.local_to_map(global_position)
+	global_position = tilemap.map_to_local(grid_position)
+	initialized = true
