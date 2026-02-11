@@ -27,14 +27,19 @@ var slider_click = preload("res://assets/audio/ui_effects/Switch.mp3")
 
 func _ready() -> void:
 	_set_menu_state(MenuState.INTRO)
+	
+	intro_anim.play("default")
+	
+	Save.load_settings()
 	sfx_volume.value = Global.sfx_volume
 	msfx_volume.value = Global.music_volume
 
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(Global.sfx_volume))
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(Global.music_volume))
 	
-	intro_anim.play("default")
 	start_up.play(1.45)
+	await start_up.finished
+	$Title.play()
 
 func _process(_delta: float) -> void:
 	if current_state == MenuState.INTRO:
@@ -127,3 +132,4 @@ func _play_one_shot_sfx(sfx: AudioStream, pitch_range: float = 0.05, start_time:
 
 func _on_options_return_pressed() -> void:
 	_go_to_main_menu()
+	Save.save_all()

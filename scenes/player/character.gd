@@ -49,6 +49,7 @@ func _ready():
 	add_to_group("player")
 	
 	buffer_timer_node.one_shot = true
+	buffer_timer_node.wait_time = beat_window
 	buffer_timer_node.timeout.connect(_on_buffer_timeout)
 	
 	flash_color = Color(0.24, 0.463, 1.0, 0.5) if my_phase == 0 else Color(1.0, 0.255, 0.0, 0.5)

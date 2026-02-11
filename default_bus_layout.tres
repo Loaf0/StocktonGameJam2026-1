@@ -2,6 +2,9 @@
 
 [sub_resource type="AudioEffectSpectrumAnalyzer" id="AudioEffectSpectrumAnalyzer_j3pel"]
 resource_name = "SpectrumAnalyzer"
+buffer_length = 0.1
+tap_back_pos = 0.1
+fft_size = 0
 
 [resource]
 bus/0/bypass_fx = true

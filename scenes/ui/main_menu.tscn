@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://c1ungpxciaort" path="res://assets/ui/main_menu/StartUp.mp3" id="5_x2yvf"]
 [ext_resource type="Shader" uid="uid://c0vrp3laxd8nu" path="res://scripts/shaders/main_menu_background.gdshader" id="6_btxxm"]
 [ext_resource type="Script" uid="uid://bd5xy1y65nc2i" path="res://scenes/ui/main_menu_background.gd" id="6_wb0q5"]
-[ext_resource type="AudioStream" uid="uid://brahtdeko4nkm" path="res://assets/audio/songs/groovin.wav" id="10_8g5eo"]
+[ext_resource type="AudioStream" uid="uid://ci3u050krqp7" path="res://assets/audio/songs/title.wav" id="10_8g5eo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wb0q5"]
 shader = ExtResource("6_btxxm")
@@ -550,9 +550,8 @@ stream = ExtResource("5_x2yvf")
 
 [node name="CRTvfx" parent="." unique_id=30923113 instance=ExtResource("4_m1kxf")]
 
-[node name="Groovin" type="AudioStreamPlayer" parent="." unique_id=1749058301]
+[node name="Title" type="AudioStreamPlayer" parent="." unique_id=856754805]
 stream = ExtResource("10_8g5eo")
-autoplay = true
 bus = &"Music"
 
 [connection signal="pressed" from="MainMenu/MarginContainer/VBoxContainer/Start" to="." method="_on_play_pressed"]
