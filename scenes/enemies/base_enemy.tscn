@@ -197,9 +197,6 @@ animations = [{
 "speed": 0.0
 }]
 
-[sub_resource type="LabelSettings" id="LabelSettings_n2ebm"]
-font_size = 8
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ylyo2"]
 
 [node name="BaseEnemy" type="CharacterBody2D" unique_id=141113670]
@@ -218,22 +215,6 @@ shape = SubResource("CircleShape2D_n763p")
 sprite_frames = SubResource("SpriteFrames_47p8s")
 animation = &"walk_down"
 script = ExtResource("3_n763p")
-
-[node name="Timer" type="Timer" parent="." unique_id=165724197]
-one_shot = true
-
-[node name="Label" type="Label" parent="." unique_id=1734175112]
-visible = false
-offset_left = -33.0
-offset_top = -24.0
-offset_right = 32.0
-offset_bottom = 3.0
-text = "Stunned
-"
-label_settings = SubResource("LabelSettings_n2ebm")
-horizontal_alignment = 1
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=854407211]
 
 [node name="AtkWarn" type="Sprite2D" parent="." unique_id=212937407]
 visible = false

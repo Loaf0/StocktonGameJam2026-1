@@ -229,9 +229,6 @@ animations = [{
 "speed": 0.0
 }]
 
-[sub_resource type="LabelSettings" id="LabelSettings_n2ebm"]
-font_size = 8
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xecti"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6bfe6"]
@@ -252,22 +249,6 @@ shape = SubResource("CircleShape2D_n763p")
 sprite_frames = SubResource("SpriteFrames_ixvfu")
 animation = &"idle_down"
 script = ExtResource("4_wxhic")
-
-[node name="Timer" type="Timer" parent="." unique_id=165724197]
-one_shot = true
-
-[node name="Label" type="Label" parent="." unique_id=1734175112]
-visible = false
-offset_left = -33.0
-offset_top = -24.0
-offset_right = 32.0
-offset_bottom = 3.0
-text = "Stunned
-"
-label_settings = SubResource("LabelSettings_n2ebm")
-horizontal_alignment = 1
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=854407211]
 
 [node name="AtkWarn" type="Sprite2D" parent="." unique_id=411718262]
 visible = false
