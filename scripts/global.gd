@@ -8,7 +8,8 @@ var beat_assist : bool = true
 
 #move player 2 to arrow keys
 var two_player_mode : bool = false
-
+var max_player_health : int = 3
+var player_health : int = max_player_health
 
 #ai + nav + collision
 var occupied_cells : Dictionary = {}
@@ -29,3 +30,11 @@ func add_score(value : int):
 
 func _ready() -> void:
 	Save.load_settings()
+
+func take_damage(damage_amt : int):
+	player_health -= damage_amt
+	if player_health <= 0:
+		death()
+
+func death():
+	pass

@@ -313,3 +313,6 @@ func _pop_up_next():
 	
 func _on_buffer_timeout():
 	buffered_direction = Vector2i.ZERO
+
+func take_damage():
+	Global.take_damage(1)

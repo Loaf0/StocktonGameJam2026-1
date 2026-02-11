@@ -27,12 +27,12 @@ Players
 	set up attacks use conditional based on char1/char2 for attack types
 	on failed timing do stun animation and do not attack that turn (neutral doesnt mean failed)
 
-Items/Interactables
+Items/Interactables - 😡
 	Keys and locked doors maybe would have to put into dungeon generator
 	Hearts have a chance of dropping on death from player
 
-UI/UX
+UI/UX - ✅
 	main menu - pulse to music 
-	pause menu
-	hud
+	pause menu 😡
+	hud 😡
 	dmg number effect on hit

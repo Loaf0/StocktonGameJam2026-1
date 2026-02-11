@@ -81,12 +81,18 @@ func _go_to_difficulty() -> void:
 	_set_menu_state(MenuState.DIFFICULTY)
 
 func _on_easy_pressed() -> void:
+	Global.max_player_health = 5
+	Global.player_health = 5
 	_on_difficulty_selected(130.0)
 
 func _on_normal_pressed() -> void:
+	Global.max_player_health = 4
+	Global.player_health = 4
 	_on_difficulty_selected(140.0)
 
 func _on_hard_pressed() -> void:
+	Global.max_player_health = 3
+	Global.player_health = 3
 	_on_difficulty_selected(150.0)
 
 func _on_difficulty_selected(bpm : float) -> void:
