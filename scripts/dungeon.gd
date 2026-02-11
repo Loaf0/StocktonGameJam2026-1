@@ -31,7 +31,7 @@ func _input(event):
 func change_layout() -> void:
 	while BeatManager.phase != 3:
 		await get_tree().process_frame
-		
+	Global.difficulty += 0.1
 	Global.do_not_act = true
 	
 	var fade_time = 60.0 / BeatManager.bpm * 2

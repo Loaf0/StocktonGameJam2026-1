@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://d8riw06s55de" path="res://assets/sprites/tileset/Tiles.png" id="1_ft771"]
 [ext_resource type="Script" uid="uid://b0bquy2c1sq8c" path="res://scenes/maps/test_maps/room.gd" id="2_mvt5e"]
+[ext_resource type="Script" uid="uid://dnkoimb8315ch" path="res://scenes/enemies/enemy_spawner.gd" id="3_5fthn"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0jfhv"]
 
@@ -229,3 +230,7 @@ tile_set = SubResource("TileSet_8oti8")
 script = ExtResource("2_mvt5e")
 player_spawn_1 = Vector2(4, 11)
 player_spawn_2 = Vector2(7, 11)
+enemy_spawn_points = Array[Vector2]([Vector2(1, 1), Vector2(10, 1), Vector2(2, 4), Vector2(9, 4), Vector2(6, 6)])
+
+[node name="EnemySpawner" type="Node2D" parent="." unique_id=113951075]
+script = ExtResource("3_5fthn")
