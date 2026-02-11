@@ -25,6 +25,12 @@ func _ready():
 	await get_tree().process_frame
 	_target_player()
 	_update_facing_visual(true)
+	atk_warns.append(atk_warn)
+	atk_warns.append(atk_warn_2)
+	atk_warns.append(atk_warn_3)
+	atk_boxes.append($AtkWarn/AtkBox)
+	atk_boxes.append($AtkWarn2/AtkBox)
+	atk_boxes.append($AtkWarn3/AtkBox)
 
 func _my_turn():
 	if acted_this_beat == false:
@@ -51,24 +57,6 @@ func on_phase_changed(phase: int):
 		acted_this_beat = false
 		_my_turn()
 
-func _attack() -> void:
-	if wait_turn and atk_turn:
-		wait_turn = false
-		return
-	if atk_turn:
-		#attack_anim
-		$AtkWarn/AtkBox.get_overlapping_bodies()
-		$AtkWarn2/AtkBox.get_overlapping_bodies()
-		$AtkWarn3/AtkBox.get_overlapping_bodies()
-		#deal dmg
-		atk_turn = false
-		wait_turn = true
-		atk_warn.visible = false
-		atk_warn_2.visible = false
-		atk_warn_3.visible = false
-		_draw_move_arrow()
-	return
-
 func _declare_action() -> void:
 	if !atk_turn:
 		_draw_move_arrow()
@@ -78,9 +66,8 @@ func _declare_action() -> void:
 
 
 func _draw_attack_warning() -> void:
-	atk_warn.visible = true
-	atk_warn_2.visible = true
-	atk_warn_3.visible = true
+	for warn in atk_warns:
+		warn.visible = true
 	#draw
 	match (facing_direction):
 		Vector2i.UP:
