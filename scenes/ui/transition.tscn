@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://c6fhnrd8gltt8"]
+
+[ext_resource type="Shader" uid="uid://b2yc6lbgjh1br" path="res://scripts/shaders/transition.gdshader" id="1_px6ob"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0f8sa"]
+shader = ExtResource("1_px6ob")
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/radius = 2.000000095
+shader_parameter/pixel_size = 4.0
+shader_parameter/resolution = Vector2(400, 400)
+shader_parameter/dither_offset = Vector2i(2, 0)
+shader_parameter/bayer_size = 2
+shader_parameter/interpolate = true
+shader_parameter/invert = true
+shader_parameter/falloff = 2.58800011967012
+shader_parameter/color = Color(0, 0, 0, 1)
+
+[node name="Transition" type="CanvasLayer" unique_id=1598174226]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=879795811]
+material = SubResource("ShaderMaterial_0f8sa")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

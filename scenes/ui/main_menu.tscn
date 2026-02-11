@@ -6,9 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://ddi5os42o0bb6" path="res://assets/ui/main_menu/spritesheet-table-1920-1080.png" id="3_m1kxf"]
 [ext_resource type="PackedScene" uid="uid://cenaqrhx866th" path="res://scenes/ui/crt_vfx.tscn" id="4_m1kxf"]
 [ext_resource type="Shader" uid="uid://bm55ncrd1j05u" path="res://scripts/shaders/radial_transparancy_mask.gdshader" id="4_q85j6"]
+[ext_resource type="Texture2D" uid="uid://dlo5i21aacbsw" path="res://assets/ui/main_menu/syncodate.png" id="5_otr3d"]
 [ext_resource type="AudioStream" uid="uid://c1ungpxciaort" path="res://assets/ui/main_menu/StartUp.mp3" id="5_x2yvf"]
 [ext_resource type="Shader" uid="uid://c0vrp3laxd8nu" path="res://scripts/shaders/main_menu_background.gdshader" id="6_btxxm"]
 [ext_resource type="Script" uid="uid://bd5xy1y65nc2i" path="res://scenes/ui/main_menu_background.gd" id="6_wb0q5"]
+[ext_resource type="Texture2D" uid="uid://bct04r12ph634" path="res://assets/ui/main_menu/Check_Box.png" id="7_7suek"]
 [ext_resource type="AudioStream" uid="uid://ci3u050krqp7" path="res://assets/audio/songs/title.wav" id="10_8g5eo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wb0q5"]
@@ -18,12 +20,9 @@ shader_parameter/freq_data = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8g5eo"]
 shader = ExtResource("4_q85j6")
 shader_parameter/mask_color = Color(0, 0, 0, 1)
-shader_parameter/radius = 0.46
-shader_parameter/softness = 0.73
+shader_parameter/radius = 0.895
+shader_parameter/softness = 1.0
 shader_parameter/center = Vector2(0.5, 0.67)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_btxxm"]
-size = Vector2(500, 200)
 
 [sub_resource type="LabelSettings" id="LabelSettings_wb0q5"]
 font = ExtResource("2_uhagc")
@@ -42,6 +41,21 @@ font_size = 20
 [sub_resource type="LabelSettings" id="LabelSettings_uhagc"]
 font = ExtResource("2_uhagc")
 font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_otr3d"]
+font = ExtResource("2_uhagc")
+font_size = 22
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7suek"]
+load_path = "res://.godot/imported/Check_Box.png-73628b35c26c9880c09a97392f40e873.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qilvv"]
+atlas = SubResource("CompressedTexture2D_7suek")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dct7"]
+atlas = ExtResource("7_7suek")
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uhagc"]
 
@@ -195,7 +209,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="IntroMenu" type="Control" parent="." unique_id=263725973]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -226,7 +239,7 @@ theme_override_constants/margin_right = 100
 
 [node name="TextureRect" type="TextureRect" parent="IntroMenu/MarginContainer/VBoxContainer/Control" unique_id=1206890039]
 layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_btxxm")
+texture = ExtResource("5_otr3d")
 expand_mode = 2
 stretch_mode = 4
 
@@ -269,7 +282,7 @@ theme_override_constants/margin_right = 100
 
 [node name="TextureRect" type="TextureRect" parent="MainMenu/MarginContainer/VBoxContainer/Control" unique_id=1780889895]
 layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_btxxm")
+texture = ExtResource("5_otr3d")
 expand_mode = 2
 stretch_mode = 4
 
@@ -364,12 +377,12 @@ horizontal_alignment = 1
 [node name="HSeparator" type="HSeparator" parent="Difficulty/MarginContainer/VBoxContainer" unique_id=473557747]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-theme_override_constants/separation = 100
+theme_override_constants/separation = 80
 
 [node name="Easy" type="Button" parent="Difficulty/MarginContainer/VBoxContainer" unique_id=842345841]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_uhagc")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 28
 theme_override_styles/normal = SubResource("StyleBoxEmpty_7suek")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_otr3d")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_8ekit")
@@ -385,12 +398,12 @@ metadata/_custom_type_script = "uid://b71313trp45m3"
 [node name="HSeparator2" type="HSeparator" parent="Difficulty/MarginContainer/VBoxContainer" unique_id=603104498]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 25
 
 [node name="Medium" type="Button" parent="Difficulty/MarginContainer/VBoxContainer" unique_id=1644380349]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_uhagc")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 28
 theme_override_styles/normal = SubResource("StyleBoxEmpty_7suek")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_otr3d")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_8ekit")
@@ -406,12 +419,12 @@ metadata/_custom_type_script = "uid://b71313trp45m3"
 [node name="HSeparator3" type="HSeparator" parent="Difficulty/MarginContainer/VBoxContainer" unique_id=559882828]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 25
 
 [node name="Hard" type="Button" parent="Difficulty/MarginContainer/VBoxContainer" unique_id=927810208]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_uhagc")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 28
 theme_override_styles/normal = SubResource("StyleBoxEmpty_7suek")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_otr3d")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_8ekit")
@@ -427,7 +440,39 @@ metadata/_custom_type_script = "uid://b71313trp45m3"
 [node name="HSeparator5" type="HSeparator" parent="Difficulty/MarginContainer/VBoxContainer" unique_id=1274486849]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-theme_override_constants/separation = 100
+theme_override_constants/separation = 50
+
+[node name="Container" type="HBoxContainer" parent="Difficulty/MarginContainer/VBoxContainer" unique_id=1055168624]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="Difficulty/MarginContainer/VBoxContainer/Container" unique_id=919482048]
+layout_mode = 2
+text = "TWO PLAYER"
+label_settings = SubResource("LabelSettings_otr3d")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckButton" type="CheckButton" parent="Difficulty/MarginContainer/VBoxContainer/Container" unique_id=596077295]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_uhagc")
+theme_override_font_sizes/font_size = 24
+theme_override_icons/checked = SubResource("AtlasTexture_qilvv")
+theme_override_icons/unchecked = SubResource("AtlasTexture_5dct7")
+alignment = 1
+icon_alignment = 1
+expand_icon = true
+
+[node name="button_effects_module" type="Node" parent="Difficulty/MarginContainer/VBoxContainer/Container/CheckButton" unique_id=851249426]
+script = ExtResource("1_sl1te")
+rotation_amount = 0.0
+metadata/_custom_type_script = "uid://b71313trp45m3"
+
+[node name="HSeparator6" type="HSeparator" parent="Difficulty/MarginContainer/VBoxContainer" unique_id=1945260034]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 50
 
 [node name="Button" type="Button" parent="Difficulty/MarginContainer/VBoxContainer" unique_id=1805002807]
 layout_mode = 2
@@ -560,6 +605,7 @@ bus = &"Music"
 [connection signal="pressed" from="Difficulty/MarginContainer/VBoxContainer/Easy" to="." method="_on_easy_pressed"]
 [connection signal="pressed" from="Difficulty/MarginContainer/VBoxContainer/Medium" to="." method="_on_normal_pressed"]
 [connection signal="pressed" from="Difficulty/MarginContainer/VBoxContainer/Hard" to="." method="_on_hard_pressed"]
+[connection signal="toggled" from="Difficulty/MarginContainer/VBoxContainer/Container/CheckButton" to="." method="_on_check_button_toggled"]
 [connection signal="pressed" from="Difficulty/MarginContainer/VBoxContainer/Button" to="." method="_on_difficulty_back_pressed"]
 [connection signal="drag_ended" from="Options/MarginContainer/VBoxContainer/SFX" to="." method="_on_sfx_volume_drag_ended"]
 [connection signal="value_changed" from="Options/MarginContainer/VBoxContainer/SFX" to="." method="_on_sfx_volume_value_changed"]

@@ -1,10 +1,12 @@
 [gd_scene format=4 uid="uid://0qwph8f6ugc"]
 
 [ext_resource type="Script" uid="uid://bd63lux0o1nwj" path="res://scripts/dungeon.gd" id="1_suivh"]
+[ext_resource type="PackedScene" uid="uid://8cv1d65ovpib" path="res://scripts/layouts/001.tscn" id="2_0f8sa"]
 [ext_resource type="PackedScene" uid="uid://djrxlocjpshxj" path="res://scenes/player/character_container.tscn" id="2_cne6s"]
 [ext_resource type="Texture2D" uid="uid://d8riw06s55de" path="res://assets/sprites/tileset/Tiles.png" id="2_dlq7p"]
 [ext_resource type="PackedScene" uid="uid://bw2akpjviyb0u" path="res://scenes/ui/beat_bar.tscn" id="4_adaig"]
 [ext_resource type="PackedScene" uid="uid://cenaqrhx866th" path="res://scenes/ui/crt_vfx.tscn" id="4_db5eu"]
+[ext_resource type="PackedScene" uid="uid://c6fhnrd8gltt8" path="res://scenes/ui/transition.tscn" id="5_x2rh7"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_adaig"]
 
@@ -229,6 +231,7 @@ sources/0 = SubResource("TileSetAtlasSource_x2rh7")
 [node name="Node2D" type="Node2D" unique_id=1208966285 node_paths=PackedStringArray("tilemap")]
 script = ExtResource("1_suivh")
 tilemap = NodePath("TileMapLayer")
+new_tilemap_scene = ExtResource("2_0f8sa")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1886383761]
 tile_map_data = PackedByteArray("AAD9/wEAAAACAAYAAAD+/wEAAAACAAYAAAD//wEAAAACAAYAAAAAAAEAAAACAAYAAAABAAEAAAACAAYAAAACAAEAAAACAAYAAAADAAEAAAACAAYAAAAEAAEAAAACAAYAAAAFAAEAAAACAAYAAAD8/wEAAAACAAYAAAD7/wEAAAAAAAQAAAD7/wAAAAAGAAIAAAD7////AAAGAAIAAAD7//7/AAAGAAIAAAAGAAEAAAAEAAQAAAAGAAAAAAAGAAIAAAAGAP//AAAGAAIAAAAGAP7/AAAGAAIAAAAGAP3/AAAGAAIAAAADAP//AAACAAYAAAACAP//AAAAAAYAAAAEAP//AAAEAAYAAAD9//7/AAAAAAYAAAD+//7/AAACAAYAAAD///7/AAAEAAYAAAACAPz/AAAGAAYAAAAEAP3/AAAGAAYAAAAGAPr/AAAKAAQAAAD7//r/AAAIAAQAAAD7//v/AAAGAAIAAAD7//z/AAAGAAIAAAD7//3/AAAGAAIAAAAGAPz/AAAKAAAAAAAFAPz/AAAAAAYAAAAGAPv/AAAGAAIAAAD8//r/AAACAAYAAAD9//r/AAACAAYAAAD+//r/AAACAAYAAAD///r/AAACAAYAAAAAAPr/AAACAAYAAAABAPr/AAACAAYAAAACAPr/AAACAAYAAAADAPr/AAACAAYAAAAEAPr/AAACAAYAAAAFAPr/AAACAAYAAAD8/wAAAAAIAAYAAAD9/wAAAAAIAAYAAAD+/wAAAAAIAAYAAAD//wAAAAAIAAYAAAAAAAAAAAAIAAYAAAABAAAAAAAIAAYAAAACAAAAAAAIAAYAAAADAAAAAAAIAAYAAAAEAAAAAAAIAAYAAAAFAAAAAAAIAAYAAAAFAP//AAAIAAYAAAAFAP7/AAAIAAYAAAAFAP3/AAAIAAYAAAAEAP7/AAAIAAYAAAADAP7/AAAIAAYAAAACAP7/AAAIAAYAAAABAP7/AAAIAAYAAAABAP//AAAIAAYAAAAAAP//AAAIAAYAAAD/////AAAIAAYAAAD+////AAAIAAYAAAD9////AAAIAAYAAAD8////AAAIAAYAAAD8//7/AAAIAAYAAAD8//3/AAAIAAYAAAD8//z/AAAIAAYAAAD8//v/AAAIAAYAAAD9//v/AAAIAAYAAAD+//v/AAAIAAYAAAD+//z/AAAIAAYAAAD9//z/AAAIAAYAAAD9//3/AAAIAAYAAAD+//3/AAAIAAYAAAD///3/AAAIAAYAAAD///z/AAAIAAYAAAD///v/AAAIAAYAAAAAAPv/AAAIAAYAAAABAPv/AAAIAAYAAAACAPv/AAAIAAYAAAADAPv/AAAIAAYAAAAEAPv/AAAIAAYAAAAFAPv/AAAIAAYAAAAEAPz/AAAIAAYAAAADAPz/AAAIAAYAAAADAP3/AAAIAAYAAAACAP3/AAAIAAYAAAABAP3/AAAIAAYAAAAAAP3/AAAIAAYAAAAAAPz/AAAIAAYAAAAAAP7/AAAIAAYAAAABAPz/AAAIAAYAAAA=")
@@ -237,5 +240,7 @@ tile_set = SubResource("TileSet_0jfhv")
 [node name="CharacterContainer" parent="." unique_id=1429600210 instance=ExtResource("2_cne6s")]
 
 [node name="BeatBar" parent="." unique_id=2094879700 instance=ExtResource("4_adaig")]
+
+[node name="Transition" parent="." unique_id=1598174226 instance=ExtResource("5_x2rh7")]
 
 [node name="CRTvfx" parent="." unique_id=30923113 instance=ExtResource("4_db5eu")]

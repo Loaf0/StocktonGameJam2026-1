@@ -133,3 +133,6 @@ func _play_one_shot_sfx(sfx: AudioStream, pitch_range: float = 0.05, start_time:
 func _on_options_return_pressed() -> void:
 	_go_to_main_menu()
 	Save.save_all()
+
+func _on_check_button_toggled(toggled_on: bool) -> void:
+	Global.two_player_mode = toggled_on
