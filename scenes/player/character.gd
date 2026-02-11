@@ -212,6 +212,8 @@ func try_move(direction: Vector2i):
 
 
 func is_blocked(cell: Vector2i) -> bool:
+	if !tilemap:
+		return true
 	var tile_data = tilemap.get_cell_tile_data(cell)
 	if tile_data == null:
 		return true

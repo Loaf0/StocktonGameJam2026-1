@@ -228,9 +228,8 @@ custom_data_layer_0/name = "solid"
 custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_x2rh7")
 
-[node name="Node2D" type="Node2D" unique_id=1208966285 node_paths=PackedStringArray("tilemap")]
+[node name="Node2D" type="Node2D" unique_id=1208966285]
 script = ExtResource("1_suivh")
-tilemap = NodePath("TileMapLayer")
 new_tilemap_scene = ExtResource("2_0f8sa")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1886383761]

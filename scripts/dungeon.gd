@@ -1,12 +1,12 @@
 extends Node2D
 class_name Dungeon
 
-@export var tilemap : TileMapLayer
 var astar_grid: AStarGrid2D
+@onready var tilemap : TileMapLayer = $TileMapLayer
 @onready var character_container: Node2D = $CharacterContainer
 @onready var transition: CanvasLayer = $Transition
 
-@onready var dim_overlay : ColorRect = $Transition.get_child(0)
+@onready var fade_overlay : ColorRect = $Transition.get_child(0)
 
 @export var new_tilemap_scene : PackedScene
 @export var enemy_scene : PackedScene
@@ -18,7 +18,6 @@ func _ready() -> void:
 		if node.has_method("set_tile_map"):
 			node.set_tile_map(tilemap)
 			#print("assigned tile map to " + str(node) )
-			
 	
 	setup_astar()
 	
@@ -37,9 +36,9 @@ func change_layout() -> void:
 	
 	var fade_time = 60.0 / BeatManager.bpm * 2
 	var tween = create_tween()
-	tween.tween_property(dim_overlay.material, "shader_param/radius", 0.0, fade_time)
+	fade_overlay.visible = true
+	tween.tween_property(fade_overlay.material, "shader_parameter/radius", 0.0, fade_time)
 	await tween.finished
-	
 	
 	if new_tilemap_scene:
 		var new_tilemap_instance = new_tilemap_scene.instantiate()
@@ -67,15 +66,15 @@ func change_layout() -> void:
 	refresh_occupancy()
 	
 	tween = create_tween()
-	tween.tween_property(dim_overlay.material, "shader_param/radius", 2.0, fade_time)
+	tween.tween_property(fade_overlay.material, "shader_parameter/radius", 2.0, fade_time)
 	await tween.finished
 	await get_tree().create_timer(fade_time).timeout
 	
-	dim_overlay.visible = false
+	fade_overlay.visible = false
 	
 	Global.do_not_act = false
 
-	while BeatManager.current_phase != 3:
+	while BeatManager.phase != 3:
 		await get_tree().process_frame
 
 func setup_astar():
@@ -107,3 +106,15 @@ func _on_phase_changed(phase: int):
 		return
 	await get_tree().create_timer(0.12).timeout
 	refresh_occupancy()
+
+func fade_in(duration: float = 0.5) -> void:
+	var mat := fade_overlay.material as ShaderMaterial
+	var tween := create_tween()
+	tween.tween_property(mat, "shader_param/radius", 0.0, duration)
+	await tween.finished
+
+func fade_out(duration: float = 0.5) -> void:
+	var mat := fade_overlay.material as ShaderMaterial
+	var tween := create_tween()
+	tween.tween_property(mat, "shader_param/radius", 2.0, duration)
+	await tween.finished
