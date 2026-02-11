@@ -1,5 +1,9 @@
 extends Enemy
 
+@onready var atk_warn_2: Sprite2D = $AtkWarn2
+@onready var atk_warn_3: Sprite2D = $AtkWarn3
+
+
 #on ready / player enter room / end of beat 2(3rd)
 ##locate the player CHECK
 ##find shortest path CHECK
@@ -52,9 +56,16 @@ func _attack() -> void:
 		wait_turn = false
 		return
 	if atk_turn:
-		#attack
+		#attack_anim
+		$AtkWarn/AtkBox.get_overlapping_bodies()
+		$AtkWarn2/AtkBox.get_overlapping_bodies()
+		$AtkWarn3/AtkBox.get_overlapping_bodies()
+		#deal dmg
 		atk_turn = false
 		wait_turn = true
+		atk_warn.visible = false
+		atk_warn_2.visible = false
+		atk_warn_3.visible = false
 		_draw_move_arrow()
 	return
 
@@ -67,7 +78,25 @@ func _declare_action() -> void:
 
 
 func _draw_attack_warning() -> void:
-	#use attack width
+	atk_warn.visible = true
+	atk_warn_2.visible = true
+	atk_warn_3.visible = true
 	#draw
-	
-	pass
+	match (facing_direction):
+		Vector2i.UP:
+			atk_warn.position = Vector2(0,-32)
+			atk_warn_2.position = Vector2(-32,-32)
+			atk_warn_3.position = Vector2(32,-32)
+		Vector2i.DOWN:
+			atk_warn.position = Vector2(0,32)
+			atk_warn_2.position = Vector2(-32,32)
+			atk_warn_3.position = Vector2(32,32)
+		Vector2i.LEFT:
+			atk_warn.position = Vector2(-32,0)
+			atk_warn_2.position = Vector2(-32,-32)
+			atk_warn_3.position = Vector2(-32,32)
+		Vector2i.RIGHT:
+			atk_warn.position = Vector2(32,0)
+			atk_warn_2.position = Vector2(32,-32)
+			atk_warn_3.position = Vector2(32,32)
+	return

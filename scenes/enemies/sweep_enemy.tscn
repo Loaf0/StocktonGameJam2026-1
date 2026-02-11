@@ -1,75 +1,76 @@
 [gd_scene format=3 uid="uid://cg5w7ddq0jgkb"]
 
-[ext_resource type="Script" uid="uid://dedtpr0f82sk6" path="res://scenes/enemies/explode_enemy.gd" id="1_gyeua"]
-[ext_resource type="Texture2D" uid="uid://bmuh5h33os836" path="res://assets/sprites/misc/image.png" id="2_y8u4n"]
-[ext_resource type="Texture2D" uid="uid://c8tbayfcwtjbh" path="res://assets/sprites/entities/Skeleton.png" id="3_c4ulf"]
-[ext_resource type="Script" uid="uid://b4e158hic5jg3" path="res://scripts/bpm_based_step_animation.gd" id="4_3ctlq"]
+[ext_resource type="Script" uid="uid://dedtpr0f82sk6" path="res://scenes/enemies/sweep_enemy.gd" id="1_igua1"]
+[ext_resource type="Texture2D" uid="uid://bmuh5h33os836" path="res://assets/sprites/misc/image.png" id="2_xecti"]
+[ext_resource type="Texture2D" uid="uid://c8tbayfcwtjbh" path="res://assets/sprites/entities/Skeleton.png" id="3_6bfe6"]
+[ext_resource type="Script" uid="uid://b4e158hic5jg3" path="res://scripts/bpm_based_step_animation.gd" id="4_wxhic"]
+[ext_resource type="Texture2D" uid="uid://cq73tgnyk52d6" path="res://assets/sprites/misc/Indicator.png" id="5_xecti"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n763p"]
 radius = 14.3178215
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ylyo2"]
-atlas = ExtResource("3_c4ulf")
+atlas = ExtResource("3_6bfe6")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2t7ph"]
-atlas = ExtResource("3_c4ulf")
+atlas = ExtResource("3_6bfe6")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n2ebm"]
-atlas = ExtResource("3_c4ulf")
+atlas = ExtResource("3_6bfe6")
 region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i1su5"]
-atlas = ExtResource("3_c4ulf")
+atlas = ExtResource("3_6bfe6")
 region = Rect2(0, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hwcqj"]
-atlas = ExtResource("3_c4ulf")
+atlas = ExtResource("3_6bfe6")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h4c3k"]
-atlas = ExtResource("3_c4ulf")
+atlas = ExtResource("3_6bfe6")
 region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ahw5l"]
-atlas = ExtResource("3_c4ulf")
+atlas = ExtResource("3_6bfe6")
 region = Rect2(32, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_saudc"]
-atlas = ExtResource("3_c4ulf")
+atlas = ExtResource("3_6bfe6")
 region = Rect2(32, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v35a0"]
-atlas = ExtResource("3_c4ulf")
+atlas = ExtResource("3_6bfe6")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qrxh2"]
-atlas = ExtResource("3_c4ulf")
+atlas = ExtResource("3_6bfe6")
 region = Rect2(64, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tofne"]
-atlas = ExtResource("3_c4ulf")
+atlas = ExtResource("3_6bfe6")
 region = Rect2(64, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2fdu5"]
-atlas = ExtResource("3_c4ulf")
+atlas = ExtResource("3_6bfe6")
 region = Rect2(64, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xyj2r"]
-atlas = ExtResource("3_c4ulf")
+atlas = ExtResource("3_6bfe6")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gvknn"]
-atlas = ExtResource("3_c4ulf")
+atlas = ExtResource("3_6bfe6")
 region = Rect2(96, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iict3"]
-atlas = ExtResource("3_c4ulf")
+atlas = ExtResource("3_6bfe6")
 region = Rect2(96, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5y3e0"]
-atlas = ExtResource("3_c4ulf")
+atlas = ExtResource("3_6bfe6")
 region = Rect2(96, 96, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ixvfu"]
@@ -228,17 +229,17 @@ animations = [{
 "speed": 0.0
 }]
 
-[sub_resource type="LabelSettings" id="LabelSettings_n2ebm"]
-font_size = 8
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xecti"]
 
-[node name="ExplodeEnemy" type="CharacterBody2D" unique_id=141113670]
-script = ExtResource("1_gyeua")
-atk_width = 1
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6bfe6"]
+
+[node name="SweepEnemy" type="CharacterBody2D" unique_id=141113670]
+script = ExtResource("1_igua1")
 
 [node name="Line2D" type="Line2D" parent="." unique_id=821246944]
 top_level = true
 default_color = Color(1, 0, 0.007843138, 1)
-texture = ExtResource("2_y8u4n")
+texture = ExtResource("2_xecti")
 texture_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1771081340]
@@ -247,20 +248,34 @@ shape = SubResource("CircleShape2D_n763p")
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=23198620]
 sprite_frames = SubResource("SpriteFrames_ixvfu")
 animation = &"idle_down"
-script = ExtResource("4_3ctlq")
+script = ExtResource("4_wxhic")
 
-[node name="Timer" type="Timer" parent="." unique_id=165724197]
-one_shot = true
-
-[node name="Label" type="Label" parent="." unique_id=1734175112]
+[node name="AtkWarn" type="Sprite2D" parent="." unique_id=411718262]
 visible = false
-offset_left = -33.0
-offset_top = -24.0
-offset_right = 32.0
-offset_bottom = 3.0
-text = "Stunned
-"
-label_settings = SubResource("LabelSettings_n2ebm")
-horizontal_alignment = 1
+modulate = Color(1, 1, 1, 0.7058824)
+texture = ExtResource("5_xecti")
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=854407211]
+[node name="AtkBox" type="Area2D" parent="AtkWarn" unique_id=2099583041]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AtkWarn/AtkBox" unique_id=866259490]
+shape = SubResource("RectangleShape2D_xecti")
+
+[node name="AtkWarn2" type="Sprite2D" parent="." unique_id=385064519]
+visible = false
+modulate = Color(1, 1, 1, 0.7058824)
+texture = ExtResource("5_xecti")
+
+[node name="AtkBox" type="Area2D" parent="AtkWarn2" unique_id=1707218161]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AtkWarn2/AtkBox" unique_id=1121468537]
+shape = SubResource("RectangleShape2D_6bfe6")
+
+[node name="AtkWarn3" type="Sprite2D" parent="." unique_id=2096966666]
+visible = false
+modulate = Color(1, 1, 1, 0.7058824)
+texture = ExtResource("5_xecti")
+
+[node name="AtkBox" type="Area2D" parent="AtkWarn3" unique_id=173197232]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AtkWarn3/AtkBox" unique_id=926579248]
+shape = SubResource("RectangleShape2D_6bfe6")
