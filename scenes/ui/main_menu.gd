@@ -8,6 +8,8 @@ enum MenuState {
 }
 var current_state: MenuState = MenuState.INTRO
 
+@onready var title: AudioStreamPlayer = $Title
+
 # intro
 @onready var intro_anim: AnimatedSprite2D = $IntroAnim
 @onready var start_up: AudioStreamPlayer = $StartUp
@@ -79,13 +81,23 @@ func _go_to_difficulty() -> void:
 	_set_menu_state(MenuState.DIFFICULTY)
 
 func _on_easy_pressed() -> void:
-	print("Easy selected")
+	_on_difficulty_selected(130.0)
 
 func _on_normal_pressed() -> void:
-	print("Normal selected")
+	_on_difficulty_selected(140.0)
 
 func _on_hard_pressed() -> void:
-	print("Hard selected")
+	_on_difficulty_selected(150.0)
+
+func _on_difficulty_selected(bpm : float) -> void:
+	var tween := create_tween()
+	tween.parallel().tween_property(
+		title,
+		"volume_db",
+		-80,
+		0.5
+	)
+	await LevelTransition.start_game("res://scenes/maps/test_maps/movement_test.tscn", bpm)
 
 func _on_difficulty_back_pressed() -> void:
 	_go_to_main_menu()

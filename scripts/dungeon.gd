@@ -2,7 +2,7 @@ extends Node2D
 class_name Dungeon
 
 var astar_grid: AStarGrid2D
-@onready var tilemap : TileMapLayer = $TileMapLayer
+@onready var tilemap : Room = $TileMapLayer
 @onready var character_container: Node2D = $CharacterContainer
 @onready var transition: CanvasLayer = $Transition
 
@@ -41,20 +41,37 @@ func change_layout() -> void:
 	await tween.finished
 	
 	if new_tilemap_scene:
-		var new_tilemap_instance = new_tilemap_scene.instantiate()
-		if tilemap:
-			tilemap.queue_free()
+		var new_tilemap_instance = new_tilemap_scene.instantiate() as Room
+		var old_tilemap = tilemap
+		var tilemap_index = old_tilemap.get_index()
+
 		add_child(new_tilemap_instance)
+		move_child(new_tilemap_instance, tilemap_index)
 		tilemap = new_tilemap_instance
+
+		if old_tilemap:
+			old_tilemap.queue_free()
+
 
 	Global.occupied_cells.clear()
 
 	var players = get_tree().get_nodes_in_group("player")
+
 	for i in range(players.size()):
 		var p = players[i]
-		if i < player_positions.size():
-			p.grid_position = player_positions[i]
-			p.global_position = tilemap.map_to_local(p.grid_position)
+
+		p.set_tile_map(tilemap)
+
+		var spawn_cell : Vector2i
+
+		if i == 0:
+			spawn_cell = tilemap.player_spawn_1
+		else:
+			spawn_cell = tilemap.player_spawn_2
+
+		p.grid_position = spawn_cell
+		p.global_position = tilemap.map_to_local(spawn_cell)
+
 
 	if enemy_scene:
 		for i in range(3):

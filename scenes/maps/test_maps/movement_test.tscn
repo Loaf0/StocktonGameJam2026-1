@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://0qwph8f6ugc"]
 
 [ext_resource type="Script" uid="uid://bd63lux0o1nwj" path="res://scripts/dungeon.gd" id="1_suivh"]
-[ext_resource type="PackedScene" uid="uid://8cv1d65ovpib" path="res://scripts/layouts/easy/001.tscn" id="2_0f8sa"]
+[ext_resource type="PackedScene" uid="uid://8cv1d65ovpib" path="res://scenes/layouts/001.tscn" id="2_0f8sa"]
 [ext_resource type="PackedScene" uid="uid://djrxlocjpshxj" path="res://scenes/player/character_container.tscn" id="2_cne6s"]
 [ext_resource type="Texture2D" uid="uid://d8riw06s55de" path="res://assets/sprites/tileset/Tiles.png" id="2_dlq7p"]
 [ext_resource type="Script" uid="uid://b0bquy2c1sq8c" path="res://scenes/maps/test_maps/room.gd" id="4_07t4d"]

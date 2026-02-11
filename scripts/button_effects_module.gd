@@ -50,4 +50,5 @@ func _play_one_shot_sfx(sfx: AudioStream, pitch_range: float = 0.05, start_time:
 	player.pitch_scale = randf_range(1.0 - pitch_range, 1.0 + pitch_range)
 	player.volume_db = volume_db
 	player.finished.connect(player.queue_free)
-	player.play(start_time)
+	if player:
+		player.play(start_time)

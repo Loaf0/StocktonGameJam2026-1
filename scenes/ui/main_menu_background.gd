@@ -20,7 +20,7 @@ func _ready():
 	max_values.resize(VU_COUNT)
 	max_values.fill(0.0)
 
-func _process(delta):
+func _process(_delta):
 	var prev_hz = 0.0
 	var data = []
 
