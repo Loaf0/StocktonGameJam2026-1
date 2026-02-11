@@ -23,7 +23,9 @@ var acted_this_beat := false
 var facing_direction: Vector2i = Vector2i.DOWN
 @onready var sprite = $Sprite2D
 @onready var move_arrow: Line2D = $Line2D
+var atk_warns : Array
 @onready var atk_warn: Sprite2D = $AtkWarn
+var atk_boxes : Array
 var is_moving := false
 
 var first_turn := true
@@ -51,6 +53,8 @@ func _ready():
 	await get_tree().process_frame
 	_target_player()
 	_update_facing_visual(true)
+	atk_warns.append(atk_warn)
+	atk_boxes.append($AtkWarn/AtkBox)
 
 func _my_turn():
 	if acted_this_beat == false:
@@ -154,12 +158,15 @@ func _attack() -> void:
 		return
 	if atk_turn:
 		#attack_anim
-		$AtkWarn/AtkBox.get_overlapping_bodies()
-		#deal dmg
+		for box in atk_boxes:
+			for body in box.get_overlapping_bodies():
+				if body is CharacterBody2D and body.is_in_group("player"):
+					body.take_damage()
+					#print("damaged")
 		atk_turn = false
 		wait_turn = true
-		atk_warn.position = Vector2(0,0)
-		atk_warn.visible = false
+		for warn in atk_warns:
+			warn.visible = false
 		_draw_move_arrow()
 	return
 
@@ -190,7 +197,8 @@ func _draw_move_arrow() -> void:
 	
 
 func _draw_attack_warning() -> void:
-	atk_warn.visible = true
+	for warn in atk_warns:
+		warn.visible = true
 	#draw
 	match (facing_direction):
 		Vector2i.UP:
@@ -240,3 +248,8 @@ func _initialize_position():
 	grid_position = tilemap.local_to_map(global_position)
 	global_position = tilemap.map_to_local(grid_position)
 	initialized = true
+
+func take_damage():
+	#await and sfx
+	queue_free()
+	return
