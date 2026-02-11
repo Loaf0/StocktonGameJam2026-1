@@ -1,0 +1,618 @@
+[gd_scene format=3 uid="uid://damn8tiwcswt1"]
+
+[ext_resource type="Script" uid="uid://dmmx3u8m8vx7e" path="res://scenes/ui/main_menu.gd" id="1_1g8jr"]
+[ext_resource type="Script" uid="uid://b71313trp45m3" path="res://scripts/button_effects_module.gd" id="1_sl1te"]
+[ext_resource type="FontFile" uid="uid://drf8cub21w07x" path="res://assets/font/ARCADE_N.TTF" id="2_uhagc"]
+[ext_resource type="Texture2D" uid="uid://ddi5os42o0bb6" path="res://assets/ui/main_menu/spritesheet-table-1920-1080.png" id="3_m1kxf"]
+[ext_resource type="PackedScene" uid="uid://cenaqrhx866th" path="res://scenes/ui/crt_vfx.tscn" id="4_m1kxf"]
+[ext_resource type="Shader" uid="uid://bm55ncrd1j05u" path="res://scripts/shaders/radial_transparancy_mask.gdshader" id="4_q85j6"]
+[ext_resource type="Texture2D" uid="uid://dlo5i21aacbsw" path="res://assets/ui/main_menu/syncodate.png" id="5_otr3d"]
+[ext_resource type="AudioStream" uid="uid://c1ungpxciaort" path="res://assets/ui/main_menu/StartUp.mp3" id="5_x2yvf"]
+[ext_resource type="Shader" uid="uid://c0vrp3laxd8nu" path="res://scripts/shaders/main_menu_background.gdshader" id="6_btxxm"]
+[ext_resource type="Script" uid="uid://bd5xy1y65nc2i" path="res://scenes/ui/main_menu_background.gd" id="6_wb0q5"]
+[ext_resource type="Texture2D" uid="uid://bct04r12ph634" path="res://assets/ui/main_menu/Check_Box.png" id="7_7suek"]
+[ext_resource type="AudioStream" uid="uid://ci3u050krqp7" path="res://assets/audio/songs/title.wav" id="10_8g5eo"]
+[ext_resource type="AudioStream" uid="uid://c4a7noevefdt1" path="res://assets/audio/songs/match_start.wav" id="11_n4uci"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wb0q5"]
+shader = ExtResource("6_btxxm")
+shader_parameter/freq_data = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8g5eo"]
+shader = ExtResource("4_q85j6")
+shader_parameter/mask_color = Color(0, 0, 0, 1)
+shader_parameter/radius = 0.895
+shader_parameter/softness = 1.0
+shader_parameter/center = Vector2(0.5, 0.67)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wb0q5"]
+font = ExtResource("2_uhagc")
+font_size = 20
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7suek"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_otr3d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ekit"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n4uci"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_877pj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_uhagc"]
+font = ExtResource("2_uhagc")
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_otr3d"]
+font = ExtResource("2_uhagc")
+font_size = 22
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7suek"]
+load_path = "res://.godot/imported/Check_Box.png-73628b35c26c9880c09a97392f40e873.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qilvv"]
+atlas = SubResource("CompressedTexture2D_7suek")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dct7"]
+atlas = ExtResource("7_7suek")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uhagc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_btxxm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wb0q5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q85j6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8g5eo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_btxxm"]
+font = ExtResource("2_uhagc")
+font_size = 24
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2yvf"]
+atlas = ExtResource("3_m1kxf")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhagc"]
+atlas = ExtResource("3_m1kxf")
+region = Rect2(1920, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btxxm"]
+atlas = ExtResource("3_m1kxf")
+region = Rect2(3840, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wb0q5"]
+atlas = ExtResource("3_m1kxf")
+region = Rect2(5760, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q85j6"]
+atlas = ExtResource("3_m1kxf")
+region = Rect2(0, 1080, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8g5eo"]
+atlas = ExtResource("3_m1kxf")
+region = Rect2(1920, 1080, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7suek"]
+atlas = ExtResource("3_m1kxf")
+region = Rect2(3840, 1080, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otr3d"]
+atlas = ExtResource("3_m1kxf")
+region = Rect2(5760, 1080, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ekit"]
+atlas = ExtResource("3_m1kxf")
+region = Rect2(0, 2160, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4uci"]
+atlas = ExtResource("3_m1kxf")
+region = Rect2(1920, 2160, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_877pj"]
+atlas = ExtResource("3_m1kxf")
+region = Rect2(3840, 2160, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ayp64"]
+atlas = ExtResource("3_m1kxf")
+region = Rect2(5760, 2160, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2j7i"]
+atlas = ExtResource("3_m1kxf")
+region = Rect2(0, 3240, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1h5l"]
+atlas = ExtResource("3_m1kxf")
+region = Rect2(1920, 3240, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pw24t"]
+atlas = ExtResource("3_m1kxf")
+region = Rect2(3840, 3240, 1920, 1080)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5dct7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2yvf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhagc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btxxm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wb0q5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q85j6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8g5eo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7suek")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otr3d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ekit")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4uci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_877pj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ayp64")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2j7i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y1h5l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pw24t")
+}],
+"loop": false,
+"name": &"default",
+"speed": 24.0
+}]
+
+[node name="MainMenu" type="CanvasLayer" unique_id=288322381]
+script = ExtResource("1_1g8jr")
+
+[node name="Background" type="CanvasLayer" parent="." unique_id=136445633]
+layer = -10
+script = ExtResource("6_wb0q5")
+
+[node name="ColorRect" type="ColorRect" parent="Background" unique_id=1071821958]
+material = SubResource("ShaderMaterial_wb0q5")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect2" type="ColorRect" parent="Background" unique_id=1778263741]
+material = SubResource("ShaderMaterial_8g5eo")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="IntroMenu" type="Control" parent="." unique_id=263725973]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="IntroMenu" unique_id=2006439099]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="IntroMenu/MarginContainer" unique_id=402320003]
+layout_mode = 2
+
+[node name="Control" type="MarginContainer" parent="IntroMenu/MarginContainer/VBoxContainer" unique_id=1490563433]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 100
+
+[node name="TextureRect" type="TextureRect" parent="IntroMenu/MarginContainer/VBoxContainer/Control" unique_id=1206890039]
+layout_mode = 2
+texture = ExtResource("5_otr3d")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="IntroMenu/MarginContainer/VBoxContainer" unique_id=553150764]
+layout_mode = 2
+text = "Press Space/Click
+ to Continue"
+label_settings = SubResource("LabelSettings_wb0q5")
+horizontal_alignment = 1
+
+[node name="MainMenu" type="Control" parent="." unique_id=1643727154]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu" unique_id=265131529]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/MarginContainer" unique_id=1027005361]
+layout_mode = 2
+
+[node name="Control" type="MarginContainer" parent="MainMenu/MarginContainer/VBoxContainer" unique_id=1149365835]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 100
+
+[node name="TextureRect" type="TextureRect" parent="MainMenu/MarginContainer/VBoxContainer/Control" unique_id=1780889895]
+layout_mode = 2
+texture = ExtResource("5_otr3d")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Start" type="Button" parent="MainMenu/MarginContainer/VBoxContainer" unique_id=491383684]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_uhagc")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7suek")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_otr3d")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8ekit")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_n4uci")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_877pj")
+text = "Start"
+
+[node name="button_effects_module" type="Node" parent="MainMenu/MarginContainer/VBoxContainer/Start" unique_id=216199728]
+script = ExtResource("1_sl1te")
+rotation_amount = 0.0
+metadata/_custom_type_script = "uid://b71313trp45m3"
+
+[node name="HSeparator2" type="HSeparator" parent="MainMenu/MarginContainer/VBoxContainer" unique_id=1629830300]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Options" type="Button" parent="MainMenu/MarginContainer/VBoxContainer" unique_id=1447939910]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_uhagc")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7suek")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_otr3d")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8ekit")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_n4uci")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_877pj")
+text = "Options"
+
+[node name="button_effects_module" type="Node" parent="MainMenu/MarginContainer/VBoxContainer/Options" unique_id=77197480]
+script = ExtResource("1_sl1te")
+rotation_amount = 0.0
+metadata/_custom_type_script = "uid://b71313trp45m3"
+
+[node name="HSeparator3" type="HSeparator" parent="MainMenu/MarginContainer/VBoxContainer" unique_id=507359345]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Quit" type="Button" parent="MainMenu/MarginContainer/VBoxContainer" unique_id=228533673]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_uhagc")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7suek")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_otr3d")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8ekit")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_n4uci")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_877pj")
+text = "Quit"
+
+[node name="button_effects_module" type="Node" parent="MainMenu/MarginContainer/VBoxContainer/Quit" unique_id=1363488242]
+script = ExtResource("1_sl1te")
+rotation_amount = 0.0
+metadata/_custom_type_script = "uid://b71313trp45m3"
+
+[node name="Difficulty" type="Control" parent="." unique_id=1357230466]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Difficulty" unique_id=583451217]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Difficulty/MarginContainer" unique_id=421980978]
+layout_mode = 2
+
+[node name="Options" type="Label" parent="Difficulty/MarginContainer/VBoxContainer" unique_id=512739159]
+layout_mode = 2
+text = "Select Mode"
+label_settings = SubResource("LabelSettings_uhagc")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Difficulty/MarginContainer/VBoxContainer" unique_id=473557747]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 80
+
+[node name="Easy" type="Button" parent="Difficulty/MarginContainer/VBoxContainer" unique_id=842345841]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_uhagc")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7suek")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_otr3d")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8ekit")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_n4uci")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_877pj")
+text = "Warm-Up (EASY)"
+
+[node name="button_effects_module" type="Node" parent="Difficulty/MarginContainer/VBoxContainer/Easy" unique_id=60142498]
+script = ExtResource("1_sl1te")
+rotation_amount = 0.0
+metadata/_custom_type_script = "uid://b71313trp45m3"
+
+[node name="HSeparator2" type="HSeparator" parent="Difficulty/MarginContainer/VBoxContainer" unique_id=603104498]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Medium" type="Button" parent="Difficulty/MarginContainer/VBoxContainer" unique_id=1644380349]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_uhagc")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7suek")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_otr3d")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8ekit")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_n4uci")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_877pj")
+text = "Live (NORMAL)"
+
+[node name="button_effects_module" type="Node" parent="Difficulty/MarginContainer/VBoxContainer/Medium" unique_id=1039608526]
+script = ExtResource("1_sl1te")
+rotation_amount = 0.0
+metadata/_custom_type_script = "uid://b71313trp45m3"
+
+[node name="HSeparator3" type="HSeparator" parent="Difficulty/MarginContainer/VBoxContainer" unique_id=559882828]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Hard" type="Button" parent="Difficulty/MarginContainer/VBoxContainer" unique_id=927810208]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_uhagc")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7suek")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_otr3d")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8ekit")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_n4uci")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_877pj")
+text = "Encore (EXPERT)"
+
+[node name="button_effects_module" type="Node" parent="Difficulty/MarginContainer/VBoxContainer/Hard" unique_id=1776757085]
+script = ExtResource("1_sl1te")
+rotation_amount = 0.0
+metadata/_custom_type_script = "uid://b71313trp45m3"
+
+[node name="HSeparator5" type="HSeparator" parent="Difficulty/MarginContainer/VBoxContainer" unique_id=1274486849]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Container" type="HBoxContainer" parent="Difficulty/MarginContainer/VBoxContainer" unique_id=1055168624]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="Difficulty/MarginContainer/VBoxContainer/Container" unique_id=919482048]
+layout_mode = 2
+text = "TWO PLAYER"
+label_settings = SubResource("LabelSettings_otr3d")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckButton" type="CheckButton" parent="Difficulty/MarginContainer/VBoxContainer/Container" unique_id=596077295]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_uhagc")
+theme_override_font_sizes/font_size = 24
+theme_override_icons/checked = SubResource("AtlasTexture_qilvv")
+theme_override_icons/unchecked = SubResource("AtlasTexture_5dct7")
+alignment = 1
+icon_alignment = 1
+expand_icon = true
+
+[node name="button_effects_module" type="Node" parent="Difficulty/MarginContainer/VBoxContainer/Container/CheckButton" unique_id=851249426]
+script = ExtResource("1_sl1te")
+rotation_amount = 0.0
+metadata/_custom_type_script = "uid://b71313trp45m3"
+
+[node name="HSeparator6" type="HSeparator" parent="Difficulty/MarginContainer/VBoxContainer" unique_id=1945260034]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Button" type="Button" parent="Difficulty/MarginContainer/VBoxContainer" unique_id=1805002807]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_uhagc")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_uhagc")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_btxxm")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_wb0q5")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_q85j6")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8g5eo")
+text = "Back"
+
+[node name="button_effects_module" type="Node" parent="Difficulty/MarginContainer/VBoxContainer/Button" unique_id=1532806427]
+script = ExtResource("1_sl1te")
+rotation_amount = 0.0
+metadata/_custom_type_script = "uid://b71313trp45m3"
+
+[node name="Options" type="Control" parent="." unique_id=1317244161]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Options" unique_id=469983011]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Options/MarginContainer" unique_id=165075636]
+layout_mode = 2
+
+[node name="Options" type="Label" parent="Options/MarginContainer/VBoxContainer" unique_id=1425274866]
+layout_mode = 2
+text = "Options"
+label_settings = SubResource("LabelSettings_uhagc")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Options/MarginContainer/VBoxContainer" unique_id=1278626428]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Label2" type="Label" parent="Options/MarginContainer/VBoxContainer" unique_id=1920940962]
+layout_mode = 2
+text = "SFX Volume"
+label_settings = SubResource("LabelSettings_btxxm")
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="Options/MarginContainer/VBoxContainer" unique_id=4770403]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="SFX" type="HSlider" parent="Options/MarginContainer/VBoxContainer" unique_id=1100975218]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+
+[node name="HSeparator3" type="HSeparator" parent="Options/MarginContainer/VBoxContainer" unique_id=1920912693]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Label3" type="Label" parent="Options/MarginContainer/VBoxContainer" unique_id=1915984866]
+layout_mode = 2
+text = "Music Volume"
+label_settings = SubResource("LabelSettings_btxxm")
+horizontal_alignment = 1
+
+[node name="HSeparator4" type="HSeparator" parent="Options/MarginContainer/VBoxContainer" unique_id=918070582]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="MUSIC" type="HSlider" parent="Options/MarginContainer/VBoxContainer" unique_id=154296533]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+
+[node name="HSeparator5" type="HSeparator" parent="Options/MarginContainer/VBoxContainer" unique_id=891856970]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 200
+
+[node name="Button" type="Button" parent="Options/MarginContainer/VBoxContainer" unique_id=896109184]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_uhagc")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_uhagc")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_btxxm")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_wb0q5")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_q85j6")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8g5eo")
+text = "Back"
+
+[node name="button_effects_module" type="Node" parent="Options/MarginContainer/VBoxContainer/Button" unique_id=1600973675]
+script = ExtResource("1_sl1te")
+rotation_amount = 0.0
+metadata/_custom_type_script = "uid://b71313trp45m3"
+
+[node name="IntroAnim" type="AnimatedSprite2D" parent="." unique_id=1512805378]
+position = Vector2(577, 324)
+scale = Vector2(0.60104173, 0.59999996)
+sprite_frames = SubResource("SpriteFrames_5dct7")
+frame = 14
+frame_progress = 1.0
+
+[node name="StartUp" type="AudioStreamPlayer" parent="." unique_id=1255136064]
+stream = ExtResource("5_x2yvf")
+
+[node name="MatchStart" type="AudioStreamPlayer" parent="." unique_id=693702506]
+stream = ExtResource("11_n4uci")
+
+[node name="CRTvfx" parent="." unique_id=30923113 instance=ExtResource("4_m1kxf")]
+
+[node name="Title" type="AudioStreamPlayer" parent="." unique_id=856754805]
+stream = ExtResource("10_8g5eo")
+bus = &"Music"
+
+[connection signal="pressed" from="MainMenu/MarginContainer/VBoxContainer/Start" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MainMenu/MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MainMenu/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Difficulty/MarginContainer/VBoxContainer/Easy" to="." method="_on_easy_pressed"]
+[connection signal="pressed" from="Difficulty/MarginContainer/VBoxContainer/Medium" to="." method="_on_normal_pressed"]
+[connection signal="pressed" from="Difficulty/MarginContainer/VBoxContainer/Hard" to="." method="_on_hard_pressed"]
+[connection signal="toggled" from="Difficulty/MarginContainer/VBoxContainer/Container/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="pressed" from="Difficulty/MarginContainer/VBoxContainer/Button" to="." method="_on_difficulty_back_pressed"]
+[connection signal="drag_ended" from="Options/MarginContainer/VBoxContainer/SFX" to="." method="_on_sfx_volume_drag_ended"]
+[connection signal="value_changed" from="Options/MarginContainer/VBoxContainer/SFX" to="." method="_on_sfx_volume_value_changed"]
+[connection signal="drag_ended" from="Options/MarginContainer/VBoxContainer/MUSIC" to="." method="_on_msfx_volume_drag_ended"]
+[connection signal="value_changed" from="Options/MarginContainer/VBoxContainer/MUSIC" to="." method="_on_msfx_volume_value_changed"]
+[connection signal="pressed" from="Options/MarginContainer/VBoxContainer/Button" to="." method="_on_options_return_pressed"]
