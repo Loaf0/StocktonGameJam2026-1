@@ -51,7 +51,8 @@ func change_layout() -> void:
 
 		if old_tilemap:
 			old_tilemap.queue_free()
-
+		astar_grid = null
+	setup_astar()
 
 	Global.occupied_cells.clear()
 
@@ -79,14 +80,13 @@ func change_layout() -> void:
 			enemy.position = tilemap.map_to_local(Vector2i(5 + i, 5))
 			add_child(enemy)
 	
-	setup_astar()
 	refresh_occupancy()
 	
 	tween = create_tween()
 	tween.tween_property(fade_overlay.material, "shader_parameter/radius", 2.0, fade_time)
 	await tween.finished
 	await get_tree().create_timer(fade_time).timeout
-	
+	setup_astar()
 	fade_overlay.visible = false
 	
 	Global.do_not_act = false
@@ -96,6 +96,14 @@ func change_layout() -> void:
 
 func setup_astar():
 	#setup astar
+	if tilemap == null:
+		for child in get_children():
+			if child is TileMapLayer:
+				tilemap = child
+				break
+	if tilemap == null:
+		push_warning("No TileMapLayer found for A* setup!")
+		return
 	astar_grid = AStarGrid2D.new()
 	astar_grid.default_compute_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
 	astar_grid.default_estimate_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN

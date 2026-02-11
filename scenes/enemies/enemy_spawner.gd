@@ -17,17 +17,23 @@ extends Node
 
 const MAX_ENEMIES_PER_ROOM := 5
 
-func spawn_room_enemies(tilemap: TileMapLayer, spawn_points: Array[Vector2]) -> void:
+func spawn_room_enemies(tilemap: TileMapLayer, spawn_points: Array[Vector2], astar_grid: AStarGrid2D) -> void:
 	var difficulty := Global.difficulty
 	
 	for cell in spawn_points:
 		var scene := _choose_enemy_scene(difficulty)
 		var enemy = scene.instantiate()
 		
+		if enemy.has_method("set_tile_map"):
+			enemy.set_tile_map(tilemap)
+		if enemy.has_method("setup"):
+			enemy.setup(astar_grid)
+		
 		var world_pos = tilemap.map_to_local(cell)
 		enemy.global_position = tilemap.to_global(world_pos)
 		
-		add_child(enemy)
+		get_tree().get_first_node_in_group("enemy manager").add_child(enemy)
+
 
 func _choose_enemy_scene(difficulty : float) -> PackedScene:
 	var cannon_weight = min(5 * difficulty, 15)
