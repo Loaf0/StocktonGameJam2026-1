@@ -1,9 +1,12 @@
 extends CharacterBody2D
+class_name Enemy
 
-@export var my_phase: int
+@export var my_phase: int = 2
 @export var tilemap: TileMapLayer
 
 @export var move_duration := 0.12
+
+@export var atk_width: int
 
 var grid: AStarGrid2D
 
@@ -12,7 +15,7 @@ var target: Vector2i
 var target_cell: Vector2i
 var previous_cell: Vector2i
 var move_pts: Array
-var cur_pt: int
+var cur_pt: int = 0
 
 var can_act := false
 
@@ -23,12 +26,13 @@ var facing_direction: Vector2i = Vector2i.DOWN
 @onready var sprite = $Sprite2D
 var is_moving := false
 
-
+var first_turn := true
 var atk_turn: bool = false
+var wait_turn: bool = true
 
 #on ready / player enter room / end of beat 2(3rd)
-##locate the player
-##find shortest path
+##locate the player CHECK
+##find shortest path CHECK
 ##toggle atk turn
 ##display atk aoe if true
 ##display move arrow if false
@@ -46,15 +50,18 @@ func _ready():
 	get_tree().get_nodes_in_group("player")
 	await get_tree().process_frame
 	_target_player()
-	_declare_action()
 	_update_facing_visual(true)
 
 func _my_turn():
 	if acted_this_beat == false:
 		#move or attack logic here
-		_declare_action()
-		_move()
+		if first_turn:
+			first_turn = false
+		elif !atk_turn:
+			_move()
+			atk_turn = true
 		
+		_declare_action()
 		_target_player()
 		acted_this_beat = true
 	return
@@ -63,7 +70,7 @@ func on_phase_changed(phase: int):
 	if phase == 3:
 		_attack()
 		return
-
+	
 	can_act = (phase == my_phase)
 
 	if can_act:
@@ -94,25 +101,15 @@ func _move() -> void:
 	if move_pts.is_empty():
 		return
 	else:
-		# Add new cell immediately
-		Global.occupied_cells[target_cell] = self
-		cur_pt = 0
-		if !is_blocked(tilemap.local_to_map(move_pts[cur_pt+1])):
-			#clear previous cell before next enemy moves
-			previous_cell = grid_position
-			if previous_cell in Global.occupied_cells:
-				Global.occupied_cells.erase(previous_cell)
-			facing_direction  = move_pts[cur_pt+1] - move_pts[cur_pt]
-			if facing_direction.y < 0:
-				facing_direction = Vector2i.UP
-			elif facing_direction.y > 0:
-				facing_direction = Vector2i.DOWN
-			elif facing_direction.x < 0:
-				facing_direction = Vector2i.LEFT
-			elif facing_direction.x > 0:
-				facing_direction = Vector2i.RIGHT
+		if move_pts.size() > 1 and !is_blocked(tilemap.local_to_map(move_pts[cur_pt+1])):
+			# Add new cell immediately and remove old
+			if !Global.occupied_cells.has(tilemap.local_to_map(move_pts[cur_pt+1])):
+				Global.occupied_cells[tilemap.local_to_map(move_pts[cur_pt+1])] = self
+				Global.occupied_cells.erase(tilemap.local_to_map(move_pts[cur_pt]))
+			_update_facing_dir()
 			_update_facing_visual(true)
 			animate_move(move_pts[cur_pt], move_pts[cur_pt+1])
+			#print(Global.occupied_cells)
 		else:
 			_update_facing_visual(false)
 	return
@@ -144,23 +141,68 @@ func is_blocked(cell: Vector2i) -> bool:
 	var tile_data = tilemap.get_cell_tile_data(cell)
 	if tile_data == null:
 		return true
-	if Global.occupied_cells.has(cell):
+	if Global.occupied_cells.has(cell) and Global.occupied_cells[cell] != self:
 		return true
 	if Global.enemy_intent_cells.has(cell) and Global.enemy_intent_cells[cell] != self:
 		return true
 	return tile_data.get_custom_data("solid") == true
 
 func _attack() -> void:
+	if wait_turn and atk_turn:
+		wait_turn = false
+		return
+	if atk_turn:
+		#attack
+		atk_turn = false
+		wait_turn = true
+		_draw_move_arrow()
 	return
 
 func _declare_action() -> void:
+	if !atk_turn:
+		_draw_move_arrow()
+	else:
+		_draw_attack_warning()
+	return
+
+func _draw_move_arrow() -> void:
+	_update_facing_dir(1)
 	move_pts = grid.get_point_path(grid_position, target)
 	move_pts = (move_pts as Array).map(func (p): return p + grid.cell_size / 2.0)
-	$Line2D.points = move_pts
-	if !Global.enemy_intent_cells.has(tilemap.local_to_map(move_pts[cur_pt+1])):
+	match (facing_direction):
+		Vector2i.UP:
+			$Line2D.points = (move_pts as Array).map(func (p): return p - Vector2(0, (grid.cell_size.y / 2.0)))
+		Vector2i.DOWN:
+			$Line2D.points = (move_pts as Array).map(func (p): return p + Vector2(0, (grid.cell_size.y / 2.0)))
+		Vector2i.LEFT:
+			$Line2D.points = (move_pts as Array).map(func (p): return p - Vector2((grid.cell_size.x / 2.0), 0))
+		Vector2i.RIGHT:
+			$Line2D.points = (move_pts as Array).map(func (p): return p + Vector2((grid.cell_size.x / 2.0), 0))
+	
+	if move_pts.size() > 1 and !Global.enemy_intent_cells.has(tilemap.local_to_map(move_pts[cur_pt+1])):
 		Global.enemy_intent_cells[tilemap.local_to_map(move_pts[cur_pt+1])] = self
 	#print(Global.enemy_intent_cells)
-	return
+	
+
+func _draw_attack_warning() -> void:
+	#use attack width
+	#draw
+	
+	pass
+
+func _update_facing_dir(arrow:int = 0) -> void:
+	if move_pts.size() < 2:
+		arrow = 0
+	if move_pts.size() > 2:
+		facing_direction  = move_pts[cur_pt+1 + arrow] - move_pts[cur_pt + arrow]
+		if facing_direction.y < 0:
+			facing_direction = Vector2i.UP
+		elif facing_direction.y > 0:
+			facing_direction = Vector2i.DOWN
+		elif facing_direction.x < 0:
+			facing_direction = Vector2i.LEFT
+		elif facing_direction.x > 0:
+			facing_direction = Vector2i.RIGHT
 
 func _update_facing_visual(moving: bool = false):
 	var prefix := "walk_" if moving else "idle_"
