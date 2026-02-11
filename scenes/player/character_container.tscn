@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c85hhkti08640" path="res://assets/sprites/entities/Knight.png" id="4_2ivie"]
 [ext_resource type="Script" uid="uid://b4e158hic5jg3" path="res://scripts/bpm_based_step_animation.gd" id="4_q642i"]
 [ext_resource type="Script" uid="uid://dnwul77l62pk0" path="res://scenes/player/camera.gd" id="5_2ivie"]
+[ext_resource type="Texture2D" uid="uid://dwqd8cm73injj" path="res://assets/ui/nextIcon.png" id="5_edaao"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uxwpo"]
 radius = 14.3178215
@@ -229,9 +230,6 @@ animations = [{
 "name": &"walk_up",
 "speed": 0.0
 }]
-
-[sub_resource type="LabelSettings" id="LabelSettings_2ivie"]
-font_size = 8
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hkf5u"]
 atlas = ExtResource("4_2ivie")
@@ -460,6 +458,13 @@ script = ExtResource("1_pqffl")
 unique_name_in_owner = true
 position = Vector2(-16, 0)
 script = ExtResource("2_o753y")
+my_phase = null
+beat_window = null
+move_duration = null
+flash_duration = null
+up_next_pop_scale = null
+up_next_normal_scale = null
+up_next_pop_time = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player1" unique_id=779279765]
 shape = SubResource("CircleShape2D_uxwpo")
@@ -469,44 +474,47 @@ sprite_frames = SubResource("SpriteFrames_txh7p")
 animation = &"walk_down"
 script = ExtResource("4_q642i")
 
+[node name="UpNext" type="Sprite2D" parent="Player1/Sprite2D" unique_id=637326884]
+position = Vector2(0, -19)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_edaao")
+
 [node name="Timer" type="Timer" parent="Player1" unique_id=1185237014]
 one_shot = true
 
-[node name="Label" type="Label" parent="Player1" unique_id=1766395551]
-visible = false
-offset_left = -33.0
-offset_top = -24.0
-offset_right = 32.0
-offset_bottom = 3.0
-text = "Up Next"
-label_settings = SubResource("LabelSettings_2ivie")
-horizontal_alignment = 1
+[node name="BufferTimer" type="Timer" parent="Player1" unique_id=2024114924]
+one_shot = true
 
 [node name="Player2" type="CharacterBody2D" parent="." unique_id=935135042]
 unique_name_in_owner = true
 position = Vector2(16, 0)
 script = ExtResource("2_o753y")
 my_phase = 1
+beat_window = null
+move_duration = null
+flash_duration = null
+up_next_pop_scale = null
+up_next_normal_scale = null
+up_next_pop_time = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player2" unique_id=1574699231]
 shape = SubResource("CircleShape2D_uxwpo")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Player2" unique_id=548279231]
 sprite_frames = SubResource("SpriteFrames_47s7v")
+animation = &"walk_down"
 script = ExtResource("4_q642i")
+
+[node name="UpNext" type="Sprite2D" parent="Player2/Sprite2D" unique_id=28889257]
+position = Vector2(0, -21)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_edaao")
 
 [node name="Timer" type="Timer" parent="Player2" unique_id=1597596672]
 one_shot = true
 
-[node name="Label" type="Label" parent="Player2" unique_id=2010690508]
-visible = false
-offset_left = -32.0
-offset_top = -24.0
-offset_right = 33.0
-offset_bottom = 3.0
-text = "Up Next"
-label_settings = SubResource("LabelSettings_2ivie")
-horizontal_alignment = 1
+[node name="BufferTimer" type="Timer" parent="Player2" unique_id=539429433]
+one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1079541686]
 zoom = Vector2(2, 2)

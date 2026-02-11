@@ -43,4 +43,4 @@ func _on_beat():
 			2: pitch_variation = 0.9
 			3: pitch_variation = 0.5
 		_audio_player.pitch_scale = pitch_variation
-		_audio_player.play()
+		_audio_player.play(0.05)

@@ -1,9 +1,9 @@
 extends CanvasLayer
 
-const VU_COUNT = 30
-const FREQ_MAX = 11050.0
-const MIN_DB = 60
-const ANIMATION_SPEED = 0.1
+const VU_COUNT = 40
+const FREQ_MAX = 2000.0
+const MIN_DB = 40
+const ANIMATION_SPEED = 0.05
 const HEIGHT_SCALE = 8.0
 
 @onready var color_rect = $ColorRect
