@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://w3lv2n00dq8g" path="res://scenes/enemies/plus_enemy.tscn" id="7_ca3tl"]
 [ext_resource type="PackedScene" uid="uid://bw2akpjviyb0u" path="res://scenes/ui/beat_bar.tscn" id="7_rogid"]
 [ext_resource type="PackedScene" uid="uid://cenaqrhx866th" path="res://scenes/ui/crt_vfx.tscn" id="8_yueia"]
+[ext_resource type="PackedScene" uid="uid://cbmw8cs3cfkri" path="res://scenes/enemies/shoot_enemy.tscn" id="10_8ff7l"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0jfhv"]
 
@@ -172,9 +173,12 @@ tilemap = NodePath("../../TileMapLayer")
 position = Vector2(243, 113)
 tilemap = NodePath("../../TileMapLayer")
 
-[node name="SweepEnemy2" parent="EnemyManager" unique_id=363018636 node_paths=PackedStringArray("tilemap") instance=ExtResource("7_ca3tl")]
+[node name="PlusEnemy" parent="EnemyManager" unique_id=363018636 node_paths=PackedStringArray("tilemap") instance=ExtResource("7_ca3tl")]
 position = Vector2(210, 80)
 tilemap = NodePath("../../TileMapLayer")
+
+[node name="ShootEnemy" parent="EnemyManager" unique_id=686109672 instance=ExtResource("10_8ff7l")]
+position = Vector2(83, 110)
 
 [node name="BeatBar" parent="." unique_id=2094879700 instance=ExtResource("7_rogid")]
 

@@ -1,9 +1,6 @@
 extends Enemy
 
-@onready var atk_warn_2: Sprite2D = $AtkWarn2
-@onready var atk_warn_3: Sprite2D = $AtkWarn3
-@onready var atk_warn_4: Sprite2D = $AtkWarn4
-
+var cannon_ball = preload("res://scenes/enemies/cannon_ball.tscn")
 
 #on ready / player enter room / end of beat 2(3rd)
 ##locate the player CHECK
@@ -27,13 +24,6 @@ func _ready():
 	_target_player()
 	_update_facing_visual(true)
 	atk_warns.append(atk_warn)
-	atk_warns.append(atk_warn_2)
-	atk_warns.append(atk_warn_3)
-	atk_warns.append(atk_warn_4)
-	atk_boxes.append($AtkWarn/AtkBox)
-	atk_boxes.append($AtkWarn2/AtkBox)
-	atk_boxes.append($AtkWarn3/AtkBox)
-	atk_boxes.append($AtkWarn4/AtkBox)
 
 func _my_turn():
 	if acted_this_beat == false:
@@ -60,6 +50,28 @@ func on_phase_changed(phase: int):
 		acted_this_beat = false
 		_my_turn()
 
+func _attack() -> void:
+	if wait_turn and atk_turn:
+		wait_turn = false
+		return
+	if atk_turn:
+		#attack_anim
+		var temp = cannon_ball.instantiate()
+		temp.global_position = $Pivot/Spawn.global_position
+		temp.dir = facing_direction
+		temp.tilemap = tilemap
+		add_sibling(temp)
+		#print(temp.global_position)
+		atk_turn = false
+		wait_turn = true
+		for warn in atk_warns:
+			warn.visible = false
+		pivot.visible = true
+		await get_tree().create_timer(0.15).timeout
+		pivot.visible = false
+		_draw_move_arrow()
+	return
+
 func _declare_action() -> void:
 	if !atk_turn:
 		_draw_move_arrow()
@@ -69,6 +81,20 @@ func _declare_action() -> void:
 
 
 func _draw_attack_warning() -> void:
+	#rotate
+	match (facing_direction):
+		Vector2i.UP:
+			atk_warn.position = Vector2(0,-32)
+			pivot.rotation_degrees = 180
+		Vector2i.DOWN:
+			atk_warn.position = Vector2(0,32)
+			pivot.rotation_degrees = 0
+		Vector2i.LEFT:
+			atk_warn.position = Vector2(-32,0)
+			pivot.rotation_degrees = 90
+		Vector2i.RIGHT:
+			atk_warn.position = Vector2(32,0)
+			pivot.rotation_degrees = 270
 	#draw
 	for warn in atk_warns:
 		var cell = tilemap.local_to_map(warn.global_position)

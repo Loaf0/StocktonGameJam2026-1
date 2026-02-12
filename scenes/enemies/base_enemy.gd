@@ -22,10 +22,11 @@ var move_tween: Tween
 var acted_this_beat := false
 var facing_direction: Vector2i = Vector2i.DOWN
 @onready var sprite = $Sprite2D
-@onready var move_arrow: Line2D = $Line2D
+@onready var move_pivot: Node2D = $MovePivot
 var atk_warns : Array
 @onready var atk_warn: Sprite2D = $AtkWarn
 var atk_boxes : Array
+@onready var pivot: Node2D = $Pivot
 var is_moving := false
 
 var first_turn := true
@@ -65,7 +66,7 @@ func _my_turn():
 			_move()
 			atk_turn = true
 		
-		_declare_action()
+		
 		_target_player()
 		acted_this_beat = true
 	return
@@ -105,7 +106,7 @@ func _move() -> void:
 	if move_pts.is_empty():
 		return
 	else:
-		move_arrow.clear_points()
+		move_pivot.visible = false
 		if move_pts.size() > 1 and !is_blocked(tilemap.local_to_map(move_pts[cur_pt+1])):
 			# Add new cell immediately and remove old
 			if !Global.occupied_cells.has(tilemap.local_to_map(move_pts[cur_pt+1])):
@@ -167,6 +168,9 @@ func _attack() -> void:
 		wait_turn = true
 		for warn in atk_warns:
 			warn.visible = false
+		pivot.visible = true
+		await get_tree().create_timer(0.15).timeout
+		pivot.visible = false
 		_draw_move_arrow()
 	return
 
@@ -183,32 +187,47 @@ func _draw_move_arrow() -> void:
 	move_pts = (move_pts as Array).map(func (p): return p + grid.cell_size / 2.0)
 	match (facing_direction):
 		Vector2i.UP:
-			move_arrow.points = (move_pts as Array).map(func (p): return p - Vector2(0, (grid.cell_size.y / 2.0)))
+			move_pivot.rotation_degrees = 180
 		Vector2i.DOWN:
-			move_arrow.points = (move_pts as Array).map(func (p): return p + Vector2(0, (grid.cell_size.y / 2.0)))
+			move_pivot.rotation_degrees = 0
 		Vector2i.LEFT:
-			move_arrow.points = (move_pts as Array).map(func (p): return p - Vector2((grid.cell_size.x / 2.0), 0))
+			move_pivot.rotation_degrees = 90
 		Vector2i.RIGHT:
-			move_arrow.points = (move_pts as Array).map(func (p): return p + Vector2((grid.cell_size.x / 2.0), 0))
+			move_pivot.rotation_degrees = 270
 	
 	if move_pts.size() > 1 and !Global.enemy_intent_cells.has(tilemap.local_to_map(move_pts[cur_pt+1])):
 		Global.enemy_intent_cells[tilemap.local_to_map(move_pts[cur_pt+1])] = self
 	#print(Global.enemy_intent_cells)
-	
+	move_pivot.visible = true
 
 func _draw_attack_warning() -> void:
-	for warn in atk_warns:
-		warn.visible = true
-	#draw
+	#rotate
 	match (facing_direction):
 		Vector2i.UP:
 			atk_warn.position = Vector2(0,-32)
+			pivot.rotation_degrees = 180
 		Vector2i.DOWN:
 			atk_warn.position = Vector2(0,32)
+			pivot.rotation_degrees = 0
 		Vector2i.LEFT:
 			atk_warn.position = Vector2(-32,0)
+			pivot.rotation_degrees = 90
 		Vector2i.RIGHT:
 			atk_warn.position = Vector2(32,0)
+			pivot.rotation_degrees = 270
+	#draw
+	for warn in atk_warns:
+		var cell = tilemap.local_to_map(warn.global_position)
+		#check for entity
+		if Global.occupied_cells.has(cell):
+			var body = Global.occupied_cells[cell]
+			if body.is_in_group("enemy"):
+				continue
+		#check for wall
+		var tile_data = tilemap.get_cell_tile_data(cell)
+		if tile_data.get_custom_data("solid") == true:
+			continue
+		warn.visible = true
 	return
 
 func _update_facing_dir(arrow:int = 0) -> void:

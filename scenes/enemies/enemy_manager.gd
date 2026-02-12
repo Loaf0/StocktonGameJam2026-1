@@ -8,4 +8,7 @@ func _on_phase_changed(phase: int):
 	for enemy in get_tree().get_nodes_in_group("enemy"):
 		await get_tree().process_frame
 		enemy.on_phase_changed(phase)
+	for enemy in get_tree().get_nodes_in_group("enemy"):
+		if phase == 3:
+			enemy._declare_action()
 	Global.enemy_intent_cells.clear()
