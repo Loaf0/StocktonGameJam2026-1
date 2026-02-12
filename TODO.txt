@@ -1,9 +1,10 @@
 # Things to do
 
 # FINAL LIST
+	enemys on death trigger next level currently f1
+	fix queue issue after death
 	SCORE 
 	DEATH MENU
-	Attacks
 	visual flair to enemy
 
 Core gameplay

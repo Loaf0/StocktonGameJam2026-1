@@ -76,5 +76,5 @@ func _on_death() -> void:
 	pop_tween.parallel().tween_property(self, "modulate:a", 0.0, 0.18)
 
 	pop_tween.tween_property(self, "scale", Vector2.ONE * 0.6, 0.08)
-
+	
 	pop_tween.finished.connect(queue_free)

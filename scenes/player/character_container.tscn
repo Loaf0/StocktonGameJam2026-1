@@ -281,6 +281,22 @@ animations = [{
 "speed": 0.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6xv6"]
+atlas = ExtResource("4_2ivie")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_imssm"]
+atlas = ExtResource("4_2ivie")
+region = Rect2(128, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxd3e"]
+atlas = ExtResource("4_2ivie")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qep5m"]
+atlas = ExtResource("4_2ivie")
+region = Rect2(128, 64, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_hkf5u"]
 atlas = ExtResource("4_2ivie")
 region = Rect2(0, 0, 32, 32)
@@ -347,6 +363,38 @@ region = Rect2(96, 96, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_47s7v"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6xv6")
+}],
+"loop": false,
+"name": &"atk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_imssm")
+}],
+"loop": false,
+"name": &"atk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxd3e")
+}],
+"loop": false,
+"name": &"atk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qep5m")
+}],
+"loop": false,
+"name": &"atk_up",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hkf5u")
@@ -501,6 +549,9 @@ animations = [{
 "speed": 0.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p0eso"]
+size = Vector2(16, 64)
+
 [node name="CharacterContainer" type="Node2D" unique_id=1429600210]
 script = ExtResource("1_pqffl")
 
@@ -540,7 +591,7 @@ shape = SubResource("CircleShape2D_uxwpo")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Player2" unique_id=548279231]
 sprite_frames = SubResource("SpriteFrames_47s7v")
-animation = &"walk_down"
+animation = &"idle_down"
 script = ExtResource("4_q642i")
 
 [node name="UpNext" type="Sprite2D" parent="Player2/Sprite2D" unique_id=28889257]
@@ -560,20 +611,11 @@ one_shot = true
 position = Vector2(3, 31)
 texture = ExtResource("7_p0eso")
 
-[node name="atk_left" type="Sprite2D" parent="Player2/Node2D" unique_id=2145662318]
-position = Vector2(-31, 0)
+[node name="Area2D" type="Area2D" parent="Player2/Node2D/atk_down" unique_id=1896454934]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2/Node2D/atk_down/Area2D" unique_id=248685669]
 rotation = 1.5707964
-texture = ExtResource("7_p0eso")
-
-[node name="atk_right" type="Sprite2D" parent="Player2/Node2D" unique_id=700977397]
-position = Vector2(31, 0)
-rotation = -1.5707964
-texture = ExtResource("7_p0eso")
-
-[node name="atk_up" type="Sprite2D" parent="Player2/Node2D" unique_id=658765885]
-position = Vector2(3, -30)
-rotation = -3.1415927
-texture = ExtResource("7_p0eso")
+shape = SubResource("RectangleShape2D_p0eso")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1079541686]
 zoom = Vector2(2, 2)

@@ -108,7 +108,40 @@ func attack():
 	_update_facing_visual()
 
 func _do_melee_attack() -> void:
-	pass
+	var melee_attack : Node2D = $"Node2D"
+	var melee_sprite : Sprite2D = melee_attack.get_child(0)
+	var melee_area : Area2D = melee_sprite.get_child(0)
+
+	match facing_direction:
+		Vector2i.UP:
+			melee_attack.rotation_degrees = 180
+		Vector2i.DOWN:
+			melee_attack.rotation_degrees = 0
+		Vector2i.LEFT:
+			melee_attack.rotation_degrees = 90
+		Vector2i.RIGHT:
+			melee_attack.rotation_degrees = 270
+
+	melee_attack.visible = true
+	melee_attack.scale = Vector2.ONE * 0.6
+	melee_attack.modulate = Color(1, 1, 1, 0)
+
+	var tween := create_tween()
+	tween.set_trans(Tween.TRANS_BACK)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.parallel().tween_property(melee_attack, "scale", Vector2.ONE, 0.04)
+	tween.parallel().tween_property(melee_attack, "modulate:a", 1.0, 0.05)
+	tween.tween_interval(0.1)
+	tween.tween_property(melee_attack, "modulate:a", 0.0, 0.08)
+
+	for body in melee_area.get_overlapping_bodies():
+		if body is CharacterBody2D and body.is_in_group("enemy"):
+			body.take_damage()
+
+	tween.finished.connect(func():
+		melee_attack.visible = false
+		melee_attack.scale = Vector2.ONE
+		)
 
 func _do_ranged_attack() -> void:
 	if tilemap == null:
