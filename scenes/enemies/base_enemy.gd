@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Enemy
 
+const HIT_ENEMY = preload("res://assets/audio/hit_enemy.wav")
+
 @export var my_phase: int = 2
 @export var tilemap: TileMapLayer
 
@@ -279,6 +281,7 @@ func _initialize_position():
 func take_damage():
 	sprite.play("death")
 	sprite.frame = 0
+	Global._play_one_shot_sfx(HIT_ENEMY, 0.05, 0.0, 0.0, "SFX")
 	Global.add_score(ceil(100 * Global.score_multiplier))
 	var cell = tilemap.local_to_map(global_position)
 	Global.occupied_cells.erase(cell)
