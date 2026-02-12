@@ -1,0 +1,122 @@
+[gd_scene format=3 uid="uid://bah8qy1vpvbhe"]
+
+[ext_resource type="Script" uid="uid://d1avodwxv5dwr" path="res://scenes/ui/death_menu.gd" id="1_0g38q"]
+[ext_resource type="Script" uid="uid://bd5xy1y65nc2i" path="res://scenes/ui/main_menu_background.gd" id="2_qow1p"]
+[ext_resource type="Shader" uid="uid://coyiir01h5uj1" path="res://scenes/ui/death_menu_background.gdshader" id="3_jpvm0"]
+[ext_resource type="Shader" uid="uid://bm55ncrd1j05u" path="res://scripts/shaders/radial_transparancy_mask.gdshader" id="4_k4u72"]
+[ext_resource type="Texture2D" uid="uid://b4m61ljxf4xcq" path="res://assets/sprites/misc/death_splash.png" id="5_jpvm0"]
+[ext_resource type="FontFile" uid="uid://drf8cub21w07x" path="res://assets/font/ARCADE_N.TTF" id="6_0tptm"]
+[ext_resource type="AudioStream" uid="uid://5e8gqi8v6a1r" path="res://assets/audio/songs/groovin_pause.wav" id="7_65dda"]
+[ext_resource type="Script" uid="uid://b71313trp45m3" path="res://scripts/button_effects_module.gd" id="7_mkwqv"]
+[ext_resource type="PackedScene" uid="uid://cenaqrhx866th" path="res://scenes/ui/crt_vfx.tscn" id="12_6mws8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_17nru"]
+shader = ExtResource("3_jpvm0")
+shader_parameter/freq_data = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_so7hi"]
+shader = ExtResource("4_k4u72")
+shader_parameter/mask_color = Color(0, 0, 0, 1)
+shader_parameter/radius = 0.895
+shader_parameter/softness = 1.0
+shader_parameter/center = Vector2(0.5, 0.67)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7suek"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_otr3d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ekit"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n4uci"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_877pj"]
+
+[node name="DeathMenu" type="CanvasLayer" unique_id=288322381]
+script = ExtResource("1_0g38q")
+
+[node name="Background" type="CanvasLayer" parent="." unique_id=37724471]
+layer = -10
+script = ExtResource("2_qow1p")
+
+[node name="ColorRect" type="ColorRect" parent="Background" unique_id=338394195]
+material = SubResource("ShaderMaterial_17nru")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect2" type="ColorRect" parent="Background" unique_id=632566206]
+material = SubResource("ShaderMaterial_so7hi")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DeathMenu" type="Control" parent="." unique_id=1643727154]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="DeathMenu" unique_id=265131529]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DeathMenu/MarginContainer" unique_id=1027005361]
+layout_mode = 2
+alignment = 1
+
+[node name="Control" type="MarginContainer" parent="DeathMenu/MarginContainer/VBoxContainer" unique_id=1149365835]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 100
+
+[node name="TextureRect" type="TextureRect" parent="DeathMenu/MarginContainer/VBoxContainer/Control" unique_id=35898154]
+layout_mode = 2
+texture = ExtResource("5_jpvm0")
+stretch_mode = 5
+
+[node name="ReturnToMenu" type="Button" parent="DeathMenu/MarginContainer/VBoxContainer" unique_id=491383684]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_0tptm")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7suek")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_otr3d")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8ekit")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_n4uci")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_877pj")
+text = "Return to
+Main Menu"
+
+[node name="button_effects_module" type="Node" parent="DeathMenu/MarginContainer/VBoxContainer/ReturnToMenu" unique_id=216199728]
+script = ExtResource("7_mkwqv")
+rotation_amount = 0.0
+metadata/_custom_type_script = "uid://b71313trp45m3"
+
+[node name="HSeparator2" type="HSeparator" parent="DeathMenu/MarginContainer/VBoxContainer" unique_id=1629830300]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 80
+
+[node name="CRTvfx" parent="." unique_id=30923113 instance=ExtResource("12_6mws8")]
+
+[node name="Death" type="AudioStreamPlayer" parent="." unique_id=1231669464]
+stream = ExtResource("7_65dda")
+autoplay = true
+bus = &"Music"
+
+[connection signal="pressed" from="DeathMenu/MarginContainer/VBoxContainer/ReturnToMenu" to="." method="_on_return_to_menu_pressed"]
