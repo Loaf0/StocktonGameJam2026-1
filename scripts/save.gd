@@ -30,5 +30,5 @@ func load_settings():
 	Global.sfx_volume = sfx_value
 	Global.music_volume = msfx_value
 
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(sfx_value))
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(sfx_value))
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(msfx_value))

@@ -7,9 +7,17 @@
 [ext_resource type="Script" uid="uid://b0bquy2c1sq8c" path="res://scenes/maps/test_maps/room.gd" id="4_07t4d"]
 [ext_resource type="PackedScene" uid="uid://bw2akpjviyb0u" path="res://scenes/ui/beat_bar.tscn" id="4_adaig"]
 [ext_resource type="PackedScene" uid="uid://cenaqrhx866th" path="res://scenes/ui/crt_vfx.tscn" id="4_db5eu"]
+[ext_resource type="Script" uid="uid://dnkoimb8315ch" path="res://scenes/enemies/enemy_spawner.gd" id="5_0pwie"]
 [ext_resource type="PackedScene" uid="uid://c6fhnrd8gltt8" path="res://scenes/ui/transition.tscn" id="5_x2rh7"]
+[ext_resource type="Script" uid="uid://tdp65ebwh5tb" path="res://scenes/enemies/enemy_manager.gd" id="6_ssfqi"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_adaig"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ssfqi"]
+vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
+agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x2rh7"]
 texture = ExtResource("2_dlq7p")
@@ -217,6 +225,7 @@ texture = ExtResource("2_dlq7p")
 6:6/0/custom_data_0 = true
 8:6/size_in_atlas = Vector2i(2, 2)
 8:6/0 = 0
+8:6/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_ssfqi")
 
 [sub_resource type="TileSet" id="TileSet_0jfhv"]
 tile_size = Vector2i(32, 32)
@@ -225,6 +234,7 @@ physics_layer_0/physics_material = SubResource("PhysicsMaterial_adaig")
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Wall"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+navigation_layer_0/layers = 1
 custom_data_layer_0/name = "solid"
 custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_x2rh7")
@@ -237,6 +247,13 @@ new_tilemap_scene = ExtResource("2_0f8sa")
 tile_map_data = PackedByteArray("AAAAAAAAAAAIAAQAAAAAAAEAAAAGAAIAAAABAAAAAAACAAYAAAABAAEAAAAIAAYAAAACAAAAAAACAAYAAAACAAEAAAAIAAYAAAADAAAAAAACAAYAAAADAAEAAAAIAAYAAAAEAAAAAAACAAYAAAAEAAEAAAAIAAYAAAAFAAAAAAACAAYAAAAFAAEAAAAIAAYAAAAGAAAAAAACAAYAAAAGAAEAAAAIAAYAAAAAAAIAAAAGAAIAAAAAAAMAAAAGAAIAAAAAAAQAAAAGAAIAAAAAAAUAAAAGAAIAAAAAAAYAAAAGAAIAAAAAAAcAAAAAAAQAAAABAAIAAAAIAAYAAAABAAMAAAAIAAYAAAABAAQAAAAIAAYAAAABAAUAAAAIAAYAAAABAAYAAAAIAAYAAAABAAcAAAACAAYAAAACAAIAAAAIAAYAAAACAAMAAAAIAAYAAAACAAQAAAAAAAYAAAACAAUAAAAIAAYAAAACAAYAAAAIAAYAAAACAAcAAAACAAYAAAADAAIAAAAIAAYAAAADAAMAAAAIAAYAAAADAAQAAAACAAYAAAADAAUAAAAIAAYAAAADAAYAAAAIAAYAAAADAAcAAAACAAYAAAAEAAIAAAAIAAYAAAAEAAMAAAAIAAYAAAAEAAQAAAAEAAYAAAAEAAUAAAAIAAYAAAAEAAYAAAAIAAYAAAAEAAcAAAACAAYAAAAFAAIAAAAIAAYAAAAFAAMAAAAIAAYAAAAFAAQAAAAIAAYAAAAFAAUAAAAIAAYAAAAFAAYAAAAIAAYAAAAFAAcAAAACAAYAAAAGAAIAAAAIAAYAAAAGAAMAAAAIAAYAAAAGAAQAAAAIAAYAAAAGAAUAAAAIAAYAAAAGAAYAAAAIAAYAAAAGAAcAAAACAAYAAAAHAAAAAAACAAYAAAAHAAEAAAAIAAYAAAAHAAIAAAAGAAYAAAAHAAMAAAAIAAYAAAAHAAQAAAAIAAYAAAAHAAUAAAAAAAYAAAAHAAYAAAAIAAYAAAAHAAcAAAACAAYAAAAIAAAAAAACAAYAAAAIAAEAAAAIAAYAAAAIAAIAAAAIAAYAAAAIAAMAAAAIAAYAAAAIAAQAAAAIAAYAAAAIAAUAAAACAAYAAAAIAAYAAAAIAAYAAAAIAAcAAAACAAYAAAAJAAAAAAACAAYAAAAJAAEAAAAIAAYAAAAJAAIAAAAIAAYAAAAJAAMAAAAGAAYAAAAJAAQAAAAIAAYAAAAJAAUAAAAEAAYAAAAJAAYAAAAIAAYAAAAJAAcAAAACAAYAAAAKAAAAAAACAAYAAAAKAAEAAAAIAAYAAAAKAAIAAAAAAAYAAAAKAAMAAAAIAAYAAAAKAAQAAAAIAAYAAAAKAAUAAAAIAAYAAAAKAAYAAAAIAAYAAAAKAAcAAAACAAYAAAALAAAAAAAKAAQAAAALAAEAAAAGAAIAAAALAAIAAAAKAAAAAAALAAMAAAAGAAIAAAALAAQAAAAGAAIAAAALAAUAAAAGAAIAAAALAAYAAAAGAAIAAAALAAcAAAAEAAQAAAA=")
 tile_set = SubResource("TileSet_0jfhv")
 script = ExtResource("4_07t4d")
+enemy_spawn_points = Array[Vector2]([Vector2(3, 2)])
+
+[node name="EnemySpawner" type="Node2D" parent="TileMapLayer" unique_id=1906484583]
+script = ExtResource("5_0pwie")
+
+[node name="EnemyManager" type="Node2D" parent="." unique_id=342371287]
+script = ExtResource("6_ssfqi")
 
 [node name="CharacterContainer" parent="." unique_id=1429600210 instance=ExtResource("2_cne6s")]
 position = Vector2(189, 204)

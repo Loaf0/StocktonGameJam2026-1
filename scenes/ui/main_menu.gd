@@ -10,6 +10,9 @@ var current_state: MenuState = MenuState.INTRO
 
 @onready var title: AudioStreamPlayer = $Title
 
+@onready var texture_rect1: TextureRect = $IntroMenu/MarginContainer/VBoxContainer/Control/TextureRect
+@onready var texture_rect2: TextureRect = $MainMenu/MarginContainer/VBoxContainer/Control/TextureRect
+
 # intro
 @onready var intro_anim: AnimatedSprite2D = $IntroAnim
 @onready var start_up: AudioStreamPlayer = $StartUp
@@ -36,7 +39,7 @@ func _ready() -> void:
 	sfx_volume.value = Global.sfx_volume
 	msfx_volume.value = Global.music_volume
 
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear_to_db(Global.sfx_volume))
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(Global.sfx_volume))
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(Global.music_volume))
 	
 	start_up.play(1.45)
@@ -127,12 +130,12 @@ func _on_msfx_volume_drag_ended(value_changed: bool) -> void:
 func _on_sfx_volume_value_changed(_value: float) -> void:
 	if int(_value) % 15 == 0:
 		_play_one_shot_sfx(slider_click, 0.05, 0.0)
-	var bus_index = AudioServer.get_bus_index("Master") 
+	var bus_index = AudioServer.get_bus_index("SFX") 
 	AudioServer.set_bus_volume_db(bus_index, linear_to_db(_value))
 
 func _on_sfx_volume_drag_ended(value_changed: bool) -> void:
 	if value_changed:
-		var bus_index = AudioServer.get_bus_index("Master") 
+		var bus_index = AudioServer.get_bus_index("SFX") 
 		var slider_value = sfx_volume.value 
 		AudioServer.set_bus_volume_db(bus_index, linear_to_db(slider_value))
 		Global.sfx_volume = slider_value 

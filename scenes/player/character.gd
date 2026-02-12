@@ -253,7 +253,7 @@ func _initialize_position():
 
 func animate_move(from_pos: Vector2, to_pos: Vector2):
 	is_moving = true
-	print("t=", time_since_beat, " resolve")
+	#print("t=", time_since_beat, " resolve")
 
 	if move_tween and move_tween.is_running():
 		move_tween.kill()

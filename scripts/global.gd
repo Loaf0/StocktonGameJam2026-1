@@ -23,6 +23,8 @@ var curr_score = 0
 var high_score = 0
 var do_not_act : bool = false
 
+var difficulty : float = 1.0
+
 func add_score(value : int):
 	curr_score += value * score_multiplier
 
