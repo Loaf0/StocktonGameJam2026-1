@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://dnkoimb8315ch" path="res://scenes/enemies/enemy_spawner.gd" id="5_0pwie"]
 [ext_resource type="PackedScene" uid="uid://c6fhnrd8gltt8" path="res://scenes/ui/transition.tscn" id="5_x2rh7"]
 [ext_resource type="Script" uid="uid://tdp65ebwh5tb" path="res://scenes/enemies/enemy_manager.gd" id="6_ssfqi"]
+[ext_resource type="PackedScene" uid="uid://bqa1074lpp3ab" path="res://scenes/enemies/base_enemy.tscn" id="11_3ei2h"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_adaig"]
 
@@ -254,6 +255,9 @@ script = ExtResource("5_0pwie")
 
 [node name="EnemyManager" type="Node2D" parent="." unique_id=342371287]
 script = ExtResource("6_ssfqi")
+
+[node name="BaseEnemy" parent="EnemyManager" unique_id=141113670 instance=ExtResource("11_3ei2h")]
+position = Vector2(272, 75)
 
 [node name="CharacterContainer" parent="." unique_id=1429600210 instance=ExtResource("2_cne6s")]
 position = Vector2(189, 204)

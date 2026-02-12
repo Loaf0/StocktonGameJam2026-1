@@ -1,7 +1,8 @@
-extends Sprite2D
+extends Area2D
 
 @export var tilemap: TileMapLayer
 var dir
+@onready var player_projectile: AnimatedSprite2D = $Player_projectile
 
 @export var move_duration := 0.12
 var move_tween: Tween
@@ -48,13 +49,32 @@ func _on_move_finished():
 	#check for entity
 	if Global.occupied_cells.has(cell):
 		var body = Global.occupied_cells[cell]
-		if body.is_in_group("player"):
-			print("player")
+		if body.is_in_group("enemy"):
+			print("enemy hit")
 			if body.has_method("take_damage"):
 				body.take_damage()
-		queue_free()
+		print("hit body")
+		_on_death()
 	#check for wall
 	var tile_data = tilemap.get_cell_tile_data(cell)
+	if tile_data == null:
+		_on_death()
+		return
+
 	if tile_data.get_custom_data("solid") == true:
-		queue_free()
+		_on_death()
 	
+func _on_death() -> void:
+	if move_tween and move_tween.is_running():
+		move_tween.kill()
+
+	var pop_tween := create_tween()
+	pop_tween.set_trans(Tween.TRANS_BACK)
+	pop_tween.set_ease(Tween.EASE_OUT) 
+	pop_tween.parallel().tween_property(self, "scale", Vector2.ONE * 1.4, 0.08)
+
+	pop_tween.parallel().tween_property(self, "modulate:a", 0.0, 0.18)
+
+	pop_tween.tween_property(self, "scale", Vector2.ONE * 0.6, 0.08)
+
+	pop_tween.finished.connect(queue_free)

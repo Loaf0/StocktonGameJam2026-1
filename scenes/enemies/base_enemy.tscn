@@ -27,6 +27,10 @@ region = Rect2(128, 32, 32, 32)
 atlas = ExtResource("3_ylyo2")
 region = Rect2(128, 64, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_15gny"]
+atlas = ExtResource("3_ylyo2")
+region = Rect2(160, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_2t7ph"]
 atlas = ExtResource("3_ylyo2")
 region = Rect2(0, 0, 32, 32)
@@ -123,6 +127,14 @@ animations = [{
 }],
 "loop": false,
 "name": &"atk_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15gny")
+}],
+"loop": true,
+"name": &"death",
 "speed": 5.0
 }, {
 "frames": [{
@@ -326,7 +338,7 @@ shape = SubResource("CircleShape2D_n763p")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=23198620]
 sprite_frames = SubResource("SpriteFrames_47p8s")
-animation = &"atk_up"
+animation = &"death"
 script = ExtResource("3_n763p")
 
 [node name="AtkWarn" type="Sprite2D" parent="." unique_id=212937407]

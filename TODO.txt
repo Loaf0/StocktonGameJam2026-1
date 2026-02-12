@@ -1,5 +1,11 @@
 # Things to do
 
+# FINAL LIST
+	SCORE 
+	DEATH MENU
+	Attacks
+	visual flair to enemy
+
 Core gameplay
 	Beat Manager system ✅
 	sync to song 

@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://b3gnvl366qmd7"]
+
+[ext_resource type="Texture2D" uid="uid://hhy81xw2ht0n" path="res://assets/sprites/attacks/Fireball.png" id="2_cixeb"]
+[ext_resource type="Script" uid="uid://dw01cm0hnnfsr" path="res://scenes/player/player_projectile.gd" id="2_javh7"]
+[ext_resource type="Script" uid="uid://b4e158hic5jg3" path="res://scripts/bpm_based_step_animation.gd" id="3_mtxwn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g7oqi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b74st"]
+atlas = ExtResource("2_cixeb")
+region = Rect2(0, 0, 18, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4y8y"]
+atlas = ExtResource("2_cixeb")
+region = Rect2(0, 24, 18, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umuub"]
+atlas = ExtResource("2_cixeb")
+region = Rect2(0, 48, 18, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugl6f"]
+atlas = ExtResource("2_cixeb")
+region = Rect2(0, 72, 18, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8by7l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b74st")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d4y8y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umuub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugl6f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.0
+}]
+
+[node name="AtkBox" type="Area2D" unique_id=199892264]
+script = ExtResource("2_javh7")
+move_duration = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1393798260]
+shape = SubResource("RectangleShape2D_g7oqi")
+
+[node name="Player_projectile" type="AnimatedSprite2D" parent="." unique_id=1352547590]
+sprite_frames = SubResource("SpriteFrames_8by7l")
+script = ExtResource("3_mtxwn")

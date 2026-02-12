@@ -2,7 +2,7 @@ extends Node
 
 signal health_changed
 
-const HURT_SFX = preload("res://assets/audio/kenny/impact/impactPlate_heavy_002.ogg")
+const HURT_SFX = preload("res://assets/audio/hit_player.wav")
 
 var sfx_volume : float = 1.0
 var music_volume : float = 1.0

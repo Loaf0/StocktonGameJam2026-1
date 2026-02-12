@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dcbsdtutevt6f"]
 
 [ext_resource type="Texture2D" uid="uid://ssd6flvg1x5t" path="res://assets/sprites/attacks/Ball.png" id="1_g7oqi"]
-[ext_resource type="Script" uid="uid://cij2ve8e88orh" path="res://scripts/projectile.gd" id="2_3smis"]
+[ext_resource type="Script" path="res://scripts/projectile.gd" id="2_3smis"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g7oqi"]
 

@@ -60,19 +60,14 @@ func change_layout() -> void:
 
 	for i in range(players.size()):
 		var p = players[i]
-
 		p.set_tile_map(tilemap)
-
 		var spawn_cell : Vector2i
-
 		if i == 0:
 			spawn_cell = tilemap.player_spawn_1
 		else:
 			spawn_cell = tilemap.player_spawn_2
-
 		p.grid_position = spawn_cell
 		p.global_position = tilemap.map_to_local(spawn_cell)
-
 
 	if enemy_scene:
 		for i in range(3):
