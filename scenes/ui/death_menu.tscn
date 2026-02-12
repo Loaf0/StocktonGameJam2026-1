@@ -21,6 +21,10 @@ shader_parameter/radius = 0.895
 shader_parameter/softness = 1.0
 shader_parameter/center = Vector2(0.5, 0.67)
 
+[sub_resource type="LabelSettings" id="LabelSettings_jpvm0"]
+font = ExtResource("6_0tptm")
+font_size = 40
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7suek"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_otr3d"]
@@ -90,6 +94,39 @@ layout_mode = 2
 texture = ExtResource("5_jpvm0")
 stretch_mode = 5
 
+[node name="Difficulty" type="Label" parent="DeathMenu/MarginContainer/VBoxContainer" unique_id=316779432]
+layout_mode = 2
+text = "Difficulty: "
+label_settings = SubResource("LabelSettings_jpvm0")
+horizontal_alignment = 1
+
+[node name="HSeparator5" type="HSeparator" parent="DeathMenu/MarginContainer/VBoxContainer" unique_id=1133388284]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="HighScore" type="Label" parent="DeathMenu/MarginContainer/VBoxContainer" unique_id=46329328]
+layout_mode = 2
+text = "High Score: "
+label_settings = SubResource("LabelSettings_jpvm0")
+horizontal_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="DeathMenu/MarginContainer/VBoxContainer" unique_id=390321488]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Score" type="Label" parent="DeathMenu/MarginContainer/VBoxContainer" unique_id=1934419665]
+layout_mode = 2
+text = "Score: "
+label_settings = SubResource("LabelSettings_jpvm0")
+horizontal_alignment = 1
+
+[node name="HSeparator4" type="HSeparator" parent="DeathMenu/MarginContainer/VBoxContainer" unique_id=1363157305]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+
 [node name="ReturnToMenu" type="Button" parent="DeathMenu/MarginContainer/VBoxContainer" unique_id=491383684]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_0tptm")
@@ -110,7 +147,7 @@ metadata/_custom_type_script = "uid://b71313trp45m3"
 [node name="HSeparator2" type="HSeparator" parent="DeathMenu/MarginContainer/VBoxContainer" unique_id=1629830300]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-theme_override_constants/separation = 80
+theme_override_constants/separation = 20
 
 [node name="CRTvfx" parent="." unique_id=30923113 instance=ExtResource("12_6mws8")]
 

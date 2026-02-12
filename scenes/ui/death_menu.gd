@@ -3,12 +3,16 @@ extends CanvasLayer
 @onready var death: AudioStreamPlayer = $Death
 @onready var texture_rect1: TextureRect = $DeathMenu/MarginContainer/VBoxContainer/Control/TextureRect
 
+@onready var difficulty: Label = $DeathMenu/MarginContainer/VBoxContainer/Difficulty
+@onready var high_score: Label = $DeathMenu/MarginContainer/VBoxContainer/HighScore
+@onready var score: Label = $DeathMenu/MarginContainer/VBoxContainer/Score
+
+
 var tween1 : Tween
 var _timer : Timer
 
-func ready() -> void:
-	#player dies in global
-	#global.death(call leveltransition death
+func _ready() -> void:
+	_display_scores_and_difficulty()
 	BeatManager._music_player.volume_db = 0
 	
 	texture_rect1.pivot_offset_ratio = Vector2(0.5, 0.5)
@@ -21,7 +25,18 @@ func ready() -> void:
 	_timer.timeout.connect(_on_beat)
 	add_child(_timer)
 	_timer.start()
+	
 
+func _display_scores_and_difficulty() -> void:
+	match(BeatManager.bpm):
+		130.0:
+			difficulty.text = "Difficulty: Warm-Up"
+		140.0:
+			difficulty.text = "Difficulty: Live"
+		150.0:
+			difficulty.text = "Difficulty: Encore"
+	high_score.text = "High Score: " + str(Global.high_score)
+	score.text = "Score: " + str(Global.curr_score)
 
 
 func _on_return_to_menu_pressed() -> void:
