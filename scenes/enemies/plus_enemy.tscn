@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c6sjpbompp3pm" path="res://scenes/enemies/plus_enemy.gd" id="1_7d1g6"]
 [ext_resource type="Texture2D" uid="uid://bmuh5h33os836" path="res://assets/sprites/misc/Arrow.png" id="2_jfyu8"]
 [ext_resource type="Texture2D" uid="uid://cy1bmgfilxafw" path="res://assets/sprites/entities/Slime_Candle.png" id="3_7d1g6"]
+[ext_resource type="Texture2D" uid="uid://cnv0kwskpl5ov" path="res://assets/sprites/entities/Slime_Candle1.png" id="4_1pd4v"]
 [ext_resource type="Script" uid="uid://b4e158hic5jg3" path="res://scripts/bpm_based_step_animation.gd" id="4_j1ley"]
 [ext_resource type="Texture2D" uid="uid://cq73tgnyk52d6" path="res://assets/sprites/misc/Indicator.png" id="5_1pd4v"]
 [ext_resource type="Texture2D" uid="uid://dr1ttgb0tt71a" path="res://assets/sprites/attacks/GreenFire.png" id="6_jfyu8"]
@@ -26,6 +27,10 @@ region = Rect2(128, 32, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_8a4m7"]
 atlas = ExtResource("3_7d1g6")
 region = Rect2(128, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yulbi"]
+atlas = ExtResource("4_1pd4v")
+region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jfyu8"]
 atlas = ExtResource("3_7d1g6")
@@ -139,6 +144,14 @@ animations = [{
 }],
 "loop": false,
 "name": &"atk_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yulbi")
+}],
+"loop": true,
+"name": &"death",
 "speed": 5.0
 }, {
 "frames": [{
@@ -308,7 +321,6 @@ shape = SubResource("CircleShape2D_n763p")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=23198620]
 sprite_frames = SubResource("SpriteFrames_7vwoc")
-animation = &"atk_down"
 script = ExtResource("4_j1ley")
 
 [node name="AtkWarn" type="Sprite2D" parent="." unique_id=411718262]

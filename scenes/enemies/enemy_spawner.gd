@@ -10,10 +10,10 @@ extends Node
 # enemies per room
 # min(1 + ceil(randi(0, difficulty)), 5)
 
-@export var skeleton_scene : PackedScene = preload("res://scenes/enemies/sweep_enemy.tscn")
-@export var candle_scene : PackedScene = preload("res://scenes/enemies/plus_enemy.tscn")
 @export var mushroom_scene : PackedScene = preload("res://scenes/enemies/base_enemy.tscn")
-@export var cannon_scene : PackedScene = preload("res://scenes/enemies/base_enemy.tscn")
+@export var candle_scene : PackedScene = preload("res://scenes/enemies/plus_enemy.tscn")
+@export var skeleton_scene : PackedScene = preload("res://scenes/enemies/sweep_enemy.tscn")
+@export var cannon_scene : PackedScene = preload("res://scenes/enemies/shoot_enemy.tscn")
 
 const MAX_ENEMIES_PER_ROOM := 5
 
@@ -28,8 +28,10 @@ func spawn_room_enemies(tilemap: TileMapLayer, spawn_points: Array[Vector2], ast
 			enemy.set_tile_map(tilemap)
 		if enemy.has_method("setup"):
 			enemy.setup(astar_grid)
-		
+		if enemy.has_method("_initialize_position"):
+			enemy._initialize_position()
 		var world_pos = tilemap.map_to_local(cell)
+		enemy.grid_position = cell
 		enemy.global_position = tilemap.to_global(world_pos)
 		
 		get_tree().get_first_node_in_group("enemy manager").add_child(enemy)

@@ -7,10 +7,27 @@
 [ext_resource type="Script" uid="uid://b4e158hic5jg3" path="res://scripts/bpm_based_step_animation.gd" id="4_q642i"]
 [ext_resource type="Script" uid="uid://dnwul77l62pk0" path="res://scenes/player/camera.gd" id="5_2ivie"]
 [ext_resource type="Texture2D" uid="uid://dwqd8cm73injj" path="res://assets/ui/nextIcon.png" id="5_edaao"]
+[ext_resource type="Texture2D" uid="uid://cjo64o6bn1gmt" path="res://assets/sprites/attacks/Cleave.png" id="7_p0eso"]
 [ext_resource type="Texture2D" uid="uid://cggtsx6lq8fdx" path="res://assets/ui/heart.png" id="8_p5cy7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uxwpo"]
 radius = 14.3178215
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_txh7p"]
+atlas = ExtResource("3_mcinn")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47s7v"]
+atlas = ExtResource("3_mcinn")
+region = Rect2(128, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smuhl"]
+atlas = ExtResource("3_mcinn")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbubr"]
+atlas = ExtResource("3_mcinn")
+region = Rect2(128, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ivie"]
 atlas = ExtResource("3_mcinn")
@@ -78,6 +95,38 @@ region = Rect2(96, 96, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_txh7p"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_txh7p")
+}],
+"loop": false,
+"name": &"atk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_47s7v")
+}],
+"loop": false,
+"name": &"atk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smuhl")
+}],
+"loop": false,
+"name": &"atk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbubr")
+}],
+"loop": false,
+"name": &"atk_up",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2ivie")
@@ -459,20 +508,14 @@ script = ExtResource("1_pqffl")
 unique_name_in_owner = true
 position = Vector2(-16, 0)
 script = ExtResource("2_o753y")
-my_phase = null
-beat_window = null
-move_duration = null
-flash_duration = null
-up_next_pop_scale = null
-up_next_normal_scale = null
-up_next_pop_time = null
+attack_type = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player1" unique_id=779279765]
 shape = SubResource("CircleShape2D_uxwpo")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Player1" unique_id=974364147]
 sprite_frames = SubResource("SpriteFrames_txh7p")
-animation = &"walk_down"
+animation = &"atk_down"
 script = ExtResource("4_q642i")
 
 [node name="UpNext" type="Sprite2D" parent="Player1/Sprite2D" unique_id=637326884]
@@ -491,12 +534,6 @@ unique_name_in_owner = true
 position = Vector2(16, 0)
 script = ExtResource("2_o753y")
 my_phase = 1
-beat_window = null
-move_duration = null
-flash_duration = null
-up_next_pop_scale = null
-up_next_normal_scale = null
-up_next_pop_time = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player2" unique_id=1574699231]
 shape = SubResource("CircleShape2D_uxwpo")
@@ -516,6 +553,27 @@ one_shot = true
 
 [node name="BufferTimer" type="Timer" parent="Player2" unique_id=539429433]
 one_shot = true
+
+[node name="Node2D" type="Node2D" parent="Player2" unique_id=403867074]
+
+[node name="atk_down" type="Sprite2D" parent="Player2/Node2D" unique_id=1996868648]
+position = Vector2(3, 31)
+texture = ExtResource("7_p0eso")
+
+[node name="atk_left" type="Sprite2D" parent="Player2/Node2D" unique_id=2145662318]
+position = Vector2(-31, 0)
+rotation = 1.5707964
+texture = ExtResource("7_p0eso")
+
+[node name="atk_right" type="Sprite2D" parent="Player2/Node2D" unique_id=700977397]
+position = Vector2(31, 0)
+rotation = -1.5707964
+texture = ExtResource("7_p0eso")
+
+[node name="atk_up" type="Sprite2D" parent="Player2/Node2D" unique_id=658765885]
+position = Vector2(3, -30)
+rotation = -3.1415927
+texture = ExtResource("7_p0eso")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1079541686]
 zoom = Vector2(2, 2)

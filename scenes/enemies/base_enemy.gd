@@ -277,6 +277,22 @@ func _initialize_position():
 	initialized = true
 
 func take_damage():
-	#await and sfx
-	queue_free()
-	return
+	sprite.play("death")
+	sprite.frame = 0
+	Global.add_score(ceil(100 * Global.score_multiplier))
+	var cell = tilemap.local_to_map(global_position)
+	Global.occupied_cells.erase(cell)
+
+	set_deferred("monitoring", false)
+	set_deferred("monitorable", false)
+
+	if has_node("CollisionShape2D"):
+		$CollisionShape2D.set_deferred("disabled", true)
+
+	var tween := create_tween()
+	tween.set_trans(Tween.TRANS_LINEAR)
+	tween.set_ease(Tween.EASE_IN)
+
+	tween.tween_property(self, "modulate:a", 0.0, 0.2)
+
+	tween.finished.connect(queue_free)

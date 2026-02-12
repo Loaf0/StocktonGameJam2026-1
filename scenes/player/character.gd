@@ -2,10 +2,17 @@ extends CharacterBody2D
 
 signal player_moved
 
+enum AttackType {
+	RANGED,
+	MELEE
+}
+
 @export var my_phase: int
 @export var tilemap: TileMapLayer
 @export var beat_window := 0.125
 @export var move_duration := 0.12
+
+const PROJECTILE = preload("res://scenes/player/player_projectile.tscn")
 
 var acted_this_beat := false
 var facing_direction: Vector2i = Vector2i.DOWN
@@ -30,8 +37,6 @@ var input_up: String = "up1"
 var input_down: String = "down1"
 var input_left: String = "left1"
 var input_right: String = "right1"
-var input_interact: String = "interact1"
-var input_attack: String = "attack1"
 
 @onready var sprite = $Sprite2D
 @onready var flash_timer: Timer = $Timer
@@ -39,6 +44,8 @@ var input_attack: String = "attack1"
 @export var up_next_pop_scale := .75
 @export var up_next_normal_scale := 0.5
 @export var up_next_pop_time := 0.12
+
+@export var attack_type : AttackType = AttackType.MELEE
 
 var up_next_tween: Tween
 
@@ -74,8 +81,6 @@ func _ready():
 		input_down = "down2"
 		input_left = "left2"
 		input_right = "right2"
-		input_interact = "interact2"
-		input_attack = "attack2"
 
 func _on_beat(_beat_count: int):
 	time_since_beat = 0.0
@@ -84,9 +89,40 @@ func _on_beat(_beat_count: int):
 		if buffered_direction != Vector2i.ZERO and buffer_active:
 			try_resolve_buffer()
 
-
 func attack():
-	pass 
+	if attack_type == AttackType.RANGED:
+		_do_ranged_attack()
+	elif attack_type == AttackType.MELEE:
+		_do_melee_attack()
+	match facing_direction:
+		Vector2i.UP:
+			sprite.play("atk_up")
+		Vector2i.DOWN:
+			sprite.play("atk_down")
+		Vector2i.LEFT:
+			sprite.play("atk_left")
+		Vector2i.RIGHT:
+			sprite.play("atk_right")
+
+	await sprite.animation_finished
+	_update_facing_visual()
+
+func _do_melee_attack() -> void:
+	pass
+
+func _do_ranged_attack() -> void:
+	if tilemap == null:
+		return
+
+	var spawn_cell: Vector2i = grid_position + facing_direction
+	var spawn_world: Vector2 = tilemap.map_to_local(spawn_cell)
+
+	var temp = PROJECTILE.instantiate()
+	temp.dir = facing_direction
+	temp.tilemap = tilemap
+	temp.global_position = spawn_world
+
+	get_tree().current_scene.add_child(temp)
 
 func _on_phase_changed(phase: int):
 	var pre_phase = (my_phase - 1 + BeatManager.PHASES) % BeatManager.PHASES
