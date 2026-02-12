@@ -44,6 +44,8 @@ func animate_move(from_pos: Vector2, to_pos: Vector2):
 
 func _on_move_finished():
 	is_moving = false
+	if !tilemap:
+		return
 	
 	var cell = tilemap.local_to_map(global_position)
 	#check for entity

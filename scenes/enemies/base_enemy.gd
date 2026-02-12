@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Enemy
 
 const HIT_ENEMY = preload("res://assets/audio/hit_enemy.wav")
+var dead := false
 
 @export var my_phase: int = 2
 @export var tilemap: TileMapLayer
@@ -75,6 +76,8 @@ func _my_turn():
 	return
 
 func on_phase_changed(phase: int):
+	if dead:
+		return
 	if phase == 3:
 		_attack()
 		return
@@ -106,6 +109,9 @@ func _target_player() -> void:
 		target = players[1].grid_position
 
 func _move() -> void:
+	if !tilemap:
+		return
+	
 	if move_pts.is_empty():
 		return
 	else:
@@ -213,6 +219,8 @@ func _draw_move_arrow() -> void:
 	move_pivot.visible = true
 
 func _draw_attack_warning() -> void:
+	if dead:
+		return
 	#rotate
 	match (facing_direction):
 		Vector2i.UP:
@@ -279,6 +287,8 @@ func _initialize_position():
 	initialized = true
 
 func take_damage():
+	dead = true
+	remove_from_group("enemy")
 	sprite.play("death")
 	sprite.frame = 0
 	Global._play_one_shot_sfx(HIT_ENEMY, 0.05, 0.0, 0.0, "SFX")
@@ -295,7 +305,9 @@ func take_damage():
 	var tween := create_tween()
 	tween.set_trans(Tween.TRANS_LINEAR)
 	tween.set_ease(Tween.EASE_IN)
-
+	
 	tween.tween_property(self, "modulate:a", 0.0, 0.2)
-
+	
+	#await get_tree().create_timer(0.5).timeout
+	
 	tween.finished.connect(queue_free)

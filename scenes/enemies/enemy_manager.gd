@@ -3,6 +3,7 @@ extends Node2D
 func _ready() -> void:
 	add_to_group("enemy manager")
 	BeatManager.phase_changed.connect(_on_phase_changed)
+	
 
 func _on_phase_changed(phase: int):
 	for enemy in get_tree().get_nodes_in_group("enemy"):

@@ -47,17 +47,6 @@ func _my_turn():
 		acted_this_beat = true
 	return
 
-func on_phase_changed(phase: int):
-	if phase == 3:
-		_attack()
-		return
-	
-	can_act = (phase == my_phase)
-
-	if can_act:
-		acted_this_beat = false
-		_my_turn()
-
 func _declare_action() -> void:
 	if !atk_turn:
 		_draw_move_arrow()
@@ -67,6 +56,8 @@ func _declare_action() -> void:
 
 
 func _draw_attack_warning() -> void:
+	if dead:
+		return
 	#rotate
 	match (facing_direction):
 		Vector2i.UP:

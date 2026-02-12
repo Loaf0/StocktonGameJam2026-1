@@ -12,6 +12,18 @@ var astar_grid: AStarGrid2D
 @export var enemy_scene : PackedScene
 @export var player_positions := [Vector2(0,0), Vector2(0,1)]
 
+var tile_map_scenes = [
+		preload("res://scenes/layouts/001.tscn"),
+		preload("res://scenes/layouts/002.tscn"),
+		preload("res://scenes/layouts/003.tscn"),
+		preload("res://scenes/layouts/004.tscn"),
+		preload("res://scenes/layouts/005.tscn"),
+		preload("res://scenes/layouts/006.tscn"),
+		preload("res://scenes/layouts/007.tscn"),
+	]
+var recent_maps: Array = []
+const MAX_RECENT := 3
+
 func _ready() -> void:
 	#give enemies and players tile map reference for movement
 	for node in get_tree().get_nodes_in_group("req_tile_map"):
@@ -24,9 +36,26 @@ func _ready() -> void:
 	refresh_occupancy()
 	BeatManager.phase_changed.connect(_on_phase_changed)
 
-func _input(event):
-	if event.is_action_pressed("debug_next_layout"):
-		change_layout()
+#func _input(event):
+	#if event.is_action_pressed("debug_next_layout"):
+		#change_layout()
+
+func _get_random_map_scene() -> PackedScene:
+	var available := tile_map_scenes.filter(func(scene):
+		return not recent_maps.has(scene)
+	)
+
+	if available.is_empty():
+		recent_maps.clear()
+		available = tile_map_scenes.duplicate()
+
+	var chosen = available.pick_random()
+
+	recent_maps.append(chosen)
+	if recent_maps.size() > MAX_RECENT:
+		recent_maps.pop_front()
+
+	return chosen
 
 func change_layout() -> void:
 	while BeatManager.phase != 3:
@@ -41,7 +70,8 @@ func change_layout() -> void:
 	await tween.finished
 	
 	if new_tilemap_scene:
-		var new_tilemap_instance = new_tilemap_scene.instantiate() as Room
+		var scene_to_load := _get_random_map_scene()
+		var new_tilemap_instance = scene_to_load.instantiate() as Room
 		var old_tilemap = tilemap
 		var tilemap_index = old_tilemap.get_index()
 
@@ -124,6 +154,9 @@ func refresh_occupancy():
 func _on_phase_changed(phase: int):
 	if phase != 3:
 		return
+	await get_tree().process_frame
+	if get_tree().get_nodes_in_group("enemy").is_empty():
+		change_layout()
 	await get_tree().create_timer(0.12).timeout
 	refresh_occupancy()
 
