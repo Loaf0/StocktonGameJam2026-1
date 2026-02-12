@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://w3lv2n00dq8g"]
 
 [ext_resource type="Script" uid="uid://c6sjpbompp3pm" path="res://scenes/enemies/plus_enemy.gd" id="1_7d1g6"]
-[ext_resource type="Texture2D" uid="uid://bmuh5h33os836" path="res://assets/sprites/misc/image.png" id="2_jfyu8"]
+[ext_resource type="Texture2D" uid="uid://bmuh5h33os836" path="res://assets/sprites/misc/Arrow.png" id="2_jfyu8"]
 [ext_resource type="Texture2D" uid="uid://cy1bmgfilxafw" path="res://assets/sprites/entities/Slime_Candle.png" id="3_7d1g6"]
 [ext_resource type="Script" uid="uid://b4e158hic5jg3" path="res://scripts/bpm_based_step_animation.gd" id="4_j1ley"]
 [ext_resource type="Texture2D" uid="uid://cq73tgnyk52d6" path="res://assets/sprites/misc/Indicator.png" id="5_1pd4v"]
+[ext_resource type="Texture2D" uid="uid://dr1ttgb0tt71a" path="res://assets/sprites/attacks/GreenFire.png" id="6_jfyu8"]
+[ext_resource type="Texture2D" uid="uid://bpbl3p580kxkr" path="res://assets/sprites/misc/Internal_Arrows.png" id="7_smuwy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n763p"]
 radius = 14.3178215
@@ -201,7 +203,22 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6bfe6"]
 
-[node name="SweepEnemy" type="CharacterBody2D" unique_id=141113670]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gml38"]
+atlas = ExtResource("7_smuwy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j1ley"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gml38")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.0
+}]
+
+[node name="PlusEnemy" type="CharacterBody2D" unique_id=141113670]
 script = ExtResource("1_7d1g6")
 
 [node name="Line2D" type="Line2D" parent="." unique_id=821246944]
@@ -261,3 +278,41 @@ texture = ExtResource("5_1pd4v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AtkWarn4/AtkBox" unique_id=510687408]
 shape = SubResource("RectangleShape2D_6bfe6")
+
+[node name="Pivot" type="Node2D" parent="." unique_id=1896436928]
+visible = false
+
+[node name="FireDown" type="Sprite2D" parent="Pivot" unique_id=586478782]
+modulate = Color(1, 1, 1, 0.39215687)
+position = Vector2(0, 32)
+texture = ExtResource("6_jfyu8")
+vframes = 4
+
+[node name="FireUp" type="Sprite2D" parent="Pivot" unique_id=1726257491]
+modulate = Color(1, 1, 1, 0.39215687)
+position = Vector2(0, -32)
+texture = ExtResource("6_jfyu8")
+vframes = 4
+frame = 3
+
+[node name="FireLeft" type="Sprite2D" parent="Pivot" unique_id=2013781064]
+modulate = Color(1, 1, 1, 0.39215687)
+position = Vector2(-32, 0)
+texture = ExtResource("6_jfyu8")
+vframes = 4
+frame = 2
+
+[node name="FireRight" type="Sprite2D" parent="Pivot" unique_id=337896921]
+modulate = Color(1, 1, 1, 0.39215687)
+position = Vector2(32, 0)
+texture = ExtResource("6_jfyu8")
+vframes = 4
+frame = 1
+
+[node name="MovePivot" type="Node2D" parent="." unique_id=176620683]
+visible = false
+
+[node name="Arrow" type="AnimatedSprite2D" parent="MovePivot" unique_id=1361540586]
+position = Vector2(0, 12)
+sprite_frames = SubResource("SpriteFrames_j1ley")
+autoplay = "default"

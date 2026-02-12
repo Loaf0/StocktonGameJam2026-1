@@ -41,7 +41,7 @@ func _my_turn():
 			_move()
 			atk_turn = true
 		
-		_declare_action()
+
 		_target_player()
 		acted_this_beat = true
 	return
@@ -66,24 +66,39 @@ func _declare_action() -> void:
 
 
 func _draw_attack_warning() -> void:
-	for warn in atk_warns:
-		warn.visible = true
-	#draw
+	#rotate
 	match (facing_direction):
 		Vector2i.UP:
 			atk_warn.position = Vector2(0,-32)
 			atk_warn_2.position = Vector2(-32,-32)
 			atk_warn_3.position = Vector2(32,-32)
+			pivot.rotation_degrees = 180
 		Vector2i.DOWN:
 			atk_warn.position = Vector2(0,32)
 			atk_warn_2.position = Vector2(-32,32)
 			atk_warn_3.position = Vector2(32,32)
+			pivot.rotation_degrees = 0
 		Vector2i.LEFT:
 			atk_warn.position = Vector2(-32,0)
 			atk_warn_2.position = Vector2(-32,-32)
 			atk_warn_3.position = Vector2(-32,32)
+			pivot.rotation_degrees = 90
 		Vector2i.RIGHT:
 			atk_warn.position = Vector2(32,0)
 			atk_warn_2.position = Vector2(32,-32)
 			atk_warn_3.position = Vector2(32,32)
+			pivot.rotation_degrees = 270
+	#draw
+	for warn in atk_warns:
+		var cell = tilemap.local_to_map(warn.global_position)
+		#check for entity
+		if Global.occupied_cells.has(cell):
+			var body = Global.occupied_cells[cell]
+			if body.is_in_group("enemy"):
+				continue
+		#check for wall
+		var tile_data = tilemap.get_cell_tile_data(cell)
+		if tile_data.get_custom_data("solid") == true:
+			continue
+		warn.visible = true
 	return
