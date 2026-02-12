@@ -36,6 +36,7 @@ func _my_turn():
 	if acted_this_beat == false:
 		#move or attack logic here
 		if first_turn:
+			_declare_action()
 			first_turn = false
 		elif !atk_turn:
 			_move()
