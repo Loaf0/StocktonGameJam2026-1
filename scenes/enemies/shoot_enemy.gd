@@ -29,6 +29,7 @@ func _my_turn():
 	if acted_this_beat == false:
 		#move or attack logic here
 		if first_turn:
+			_declare_action()
 			first_turn = false
 		elif !atk_turn:
 			_move()
@@ -67,6 +68,16 @@ func _attack() -> void:
 		for warn in atk_warns:
 			warn.visible = false
 		pivot.visible = true
+		match (facing_direction):
+			Vector2i.UP:
+				sprite.play("atk_up")
+			Vector2i.DOWN:
+				sprite.play("atk_down")
+			Vector2i.LEFT:
+				sprite.play("atk_left")
+			Vector2i.RIGHT:
+				sprite.play("atk_right")
+		await sprite.animation_finished
 		await get_tree().create_timer(0.15).timeout
 		pivot.visible = false
 		_draw_move_arrow()

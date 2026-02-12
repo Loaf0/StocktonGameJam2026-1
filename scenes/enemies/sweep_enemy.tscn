@@ -11,6 +11,22 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_n763p"]
 radius = 14.3178215
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxhic"]
+atlas = ExtResource("3_6bfe6")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtc0r"]
+atlas = ExtResource("3_6bfe6")
+region = Rect2(128, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6a3e"]
+atlas = ExtResource("3_6bfe6")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5r6u"]
+atlas = ExtResource("3_6bfe6")
+region = Rect2(128, 64, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ylyo2"]
 atlas = ExtResource("3_6bfe6")
 region = Rect2(0, 0, 32, 32)
@@ -79,6 +95,38 @@ region = Rect2(96, 96, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_wxhic")
+}],
+"loop": false,
+"name": &"atk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtc0r")
+}],
+"loop": false,
+"name": &"atk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6a3e")
+}],
+"loop": false,
+"name": &"atk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5r6u")
+}],
+"loop": false,
+"name": &"atk_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ylyo2")
 }, {
 "duration": 1.0,
@@ -125,41 +173,21 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5y3e0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wxhic")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6a3e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5r6u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtc0r")
 }],
 "loop": true,
 "name": &"default",
-"speed": 0.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ylyo2")
-}],
-"loop": true,
-"name": &"idle_down",
-"speed": 0.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xyj2r")
-}],
-"loop": true,
-"name": &"idle_left",
-"speed": 0.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hwcqj")
-}],
-"loop": true,
-"name": &"idle_right",
-"speed": 0.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_v35a0")
-}],
-"loop": true,
-"name": &"idle_up",
 "speed": 0.0
 }, {
 "frames": [{
@@ -264,7 +292,7 @@ shape = SubResource("CircleShape2D_n763p")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=23198620]
 sprite_frames = SubResource("SpriteFrames_ixvfu")
-animation = &"idle_down"
+animation = &"atk_down"
 script = ExtResource("4_wxhic")
 
 [node name="AtkWarn" type="Sprite2D" parent="." unique_id=411718262]

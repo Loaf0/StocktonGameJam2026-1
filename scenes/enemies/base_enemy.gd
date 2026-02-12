@@ -61,6 +61,7 @@ func _my_turn():
 	if acted_this_beat == false:
 		#move or attack logic here
 		if first_turn:
+			_declare_action()
 			first_turn = false
 		elif !atk_turn:
 			_move()
@@ -169,7 +170,16 @@ func _attack() -> void:
 		for warn in atk_warns:
 			warn.visible = false
 		pivot.visible = true
-		await get_tree().create_timer(0.15).timeout
+		match (facing_direction):
+			Vector2i.UP:
+				sprite.play("atk_up")
+			Vector2i.DOWN:
+				sprite.play("atk_down")
+			Vector2i.LEFT:
+				sprite.play("atk_left")
+			Vector2i.RIGHT:
+				sprite.play("atk_right")
+		await sprite.animation_finished
 		pivot.visible = false
 		_draw_move_arrow()
 	return
@@ -182,9 +192,9 @@ func _declare_action() -> void:
 	return
 
 func _draw_move_arrow() -> void:
-	_update_facing_dir(1)
 	move_pts = grid.get_point_path(grid_position, target)
 	move_pts = (move_pts as Array).map(func (p): return p + grid.cell_size / 2.0)
+	_update_facing_dir()
 	match (facing_direction):
 		Vector2i.UP:
 			move_pivot.rotation_degrees = 180
@@ -230,11 +240,9 @@ func _draw_attack_warning() -> void:
 		warn.visible = true
 	return
 
-func _update_facing_dir(arrow:int = 0) -> void:
-	if move_pts.size() < 2:
-		arrow = 0
-	if move_pts.size() > 2:
-		facing_direction  = move_pts[cur_pt+1 + arrow] - move_pts[cur_pt + arrow]
+func _update_facing_dir() -> void:
+	if move_pts.size() > 1:
+		facing_direction  = move_pts[cur_pt+1] - move_pts[cur_pt]
 		if facing_direction.y < 0:
 			facing_direction = Vector2i.UP
 		elif facing_direction.y > 0:

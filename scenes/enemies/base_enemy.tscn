@@ -11,6 +11,22 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_n763p"]
 radius = 14.3178215
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xaogp"]
+atlas = ExtResource("3_ylyo2")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72b2c"]
+atlas = ExtResource("3_ylyo2")
+region = Rect2(128, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hts3q"]
+atlas = ExtResource("3_ylyo2")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k67t6"]
+atlas = ExtResource("3_ylyo2")
+region = Rect2(128, 64, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_2t7ph"]
 atlas = ExtResource("3_ylyo2")
 region = Rect2(0, 0, 32, 32)
@@ -79,6 +95,38 @@ region = Rect2(96, 96, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_xaogp")
+}],
+"loop": false,
+"name": &"atk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72b2c")
+}],
+"loop": false,
+"name": &"atk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hts3q")
+}],
+"loop": false,
+"name": &"atk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k67t6")
+}],
+"loop": false,
+"name": &"atk_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_2t7ph")
 }, {
 "duration": 1.0,
@@ -125,6 +173,18 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ixvfu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xaogp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hts3q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k67t6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72b2c")
 }],
 "loop": true,
 "name": &"default",
@@ -266,7 +326,7 @@ shape = SubResource("CircleShape2D_n763p")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=23198620]
 sprite_frames = SubResource("SpriteFrames_47p8s")
-animation = &"walk_down"
+animation = &"atk_up"
 script = ExtResource("3_n763p")
 
 [node name="AtkWarn" type="Sprite2D" parent="." unique_id=212937407]
