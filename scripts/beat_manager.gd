@@ -3,7 +3,7 @@ extends Node
 signal beat(beat_count: int)
 signal phase_changed(phase: int)
 const BASE_BPM = 140
-@export var bpm: float = 120.0
+@export var bpm: float = BASE_BPM
 
 #both players + enemies + attack all
 const PHASES := 4

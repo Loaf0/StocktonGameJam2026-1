@@ -11,7 +11,6 @@
 [ext_resource type="Shader" uid="uid://c0vrp3laxd8nu" path="res://scripts/shaders/main_menu_background.gdshader" id="6_btxxm"]
 [ext_resource type="Script" uid="uid://bd5xy1y65nc2i" path="res://scenes/ui/main_menu_background.gd" id="6_wb0q5"]
 [ext_resource type="Texture2D" uid="uid://bct04r12ph634" path="res://assets/ui/main_menu/Check_Box.png" id="7_7suek"]
-[ext_resource type="Texture2D" uid="uid://s42nfrngs0p7" path="res://assets/ui/main_menu/scumoftheearth.png" id="9_8ekit"]
 [ext_resource type="AudioStream" uid="uid://ci3u050krqp7" path="res://assets/audio/songs/title.wav" id="10_8g5eo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wb0q5"]
@@ -69,14 +68,6 @@ region = Rect2(0, 0, 64, 64)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8g5eo"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_btxxm"]
-font = ExtResource("2_uhagc")
-font_size = 24
-
-[sub_resource type="LabelSettings" id="LabelSettings_n4uci"]
-font = ExtResource("2_uhagc")
-font_size = 30
-
-[sub_resource type="LabelSettings" id="LabelSettings_8ekit"]
 font = ExtResource("2_uhagc")
 font_size = 24
 
@@ -218,7 +209,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="IntroMenu" type="Control" parent="." unique_id=263725973]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -240,7 +230,6 @@ theme_override_constants/margin_bottom = 80
 
 [node name="VBoxContainer" type="VBoxContainer" parent="IntroMenu/MarginContainer" unique_id=402320003]
 layout_mode = 2
-alignment = 1
 
 [node name="Control" type="MarginContainer" parent="IntroMenu/MarginContainer/VBoxContainer" unique_id=1490563433]
 layout_mode = 2
@@ -270,6 +259,31 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Start" type="Button" parent="MainMenu" unique_id=478488782]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -222.0
+offset_top = -46.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_uhagc")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7suek")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_otr3d")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8ekit")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_n4uci")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_877pj")
+text = "Credits"
+
+[node name="button_effects_module" type="Node" parent="MainMenu/Start" unique_id=67236354]
+script = ExtResource("1_sl1te")
+rotation_amount = 0.0
+metadata/_custom_type_script = "uid://b71313trp45m3"
+
 [node name="MarginContainer" type="MarginContainer" parent="MainMenu" unique_id=265131529]
 layout_mode = 1
 anchors_preset = 15
@@ -284,7 +298,6 @@ theme_override_constants/margin_bottom = 50
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/MarginContainer" unique_id=1027005361]
 layout_mode = 2
-alignment = 1
 
 [node name="Control" type="MarginContainer" parent="MainMenu/MarginContainer/VBoxContainer" unique_id=1149365835]
 layout_mode = 2
@@ -292,9 +305,10 @@ size_flags_vertical = 3
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_right = 100
 
-[node name="TextureRect" type="TextureRect" parent="MainMenu/MarginContainer/VBoxContainer/Control" unique_id=35898154]
+[node name="TextureRect" type="TextureRect" parent="MainMenu/MarginContainer/VBoxContainer/Control" unique_id=1780889895]
 layout_mode = 2
 texture = ExtResource("5_otr3d")
+expand_mode = 2
 stretch_mode = 4
 
 [node name="Start" type="Button" parent="MainMenu/MarginContainer/VBoxContainer" unique_id=491383684]
@@ -351,31 +365,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_877pj")
 text = "Quit"
 
 [node name="button_effects_module" type="Node" parent="MainMenu/MarginContainer/VBoxContainer/Quit" unique_id=1363488242]
-script = ExtResource("1_sl1te")
-rotation_amount = 0.0
-metadata/_custom_type_script = "uid://b71313trp45m3"
-
-[node name="Credits" type="Button" parent="MainMenu" unique_id=478488782]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -222.0
-offset_top = -46.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_fonts/font = ExtResource("2_uhagc")
-theme_override_font_sizes/font_size = 18
-theme_override_styles/normal = SubResource("StyleBoxEmpty_7suek")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_otr3d")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_8ekit")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_n4uci")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_877pj")
-text = "Credits"
-
-[node name="button_effects_module" type="Node" parent="MainMenu/Credits" unique_id=67236354]
 script = ExtResource("1_sl1te")
 rotation_amount = 0.0
 metadata/_custom_type_script = "uid://b71313trp45m3"
@@ -619,133 +608,6 @@ script = ExtResource("1_sl1te")
 rotation_amount = 0.0
 metadata/_custom_type_script = "uid://b71313trp45m3"
 
-[node name="Credits" type="Control" parent="." unique_id=1946029364]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="Credits" unique_id=329395479]
-layout_mode = 0
-offset_left = 66.0
-offset_top = 104.00001
-offset_right = 269.0
-offset_bottom = 307.0
-rotation = -0.1117347
-texture = ExtResource("9_8ekit")
-expand_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="Credits" unique_id=1695194694]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 200
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 200
-theme_override_constants/margin_bottom = 80
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Credits/MarginContainer" unique_id=571069570]
-layout_mode = 2
-
-[node name="Options" type="Label" parent="Credits/MarginContainer/VBoxContainer" unique_id=141255538]
-layout_mode = 2
-text = "Credits"
-label_settings = SubResource("LabelSettings_uhagc")
-horizontal_alignment = 1
-
-[node name="HSeparator" type="HSeparator" parent="Credits/MarginContainer/VBoxContainer" unique_id=1786651196]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-theme_override_constants/separation = 50
-
-[node name="Options2" type="Label" parent="Credits/MarginContainer/VBoxContainer" unique_id=1428854750]
-layout_mode = 2
-text = "programmers"
-label_settings = SubResource("LabelSettings_n4uci")
-horizontal_alignment = 1
-
-[node name="HSeparator2" type="HSeparator" parent="Credits/MarginContainer/VBoxContainer" unique_id=427202175]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-theme_override_constants/separation = 15
-
-[node name="Options3" type="Label" parent="Credits/MarginContainer/VBoxContainer" unique_id=1795834435]
-layout_mode = 2
-text = "Loaf (Tyler)
-onetiredkayla"
-label_settings = SubResource("LabelSettings_8ekit")
-horizontal_alignment = 1
-
-[node name="HSeparator3" type="HSeparator" parent="Credits/MarginContainer/VBoxContainer" unique_id=1971891213]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="Options4" type="Label" parent="Credits/MarginContainer/VBoxContainer" unique_id=35505846]
-layout_mode = 2
-text = "Art"
-label_settings = SubResource("LabelSettings_n4uci")
-horizontal_alignment = 1
-
-[node name="HSeparator6" type="HSeparator" parent="Credits/MarginContainer/VBoxContainer" unique_id=193816088]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-theme_override_constants/separation = 15
-
-[node name="Options5" type="Label" parent="Credits/MarginContainer/VBoxContainer" unique_id=548925318]
-layout_mode = 2
-text = "MachineWash (Winks)"
-label_settings = SubResource("LabelSettings_8ekit")
-horizontal_alignment = 1
-
-[node name="HSeparator4" type="HSeparator" parent="Credits/MarginContainer/VBoxContainer" unique_id=794256913]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="Options7" type="Label" parent="Credits/MarginContainer/VBoxContainer" unique_id=527443726]
-layout_mode = 2
-text = "Composer"
-label_settings = SubResource("LabelSettings_n4uci")
-horizontal_alignment = 1
-
-[node name="HSeparator7" type="HSeparator" parent="Credits/MarginContainer/VBoxContainer" unique_id=375754128]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-theme_override_constants/separation = 15
-
-[node name="Options8" type="Label" parent="Credits/MarginContainer/VBoxContainer" unique_id=1300821742]
-layout_mode = 2
-text = "Spadster"
-label_settings = SubResource("LabelSettings_8ekit")
-horizontal_alignment = 1
-
-[node name="HSeparator5" type="HSeparator" parent="Credits/MarginContainer/VBoxContainer" unique_id=581017271]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-theme_override_constants/separation = 70
-
-[node name="Button" type="Button" parent="Credits/MarginContainer/VBoxContainer" unique_id=949952175]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_uhagc")
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxEmpty_uhagc")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_btxxm")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_wb0q5")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_q85j6")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_8g5eo")
-text = "Back"
-
-[node name="button_effects_module" type="Node" parent="Credits/MarginContainer/VBoxContainer/Button" unique_id=1896795843]
-script = ExtResource("1_sl1te")
-rotation_amount = 0.0
-metadata/_custom_type_script = "uid://b71313trp45m3"
-
 [node name="IntroAnim" type="AnimatedSprite2D" parent="." unique_id=1512805378]
 position = Vector2(577, 324)
 scale = Vector2(0.60104173, 0.59999996)
@@ -765,7 +627,6 @@ bus = &"Music"
 [connection signal="pressed" from="MainMenu/MarginContainer/VBoxContainer/Start" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MainMenu/MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MainMenu/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
-[connection signal="pressed" from="MainMenu/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="Difficulty/MarginContainer/VBoxContainer/Easy" to="." method="_on_easy_pressed"]
 [connection signal="pressed" from="Difficulty/MarginContainer/VBoxContainer/Medium" to="." method="_on_normal_pressed"]
 [connection signal="pressed" from="Difficulty/MarginContainer/VBoxContainer/Hard" to="." method="_on_hard_pressed"]
@@ -776,4 +637,3 @@ bus = &"Music"
 [connection signal="drag_ended" from="Options/MarginContainer/VBoxContainer/MUSIC" to="." method="_on_msfx_volume_drag_ended"]
 [connection signal="value_changed" from="Options/MarginContainer/VBoxContainer/MUSIC" to="." method="_on_msfx_volume_value_changed"]
 [connection signal="pressed" from="Options/MarginContainer/VBoxContainer/Button" to="." method="_on_options_return_pressed"]
-[connection signal="pressed" from="Credits/MarginContainer/VBoxContainer/Button" to="." method="_on_options_return_pressed"]

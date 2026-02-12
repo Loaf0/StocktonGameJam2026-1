@@ -4,14 +4,20 @@ enum MenuState {
 	INTRO,
 	MAIN,
 	DIFFICULTY,
-	OPTIONS
+	OPTIONS,
+	CREDITS
 }
 var current_state: MenuState = MenuState.INTRO
 
 @onready var title: AudioStreamPlayer = $Title
 
-@onready var texture_rect1: TextureRect = $IntroMenu/MarginContainer/VBoxContainer/Control/TextureRect
-@onready var texture_rect2: TextureRect = $MainMenu/MarginContainer/VBoxContainer/Control/TextureRect
+@onready var texture_rect1 = $IntroMenu/MarginContainer/VBoxContainer/Control/TextureRect
+@onready var texture_rect2 = $MainMenu/MarginContainer/VBoxContainer/Control/TextureRect
+@onready var texture_rect3 = $Credits/TextureRect
+var tween1 : Tween
+var tween2 : Tween
+var tween3 : Tween
+var _timer : Timer
 
 # intro
 @onready var intro_anim: AnimatedSprite2D = $IntroAnim
@@ -30,6 +36,9 @@ var current_state: MenuState = MenuState.INTRO
 @onready var msfx_volume: HSlider = $Options/MarginContainer/VBoxContainer/MUSIC
 var slider_click = preload("res://assets/audio/ui_effects/Switch.mp3")
 
+#credits
+@onready var credits: Control = $Credits
+
 func _ready() -> void:
 	_set_menu_state(MenuState.INTRO)
 	
@@ -44,7 +53,42 @@ func _ready() -> void:
 	
 	start_up.play(1.45)
 	await start_up.finished
+	
+	texture_rect1.pivot_offset_ratio = Vector2(0.5, 0.5)
+	texture_rect2.pivot_offset_ratio = Vector2(0.5, 0.5)
+	texture_rect3.pivot_offset_ratio = Vector2(0.5, 0.5)
+	
 	$Title.play()
+	var beat_length = 60.0 / 165
+	await get_tree().create_timer(beat_length * .92).timeout
+	_timer = Timer.new()
+	_timer.wait_time = beat_length
+	_timer.autostart = true
+	_timer.timeout.connect(_on_beat)
+	add_child(_timer)
+	_timer.start()
+
+
+func _on_beat() -> void:
+	var original_scale = Vector2.ONE
+	var target_scale = Vector2(.95, .95)
+	if tween1:
+		tween1.kill()
+	tween1 = create_tween()
+	tween1.tween_property(texture_rect1, "scale", target_scale, 0.06).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween1.tween_property(texture_rect1, "scale", original_scale, 0.06).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+	
+	if tween2:
+		tween2.kill()
+	tween2 = create_tween()
+	tween2.tween_property(texture_rect2, "scale", target_scale, 0.06).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween2.tween_property(texture_rect2, "scale", original_scale, 0.06).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+	
+	if tween3:
+		tween3.kill()
+	tween3 = create_tween()
+	tween3.tween_property(texture_rect3, "scale", target_scale, 0.06).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween3.tween_property(texture_rect3, "scale", original_scale, 0.06).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
 
 func _process(_delta: float) -> void:
 	if current_state == MenuState.INTRO:
@@ -67,6 +111,7 @@ func _set_menu_state(state: MenuState) -> void:
 	main_menu.visible = state == MenuState.MAIN
 	difficulty_menu.visible = state == MenuState.DIFFICULTY
 	options.visible = state == MenuState.OPTIONS
+	credits.visible = state == MenuState.CREDITS
 
 func _go_to_main_menu() -> void:
 	_set_menu_state(MenuState.MAIN)
@@ -76,6 +121,9 @@ func _on_play_pressed() -> void:
 
 func _on_options_pressed() -> void:
 	_go_to_options()
+
+func _on_credits_pressed() -> void:
+	_set_menu_state(MenuState.CREDITS)
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
