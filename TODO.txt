@@ -2,10 +2,10 @@
 
 # FINAL LIST
 	enemys on death trigger next level currently f1
-	fix queue issue after death
-	SCORE 
-	DEATH MENU
-	visual flair to enemy
+	fix queue issue after death - queue death 1 beat late?
+	SCORE - multiply ingame difficulty by chosen difficulty by enemy type
+	DEATH MENU - almost done just needs highscore display and difficulty text
+	visual flair to enemy - pull from fireball for cannon and knight for melee
 
 Core gameplay
 	Beat Manager system ✅
