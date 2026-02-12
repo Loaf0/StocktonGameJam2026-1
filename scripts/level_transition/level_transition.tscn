@@ -9,6 +9,7 @@ script = ExtResource("1_qo321")
 
 [node name="MatchStart" type="AudioStreamPlayer" parent="." unique_id=112815368]
 stream = ExtResource("2_0oq26")
+bus = &"Music"
 
 [node name="Transition" parent="." unique_id=1598174226 instance=ExtResource("2_6ae3c")]
 layer = 10000

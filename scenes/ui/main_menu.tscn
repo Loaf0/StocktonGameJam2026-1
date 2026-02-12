@@ -755,6 +755,7 @@ frame_progress = 1.0
 
 [node name="StartUp" type="AudioStreamPlayer" parent="." unique_id=1255136064]
 stream = ExtResource("5_x2yvf")
+bus = &"Music"
 
 [node name="CRTvfx" parent="." unique_id=30923113 instance=ExtResource("4_m1kxf")]
 

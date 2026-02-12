@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://b4e158hic5jg3" path="res://scripts/bpm_based_step_animation.gd" id="4_q642i"]
 [ext_resource type="Script" uid="uid://dnwul77l62pk0" path="res://scenes/player/camera.gd" id="5_2ivie"]
 [ext_resource type="Texture2D" uid="uid://dwqd8cm73injj" path="res://assets/ui/nextIcon.png" id="5_edaao"]
+[ext_resource type="Texture2D" uid="uid://cggtsx6lq8fdx" path="res://assets/ui/heart.png" id="8_p5cy7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uxwpo"]
 radius = 14.3178215
@@ -519,3 +520,45 @@ one_shot = true
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1079541686]
 zoom = Vector2(2, 2)
 script = ExtResource("5_2ivie")
+
+[node name="HealthBar" type="CanvasLayer" parent="." unique_id=1275696157]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HealthBar" unique_id=882349576]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -255.0
+offset_right = 255.0
+offset_bottom = 97.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HealthBar/HBoxContainer" unique_id=1290219663]
+layout_mode = 2
+texture = ExtResource("8_p5cy7")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="TextureRect2" type="TextureRect" parent="HealthBar/HBoxContainer" unique_id=46168319]
+layout_mode = 2
+texture = ExtResource("8_p5cy7")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="TextureRect3" type="TextureRect" parent="HealthBar/HBoxContainer" unique_id=452182230]
+layout_mode = 2
+texture = ExtResource("8_p5cy7")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="TextureRect4" type="TextureRect" parent="HealthBar/HBoxContainer" unique_id=1625224073]
+layout_mode = 2
+texture = ExtResource("8_p5cy7")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="TextureRect5" type="TextureRect" parent="HealthBar/HBoxContainer" unique_id=2128014110]
+layout_mode = 2
+texture = ExtResource("8_p5cy7")
+expand_mode = 2
+stretch_mode = 4
