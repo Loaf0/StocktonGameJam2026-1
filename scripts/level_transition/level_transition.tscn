@@ -3,12 +3,17 @@
 [ext_resource type="Script" uid="uid://dal3p28hp51nr" path="res://scripts/level_transition/level_transition.gd" id="1_qo321"]
 [ext_resource type="AudioStream" uid="uid://c4a7noevefdt1" path="res://assets/audio/songs/match_start.wav" id="2_0oq26"]
 [ext_resource type="PackedScene" uid="uid://c6fhnrd8gltt8" path="res://scenes/ui/transition.tscn" id="2_6ae3c"]
+[ext_resource type="AudioStream" uid="uid://bdceb2tg15fl5" path="res://assets/audio/songs/match_fail.wav" id="3_gat17"]
 
 [node name="LeveTransistion" type="CanvasLayer" unique_id=721731341]
 script = ExtResource("1_qo321")
 
 [node name="MatchStart" type="AudioStreamPlayer" parent="." unique_id=112815368]
 stream = ExtResource("2_0oq26")
+bus = &"Music"
+
+[node name="MatchLose" type="AudioStreamPlayer" parent="." unique_id=105418880]
+stream = ExtResource("3_gat17")
 bus = &"Music"
 
 [node name="Transition" parent="." unique_id=1598174226 instance=ExtResource("2_6ae3c")]

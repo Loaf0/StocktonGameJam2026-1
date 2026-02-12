@@ -54,6 +54,8 @@ func _on_beat():
 		#_audio_player.play(0.05)
 
 func start_song(new_bpm: float) -> void:
+	_music_player.volume_db = 0
+	
 	bpm = new_bpm
 	
 	beat_count = 0
@@ -67,3 +69,12 @@ func start_song(new_bpm: float) -> void:
 	_music_player.play()
 	await get_tree().process_frame
 	_timer.start()
+
+func fade_music() -> void:
+	var tween := create_tween()
+	tween.parallel().tween_property(
+		game_music,
+		"volume_db",
+		-80,
+		0.5
+	)
