@@ -4,8 +4,8 @@ signal health_changed
 
 const HURT_SFX = preload("res://assets/audio/hit_player.wav")
 
-var sfx_volume : float = 1.0
-var music_volume : float = 1.0
+var sfx_volume : float = 0.2
+var music_volume : float = 0.2
 
 #show flashes on character to help time beats
 var beat_assist : bool = true

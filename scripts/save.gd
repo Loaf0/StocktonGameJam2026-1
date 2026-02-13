@@ -30,8 +30,8 @@ func load_settings():
 	if err != OK:
 		return
 	
-	var sfx_value := float(save_file.get_value("Audio", "SFX_VOLUME", 0.45))
-	var msfx_value := float(save_file.get_value("Audio", "MSFX_VOLUME", 0.45))
+	var sfx_value := float(save_file.get_value("Audio", "SFX_VOLUME", 0.2))
+	var msfx_value := float(save_file.get_value("Audio", "MSFX_VOLUME", 0.2))
 	var e_high_score = int(save_file.get_value("Score", "E_HIGH_SCORE", 0))
 	var n_high_score = int(save_file.get_value("Score", "N_HIGH_SCORE", 0))
 	var h_high_score = int(save_file.get_value("Score", "H_HIGH_SCORE", 0))
@@ -39,8 +39,8 @@ func load_settings():
 	Global.sfx_volume = sfx_value
 	Global.music_volume = msfx_value
 	Global.e_high_score = e_high_score
-	Global.e_high_score = n_high_score
-	Global.e_high_score = h_high_score
+	Global.n_high_score = n_high_score
+	Global.h_high_score = h_high_score
 	
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(sfx_value))
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(msfx_value))
