@@ -32,7 +32,7 @@ func _attack() -> void:
 	if wait_turn and atk_turn:
 		wait_turn = false
 		return
-	if atk_turn:
+	if atk_turn and !just_waited:
 		#attack_anim
 		var temp = cannon_ball.instantiate()
 		temp.global_position = $Pivot/Spawn.global_position
