@@ -33,15 +33,17 @@ func _display_scores_and_difficulty() -> void:
 			difficulty.text = "Difficulty: Warm-Up"
 			if Global.curr_score > Global.e_high_score:
 				Global.e_high_score = Global.curr_score
+			high_score.text = "High Score: " + str(Global.e_high_score)
 		140.0:
 			difficulty.text = "Difficulty: Live"
 			if Global.curr_score > Global.n_high_score:
 				Global.n_high_score = Global.curr_score
+			high_score.text = "High Score: " + str(Global.n_high_score)
 		150.0:
 			difficulty.text = "Difficulty: Encore"
 			if Global.curr_score > Global.h_high_score:
 				Global.h_high_score = Global.curr_score
-	high_score.text = "High Score: " + str(Global.high_score)
+			high_score.text = "High Score: " + str(Global.h_high_score)
 	score.text = "Score: " + str(Global.curr_score)
 
 
