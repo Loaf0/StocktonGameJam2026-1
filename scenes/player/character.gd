@@ -11,7 +11,7 @@ enum AttackType {
 @export var tilemap: TileMapLayer
 @export var beat_window := 0.125
 @export var move_duration := 0.12
-
+var moved = false
 const PROJECTILE = preload("res://scenes/player/player_projectile.tscn")
 
 var acted_this_beat := false
@@ -90,6 +90,8 @@ func _on_beat(_beat_count: int):
 			try_resolve_buffer()
 
 func attack():
+	if !moved:
+		return
 	if attack_type == AttackType.RANGED:
 		_do_ranged_attack()
 	elif attack_type == AttackType.MELEE:
@@ -106,6 +108,7 @@ func attack():
 	
 	await sprite.animation_finished
 	_update_facing_visual()
+	moved = false
 
 func _do_melee_attack() -> void:
 	var melee_attack : Node2D = $"Node2D"
@@ -343,6 +346,7 @@ func _on_move_finished():
 		Global.occupied_cells.erase(previous_cell)
 
 	Global.occupied_cells[grid_position] = self
+	moved = true
 
 func _pop_up_next():
 	if up_next_tween and up_next_tween.is_running():

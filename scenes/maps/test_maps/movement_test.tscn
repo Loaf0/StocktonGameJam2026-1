@@ -286,10 +286,13 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -136.0
+offset_top = -209.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Act On the Beat!"
+text = "Act On the Beat!
+
+You can only attack 
+after moving!"
 label_settings = SubResource("LabelSettings_m1j5w")
 horizontal_alignment = 1
 

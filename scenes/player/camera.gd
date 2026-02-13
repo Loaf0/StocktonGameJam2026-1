@@ -5,7 +5,7 @@ extends Camera2D
 @export var camera_lerp := 8.0
 
 @export var enemy_bias_strength := 0.25 
-@export var screen_buffer_pixels := 64 
+@export var screen_buffer_pixels := 128
 
 @onready var player1 := %Player1
 @onready var player2 := %Player2
