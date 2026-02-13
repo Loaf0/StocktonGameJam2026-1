@@ -218,7 +218,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="IntroMenu" type="Control" parent="." unique_id=263725973]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -770,6 +769,7 @@ rotation_amount = 0.0
 metadata/_custom_type_script = "uid://b71313trp45m3"
 
 [node name="Tutorial" type="Control" parent="." unique_id=1644314196]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

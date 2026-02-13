@@ -245,6 +245,15 @@ func _unhandled_input(event):
 		_buffer_input(Vector2i.LEFT)
 	elif Input.is_action_just_pressed(input_right):
 		_buffer_input(Vector2i.RIGHT)
+	if !Global.two_player_mode:
+		if Input.is_action_just_pressed("up2"):
+			_buffer_input(Vector2i.UP)
+		elif Input.is_action_just_pressed("down2"):
+			_buffer_input(Vector2i.DOWN)
+		elif Input.is_action_just_pressed("left2"):
+			_buffer_input(Vector2i.LEFT)
+		elif Input.is_action_just_pressed("right2"):
+			_buffer_input(Vector2i.RIGHT)
 
 func _buffer_input(direction: Vector2i):
 	buffered_direction = direction

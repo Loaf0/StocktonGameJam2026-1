@@ -52,3 +52,5 @@ shape = SubResource("RectangleShape2D_g7oqi")
 sprite_frames = SubResource("SpriteFrames_8by7l")
 autoplay = "default"
 script = ExtResource("3_mtxwn")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -68,7 +68,7 @@ func change_layout() -> void:
 	for projectile in get_tree().get_nodes_in_group("projectile"):
 		projectile.on_death()
 	while BeatManager.phase != 3:
-		await get_tree().process_frame
+		await get_tree().process_frameaaaa
 	Global.difficulty += 0.1
 	Global.do_not_act = true
 	

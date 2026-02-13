@@ -81,3 +81,10 @@ func on_death() -> void:
 	pop_tween.tween_property(self, "scale", Vector2.ONE * 0.6, 0.08)
 	
 	pop_tween.finished.connect(queue_free)
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemy"):
+		if body.has_method("take_damage"):
+			body.take_damage()
+		on_death()
