@@ -9,6 +9,7 @@ var move_tween: Tween
 var is_moving := false
 
 func _ready() -> void:
+	add_to_group("projectile")
 	BeatManager.phase_changed.connect(_on_phase_changed)
 	#check for entity
 	_on_move_finished()
@@ -56,17 +57,17 @@ func _on_move_finished():
 			if body.has_method("take_damage"):
 				body.take_damage()
 		print("hit body")
-		_on_death()
+		on_death()
 	#check for wall
 	var tile_data = tilemap.get_cell_tile_data(cell)
 	if tile_data == null:
-		_on_death()
+		on_death()
 		return
 
 	if tile_data.get_custom_data("solid") == true:
-		_on_death()
+		on_death()
 	
-func _on_death() -> void:
+func on_death() -> void:
 	if move_tween and move_tween.is_running():
 		move_tween.kill()
 

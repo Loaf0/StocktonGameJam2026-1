@@ -155,30 +155,102 @@ script = ExtResource("1_lxddo")
 new_tilemap_scene = ExtResource("2_e4m43")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1886383761]
-tile_map_data = PackedByteArray("AAAAAAAAAAAIAAQAAAAAAAEAAAAGAAIAAAABAAAAAAACAAYAAAABAAEAAAAIAAYAAAACAAAAAAACAAYAAAACAAEAAAAIAAYAAAADAAAAAAACAAYAAAADAAEAAAAIAAYAAAAEAAAAAAACAAYAAAAEAAEAAAAIAAYAAAAFAAAAAAACAAYAAAAFAAEAAAAIAAYAAAAGAAAAAAACAAYAAAAGAAEAAAAIAAYAAAAAAAIAAAAGAAIAAAAAAAMAAAAGAAIAAAAAAAQAAAAGAAIAAAAAAAUAAAAGAAIAAAAAAAYAAAAGAAIAAAAAAAcAAAAAAAQAAAABAAIAAAAIAAYAAAABAAMAAAAIAAYAAAABAAQAAAAIAAYAAAABAAUAAAAIAAYAAAABAAYAAAAIAAYAAAABAAcAAAACAAYAAAACAAIAAAAEAAIAAAACAAMAAAAEAAIAAAACAAQAAAAIAAYAAAACAAUAAAAIAAYAAAACAAYAAAAIAAYAAAACAAcAAAACAAYAAAADAAIAAAAEAAIAAAADAAMAAAAEAAIAAAADAAQAAAAIAAYAAAADAAUAAAAIAAYAAAADAAYAAAAIAAYAAAADAAcAAAACAAYAAAAEAAIAAAAIAAYAAAAEAAMAAAAIAAYAAAAEAAQAAAAIAAYAAAAEAAUAAAAIAAYAAAAEAAYAAAAIAAYAAAAEAAcAAAACAAYAAAAFAAIAAAAEAAIAAAAFAAMAAAAEAAIAAAAFAAQAAAAIAAYAAAAFAAUAAAAIAAYAAAAFAAYAAAAIAAYAAAAFAAcAAAACAAYAAAAGAAIAAAAEAAIAAAAGAAMAAAAEAAIAAAAGAAQAAAAIAAYAAAAGAAUAAAAIAAYAAAAGAAYAAAAIAAYAAAAGAAcAAAACAAYAAAAHAAAAAAACAAYAAAAHAAEAAAAIAAYAAAAHAAIAAAAIAAYAAAAHAAMAAAAIAAYAAAAHAAQAAAAIAAYAAAAHAAUAAAAIAAYAAAAHAAYAAAAIAAYAAAAHAAcAAAACAAYAAAAIAAAAAAACAAYAAAAIAAEAAAAIAAYAAAAIAAIAAAAIAAYAAAAIAAMAAAAIAAYAAAAIAAQAAAAEAAIAAAAIAAUAAAAEAAIAAAAIAAYAAAAIAAYAAAAIAAcAAAACAAYAAAAJAAAAAAACAAYAAAAJAAEAAAAIAAYAAAAJAAIAAAAIAAYAAAAJAAMAAAAIAAYAAAAJAAQAAAAEAAIAAAAJAAUAAAAEAAIAAAAJAAYAAAAIAAYAAAAJAAcAAAACAAYAAAAKAAAAAAACAAYAAAAKAAEAAAAIAAYAAAAKAAIAAAAIAAYAAAAKAAMAAAAIAAYAAAAKAAQAAAAIAAYAAAAKAAUAAAAIAAYAAAAKAAYAAAAIAAYAAAAKAAcAAAACAAYAAAALAAAAAAAKAAQAAAALAAEAAAAGAAIAAAALAAIAAAAKAAAAAAALAAMAAAAGAAIAAAALAAQAAAAGAAIAAAALAAUAAAAGAAIAAAALAAYAAAAGAAIAAAALAAcAAAAEAAQAAAA=")
+tile_map_data = PackedByteArray("AAAAAAAAAAAIAAQAAAAAAAEAAAAGAAIAAAABAAAAAAACAAYAAAABAAEAAAAIAAYAAAACAAAAAAACAAYAAAACAAEAAAAIAAYAAAADAAAAAAACAAYAAAADAAEAAAACAAIAAAAEAAAAAAACAAYAAAAEAAEAAAAIAAYAAAAFAAAAAAACAAYAAAAFAAEAAAAIAAYAAAAGAAAAAAACAAYAAAAGAAEAAAAIAAYAAAAAAAIAAAAGAAIAAAAAAAMAAAAGAAIAAAAAAAQAAAAGAAIAAAAAAAUAAAAGAAIAAAAAAAYAAAAGAAIAAAAAAAcAAAAAAAQAAAABAAIAAAACAAIAAAABAAMAAAACAAIAAAABAAQAAAACAAIAAAABAAUAAAACAAIAAAABAAYAAAACAAIAAAABAAcAAAACAAYAAAACAAIAAAAIAAYAAAACAAMAAAAIAAYAAAACAAQAAAAIAAYAAAACAAUAAAAIAAYAAAACAAYAAAAIAAYAAAACAAcAAAACAAYAAAADAAIAAAACAAIAAAADAAMAAAACAAIAAAADAAQAAAACAAIAAAADAAUAAAACAAIAAAADAAYAAAAIAAYAAAADAAcAAAACAAYAAAAEAAIAAAAIAAYAAAAEAAMAAAAIAAYAAAAEAAQAAAAIAAYAAAAEAAUAAAAIAAYAAAAEAAYAAAAIAAYAAAAEAAcAAAACAAYAAAAFAAIAAAACAAIAAAAFAAMAAAACAAIAAAAFAAQAAAACAAIAAAAFAAUAAAACAAIAAAAFAAYAAAACAAIAAAAFAAcAAAACAAYAAAAGAAIAAAAIAAYAAAAGAAMAAAAIAAYAAAAGAAQAAAAIAAYAAAAGAAUAAAAIAAYAAAAGAAYAAAAIAAYAAAAGAAcAAAACAAYAAAAHAAAAAAACAAYAAAAHAAEAAAACAAIAAAAHAAIAAAACAAIAAAAHAAMAAAACAAIAAAAHAAQAAAACAAIAAAAHAAUAAAAIAAYAAAAHAAYAAAAIAAYAAAAHAAcAAAACAAYAAAAIAAAAAAACAAYAAAAIAAEAAAAIAAYAAAAIAAIAAAAIAAYAAAAIAAMAAAAIAAYAAAAIAAQAAAAIAAYAAAAIAAUAAAAIAAYAAAAIAAYAAAAAAAAAAAAIAAcAAAACAAYAAAAJAAAAAAACAAYAAAAJAAEAAAAIAAYAAAAJAAIAAAAIAAYAAAAJAAMAAAAIAAYAAAAJAAQAAAAIAAYAAAAJAAUAAAAEAAIAAAAJAAYAAAAIAAYAAAAJAAcAAAACAAYAAAAKAAAAAAACAAYAAAAKAAEAAAAIAAYAAAAKAAIAAAAIAAYAAAAKAAMAAAAIAAYAAAAKAAQAAAACAAIAAAAKAAUAAAAIAAYAAAAKAAYAAAAIAAYAAAAKAAcAAAACAAYAAAALAAAAAAAKAAQAAAALAAEAAAAGAAIAAAALAAIAAAAKAAAAAAALAAMAAAAGAAIAAAALAAQAAAAGAAIAAAALAAUAAAAGAAIAAAALAAYAAAAGAAIAAAALAAcAAAAEAAQAAAA=")
 tile_set = SubResource("TileSet_0jfhv")
 script = ExtResource("4_gtcyc")
 
 [node name="CharacterContainer" parent="." unique_id=1429600210 instance=ExtResource("3_ier5j")]
-position = Vector2(229, 206)
+position = Vector2(56, 50)
 
 [node name="EnemyManager" type="Node2D" parent="." unique_id=1691944424]
 script = ExtResource("4_ier5j")
 
 [node name="BaseEnemy" parent="EnemyManager" unique_id=141113670 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
-position = Vector2(172, 45)
+position = Vector2(145, 105)
+tilemap = NodePath("../../TileMapLayer")
+
+[node name="BaseEnemy10" parent="EnemyManager" unique_id=2004959882 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
+position = Vector2(144, 167)
+tilemap = NodePath("../../TileMapLayer")
+
+[node name="BaseEnemy14" parent="EnemyManager" unique_id=276674716 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
+position = Vector2(212, 211)
+tilemap = NodePath("../../TileMapLayer")
+
+[node name="BaseEnemy15" parent="EnemyManager" unique_id=1582345233 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
+position = Vector2(206, 143)
+tilemap = NodePath("../../TileMapLayer")
+
+[node name="BaseEnemy19" parent="EnemyManager" unique_id=978481590 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
+position = Vector2(208, 177)
+tilemap = NodePath("../../TileMapLayer")
+
+[node name="BaseEnemy16" parent="EnemyManager" unique_id=23475878 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
+position = Vector2(207, 112)
+tilemap = NodePath("../../TileMapLayer")
+
+[node name="BaseEnemy17" parent="EnemyManager" unique_id=1381130588 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
+position = Vector2(208, 81)
+tilemap = NodePath("../../TileMapLayer")
+
+[node name="BaseEnemy18" parent="EnemyManager" unique_id=1851454049 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
+position = Vector2(207, 48)
+tilemap = NodePath("../../TileMapLayer")
+
+[node name="BaseEnemy11" parent="EnemyManager" unique_id=1451735804 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
+position = Vector2(173, 54)
+tilemap = NodePath("../../TileMapLayer")
+
+[node name="BaseEnemy12" parent="EnemyManager" unique_id=1597163489 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
+position = Vector2(143, 48)
+tilemap = NodePath("../../TileMapLayer")
+
+[node name="BaseEnemy13" parent="EnemyManager" unique_id=951908189 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
+position = Vector2(144, 77)
+tilemap = NodePath("../../TileMapLayer")
+
+[node name="BaseEnemy2" parent="EnemyManager" unique_id=788759757 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
+position = Vector2(111, 204)
+tilemap = NodePath("../../TileMapLayer")
+
+[node name="BaseEnemy3" parent="EnemyManager" unique_id=507852392 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
+position = Vector2(145, 137)
+tilemap = NodePath("../../TileMapLayer")
+
+[node name="BaseEnemy4" parent="EnemyManager" unique_id=677050815 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
+position = Vector2(143, 200)
+tilemap = NodePath("../../TileMapLayer")
+
+[node name="BaseEnemy5" parent="EnemyManager" unique_id=1459360138 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
+position = Vector2(81, 201)
+tilemap = NodePath("../../TileMapLayer")
+
+[node name="BaseEnemy6" parent="EnemyManager" unique_id=1132442152 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
+position = Vector2(79, 167)
+tilemap = NodePath("../../TileMapLayer")
+
+[node name="BaseEnemy7" parent="EnemyManager" unique_id=1263386731 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
+position = Vector2(78, 138)
+tilemap = NodePath("../../TileMapLayer")
+
+[node name="BaseEnemy8" parent="EnemyManager" unique_id=1138556601 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
+position = Vector2(79, 110)
+tilemap = NodePath("../../TileMapLayer")
+
+[node name="BaseEnemy9" parent="EnemyManager" unique_id=1997419689 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
+position = Vector2(76, 79)
 tilemap = NodePath("../../TileMapLayer")
 
 [node name="SweepEnemy" parent="EnemyManager" unique_id=1097911942 node_paths=PackedStringArray("tilemap") instance=ExtResource("6_yueia")]
-position = Vector2(334, 49)
+position = Vector2(336, 175)
 tilemap = NodePath("../../TileMapLayer")
 
 [node name="PlusEnemy" parent="EnemyManager" unique_id=363018636 node_paths=PackedStringArray("tilemap") instance=ExtResource("7_ca3tl")]
-position = Vector2(269, 48)
+position = Vector2(300, 206)
 tilemap = NodePath("../../TileMapLayer")
 
 [node name="ShootEnemy" parent="EnemyManager" unique_id=686109672 instance=ExtResource("10_8ff7l")]
-position = Vector2(52, 48)
+position = Vector2(335, 210)
 
 [node name="BeatBar" parent="." unique_id=2094879700 instance=ExtResource("7_rogid")]
 
