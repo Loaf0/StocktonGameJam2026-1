@@ -33,6 +33,7 @@ func start_game(scene_path: String, bpm: float) -> void:
 	if is_transitioning:
 		return
 	
+	Global.curr_score = 0
 	Global.difficulty = 1.0
 	is_transitioning = true
 	scene_to_load = scene_path

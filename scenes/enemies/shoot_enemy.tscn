@@ -300,7 +300,7 @@ shape = SubResource("CircleShape2D_n763p")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=23198620]
 sprite_frames = SubResource("SpriteFrames_851sh")
-animation = &"death"
+animation = &"walk_down"
 script = ExtResource("4_ydmpp")
 
 [node name="AtkWarn" type="Sprite2D" parent="." unique_id=411718262]

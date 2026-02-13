@@ -13,6 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://bw2akpjviyb0u" path="res://scenes/ui/beat_bar.tscn" id="7_rogid"]
 [ext_resource type="PackedScene" uid="uid://cenaqrhx866th" path="res://scenes/ui/crt_vfx.tscn" id="8_yueia"]
 [ext_resource type="PackedScene" uid="uid://cbmw8cs3cfkri" path="res://scenes/enemies/shoot_enemy.tscn" id="10_8ff7l"]
+[ext_resource type="FontFile" uid="uid://drf8cub21w07x" path="res://assets/font/ARCADE_N.TTF" id="14_oasdt"]
+[ext_resource type="Texture2D" uid="uid://bmrgkrru05wna" path="res://assets/ui/keyboard_d_outline.png" id="15_jrso0"]
+[ext_resource type="Texture2D" uid="uid://dg8cqus7mnrn" path="res://assets/ui/keyboard_arrow_right_outline.png" id="16_t8tse"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0jfhv"]
 
@@ -150,6 +153,13 @@ custom_data_layer_0/name = "solid"
 custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_3nlp5")
 
+[sub_resource type="LabelSettings" id="LabelSettings_vgds0"]
+font = ExtResource("14_oasdt")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_q8dxc"]
+font = ExtResource("14_oasdt")
+
 [node name="Node2D" type="Node2D" unique_id=1208966285]
 script = ExtResource("1_lxddo")
 new_tilemap_scene = ExtResource("2_e4m43")
@@ -166,79 +176,7 @@ position = Vector2(56, 50)
 script = ExtResource("4_ier5j")
 
 [node name="BaseEnemy" parent="EnemyManager" unique_id=141113670 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
-position = Vector2(145, 105)
-tilemap = NodePath("../../TileMapLayer")
-
-[node name="BaseEnemy10" parent="EnemyManager" unique_id=2004959882 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
-position = Vector2(144, 167)
-tilemap = NodePath("../../TileMapLayer")
-
-[node name="BaseEnemy14" parent="EnemyManager" unique_id=276674716 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
-position = Vector2(212, 211)
-tilemap = NodePath("../../TileMapLayer")
-
-[node name="BaseEnemy15" parent="EnemyManager" unique_id=1582345233 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
-position = Vector2(206, 143)
-tilemap = NodePath("../../TileMapLayer")
-
-[node name="BaseEnemy19" parent="EnemyManager" unique_id=978481590 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
-position = Vector2(208, 177)
-tilemap = NodePath("../../TileMapLayer")
-
-[node name="BaseEnemy16" parent="EnemyManager" unique_id=23475878 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
-position = Vector2(207, 112)
-tilemap = NodePath("../../TileMapLayer")
-
-[node name="BaseEnemy17" parent="EnemyManager" unique_id=1381130588 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
-position = Vector2(208, 81)
-tilemap = NodePath("../../TileMapLayer")
-
-[node name="BaseEnemy18" parent="EnemyManager" unique_id=1851454049 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
-position = Vector2(207, 48)
-tilemap = NodePath("../../TileMapLayer")
-
-[node name="BaseEnemy11" parent="EnemyManager" unique_id=1451735804 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
-position = Vector2(173, 54)
-tilemap = NodePath("../../TileMapLayer")
-
-[node name="BaseEnemy12" parent="EnemyManager" unique_id=1597163489 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
-position = Vector2(143, 48)
-tilemap = NodePath("../../TileMapLayer")
-
-[node name="BaseEnemy13" parent="EnemyManager" unique_id=951908189 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
-position = Vector2(144, 77)
-tilemap = NodePath("../../TileMapLayer")
-
-[node name="BaseEnemy2" parent="EnemyManager" unique_id=788759757 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
-position = Vector2(111, 204)
-tilemap = NodePath("../../TileMapLayer")
-
-[node name="BaseEnemy3" parent="EnemyManager" unique_id=507852392 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
-position = Vector2(145, 137)
-tilemap = NodePath("../../TileMapLayer")
-
-[node name="BaseEnemy4" parent="EnemyManager" unique_id=677050815 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
-position = Vector2(143, 200)
-tilemap = NodePath("../../TileMapLayer")
-
-[node name="BaseEnemy5" parent="EnemyManager" unique_id=1459360138 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
-position = Vector2(81, 201)
-tilemap = NodePath("../../TileMapLayer")
-
-[node name="BaseEnemy6" parent="EnemyManager" unique_id=1132442152 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
-position = Vector2(79, 167)
-tilemap = NodePath("../../TileMapLayer")
-
-[node name="BaseEnemy7" parent="EnemyManager" unique_id=1263386731 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
-position = Vector2(78, 138)
-tilemap = NodePath("../../TileMapLayer")
-
-[node name="BaseEnemy8" parent="EnemyManager" unique_id=1138556601 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
-position = Vector2(79, 110)
-tilemap = NodePath("../../TileMapLayer")
-
-[node name="BaseEnemy9" parent="EnemyManager" unique_id=1997419689 node_paths=PackedStringArray("tilemap") instance=ExtResource("4_r5fnm")]
-position = Vector2(76, 79)
+position = Vector2(330, 104)
 tilemap = NodePath("../../TileMapLayer")
 
 [node name="SweepEnemy" parent="EnemyManager" unique_id=1097911942 node_paths=PackedStringArray("tilemap") instance=ExtResource("6_yueia")]
@@ -250,10 +188,98 @@ position = Vector2(300, 206)
 tilemap = NodePath("../../TileMapLayer")
 
 [node name="ShootEnemy" parent="EnemyManager" unique_id=686109672 instance=ExtResource("10_8ff7l")]
-position = Vector2(335, 210)
+position = Vector2(81, 85)
+
+[node name="ShootEnemy2" parent="EnemyManager" unique_id=356489196 instance=ExtResource("10_8ff7l")]
+position = Vector2(80, 113)
+
+[node name="ShootEnemy3" parent="EnemyManager" unique_id=468070223 instance=ExtResource("10_8ff7l")]
+position = Vector2(79, 141)
+
+[node name="ShootEnemy4" parent="EnemyManager" unique_id=705198393 instance=ExtResource("10_8ff7l")]
+position = Vector2(78, 170)
 
 [node name="BeatBar" parent="." unique_id=2094879700 instance=ExtResource("7_rogid")]
 
 [node name="Transition" parent="." unique_id=1598174226 instance=ExtResource("6_1ka21")]
 
 [node name="CRTvfx" parent="." unique_id=30923113 instance=ExtResource("8_yueia")]
+
+[node name="TutorialUI" type="CanvasLayer" parent="." unique_id=1399404044]
+visible = false
+
+[node name="Label2" type="Label" parent="TutorialUI" unique_id=1310446961]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -136.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Act On the Beat!"
+label_settings = SubResource("LabelSettings_vgds0")
+horizontal_alignment = 1
+
+[node name="P1" type="MarginContainer" parent="TutorialUI" unique_id=1450712107]
+anchors_preset = -1
+anchor_top = 0.725
+anchor_right = 0.202
+anchor_bottom = 1.0
+offset_top = 4.1999817
+offset_right = -0.36283875
+grow_vertical = 0
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TutorialUI/P1" unique_id=1836125566]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TutorialUI/P1/VBoxContainer" unique_id=619171472]
+layout_mode = 2
+text = "Player ONE"
+label_settings = SubResource("LabelSettings_q8dxc")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="TutorialUI/P1/VBoxContainer" unique_id=845506842]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="Player One" type="TextureRect" parent="TutorialUI/P1/VBoxContainer" unique_id=1518529523]
+layout_mode = 2
+texture = ExtResource("15_jrso0")
+stretch_mode = 5
+
+[node name="P2" type="MarginContainer" parent="TutorialUI" unique_id=134443977]
+anchors_preset = -1
+anchor_left = 0.79800004
+anchor_top = 0.725
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.36279297
+offset_top = 0.19998169
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TutorialUI/P2" unique_id=187396550]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TutorialUI/P2/VBoxContainer" unique_id=2027511689]
+layout_mode = 2
+text = "Player Two"
+label_settings = SubResource("LabelSettings_q8dxc")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="TutorialUI/P2/VBoxContainer" unique_id=220921052]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="Player One" type="TextureRect" parent="TutorialUI/P2/VBoxContainer" unique_id=2093128004]
+layout_mode = 2
+texture = ExtResource("16_t8tse")
+stretch_mode = 5

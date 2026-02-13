@@ -299,6 +299,7 @@ func _initialize_position():
 	initialized = true
 
 func take_damage():
+	_attack()
 	dead = true
 	remove_from_group("enemy")
 	sprite.play("death")
@@ -307,13 +308,13 @@ func take_damage():
 	Global.add_score(ceil(100 * Global.score_multiplier * enemy_multiplier))
 	var cell = tilemap.local_to_map(global_position)
 	Global.occupied_cells.erase(cell)
-
+	
 	set_deferred("monitoring", false)
 	set_deferred("monitorable", false)
-
+	
 	if has_node("CollisionShape2D"):
 		$CollisionShape2D.set_deferred("disabled", true)
-
+	
 	var tween := create_tween()
 	tween.set_trans(Tween.TRANS_LINEAR)
 	tween.set_ease(Tween.EASE_IN)

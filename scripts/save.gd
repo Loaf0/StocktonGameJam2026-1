@@ -12,10 +12,12 @@ func save_all():
 func save_settings():
 	var sfx_value := Global.sfx_volume
 	var msfx_value := Global.music_volume
+	var high_score = Global.high_score
 	
 	save_file.set_value("Audio", "SFX_VOLUME", sfx_value)
 	save_file.set_value("Audio", "MSFX_VOLUME", msfx_value)
-
+	save_file.set_value("Score", "HIGH_SCORE", high_score)
+	
 	# Save the file
 	save_file.save(SAVE_PATH)
 
@@ -26,9 +28,11 @@ func load_settings():
 	
 	var sfx_value := float(save_file.get_value("Audio", "SFX_VOLUME", 1.0))
 	var msfx_value := float(save_file.get_value("Audio", "MSFX_VOLUME", 1.0))
-
+	var high_score = int(save_file.get_value("Score", "HIGH_SCORE", 0))
+	
 	Global.sfx_volume = sfx_value
 	Global.music_volume = msfx_value
-
+	Global.high_score = high_score
+	
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear_to_db(sfx_value))
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear_to_db(msfx_value))

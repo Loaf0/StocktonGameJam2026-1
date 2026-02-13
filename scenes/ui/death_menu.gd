@@ -12,8 +12,10 @@ var tween1 : Tween
 var _timer : Timer
 
 func _ready() -> void:
+	if Global.curr_score > Global.high_score:
+		Global.high_score = Global.curr_score
 	_display_scores_and_difficulty()
-	BeatManager._music_player.volume_db = 0
+	BeatManager._music_player.volume_db = -80
 	
 	texture_rect1.pivot_offset_ratio = Vector2(0.5, 0.5)
 	
