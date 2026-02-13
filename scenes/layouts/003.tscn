@@ -238,7 +238,7 @@ tile_set = SubResource("TileSet_iq3gi")
 script = ExtResource("2_803s7")
 player_spawn_1 = Vector2(9, 6)
 player_spawn_2 = Vector2(11, 6)
-enemy_spawn_points = Array[Vector2]([Vector2(18, 2), Vector2(2, 2), Vector2(2, 10), Vector2(18, 10), Vector2(18, 6), Vector2(2, 6)])
+enemy_spawn_points = Array[Vector2]([Vector2(18, 2), Vector2(2, 2), Vector2(2, 10), Vector2(18, 10), Vector2(18, 6), Vector2(2, 6), Vector2(19, 9), Vector2(19, 3), Vector2(16, 1), Vector2(16, 11), Vector2(16, 6)])
 
 [node name="EnemySpawner" type="Node2D" parent="." unique_id=444326222]
 script = ExtResource("3_803s7")
