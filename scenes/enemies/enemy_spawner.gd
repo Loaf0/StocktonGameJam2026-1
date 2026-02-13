@@ -15,12 +15,17 @@ extends Node
 @export var skeleton_scene : PackedScene = preload("res://scenes/enemies/sweep_enemy.tscn")
 @export var cannon_scene : PackedScene = preload("res://scenes/enemies/shoot_enemy.tscn")
 
-const MAX_ENEMIES_PER_ROOM := 5
-
-func spawn_room_enemies(tilemap: TileMapLayer, spawn_points: Array[Vector2], astar_grid: AStarGrid2D) -> void:
+func spawn_room_enemies(tilemap: TileMapLayer, spawn_points: Array[Vector2i], astar_grid: AStarGrid2D) -> void:
 	var difficulty := Global.difficulty
 	
-	for cell in spawn_points:
+	var max_enemies := int(floor(difficulty * 2.5))
+	max_enemies = clamp(max_enemies, 1, spawn_points.size())
+	
+	var shuffled_points := spawn_points.duplicate()
+	shuffled_points.shuffle()
+	
+	for i in range(max_enemies):
+		var cell = shuffled_points[i]
 		var scene := _choose_enemy_scene(difficulty)
 		var enemy = scene.instantiate()
 		
@@ -30,6 +35,7 @@ func spawn_room_enemies(tilemap: TileMapLayer, spawn_points: Array[Vector2], ast
 			enemy.setup(astar_grid)
 		if enemy.has_method("_initialize_position"):
 			enemy._initialize_position()
+		
 		var world_pos = tilemap.map_to_local(cell)
 		enemy.grid_position = cell
 		enemy.global_position = tilemap.to_global(world_pos)
