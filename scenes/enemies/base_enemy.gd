@@ -10,6 +10,14 @@ var dead := false
 
 @export var move_duration := 0.12
 
+@export var ease_type : Tween.EaseType
+@export var trans_type : Tween.TransitionType
+@export var anim_duration : float = 0.07
+@export var scale_amount : Vector2 = Vector2(1.1, 1.1)
+@export var rotation_amount : float = 3.0
+
+var tween : Tween
+
 var grid: AStarGrid2D
 var initialized := false
 var grid_position: Vector2i
@@ -116,7 +124,7 @@ func _move() -> void:
 	if move_pts.is_empty():
 		return
 	else:
-		move_pivot.visible = false
+		_make_arrow_visible(false)
 		if move_pts.size() > 1 and !is_blocked(tilemap.local_to_map(move_pts[cur_pt+1])):
 			# Add new cell immediately and remove old
 			if !Global.occupied_cells.has(tilemap.local_to_map(move_pts[cur_pt+1])):
@@ -177,7 +185,7 @@ func _attack() -> void:
 		atk_turn = false
 		wait_turn = true
 		for warn in atk_warns:
-			warn.visible = false
+			_make_warn_visible(false)
 		pivot.visible = true
 		pivot.scale = Vector2.ONE * 0.6
 		pivot.modulate = Color(1, 1, 1, 0)
@@ -228,8 +236,28 @@ func _draw_move_arrow() -> void:
 	if move_pts.size() > 1 and !Global.enemy_intent_cells.has(tilemap.local_to_map(move_pts[cur_pt+1])):
 		Global.enemy_intent_cells[tilemap.local_to_map(move_pts[cur_pt+1])] = self
 	#print(Global.enemy_intent_cells)
-	move_pivot.visible = true
+	_make_arrow_visible(true)
 
+func _make_arrow_visible(hovered : bool) -> void:
+	reset_tween()
+	tween.tween_property(move_pivot, "scale", 
+		scale_amount if hovered else Vector2.ONE, anim_duration)
+	tween.tween_property(move_pivot, "rotation_degrees", 
+		rotation_amount * [-1,1].pick_random() if hovered else 0.0, anim_duration)
+
+func _make_warn_visible(hovered : bool) -> void:
+	reset_tween()
+	for warn in atk_warns:
+		tween.tween_property(warn, "scale", 
+			scale_amount if hovered else Vector2.ONE, anim_duration)
+		tween.tween_property(warn, "rotation_degrees", 
+			rotation_amount * [-1,1].pick_random() if hovered else 0.0, anim_duration)
+
+func reset_tween() -> void:
+	if tween:
+		tween.kill()
+	tween = create_tween().set_ease(ease_type).set_trans(trans_type).set_parallel(true)
+	
 func _draw_attack_warning() -> void:
 	if dead:
 		return
@@ -259,7 +287,7 @@ func _draw_attack_warning() -> void:
 		var tile_data = tilemap.get_cell_tile_data(cell)
 		if tile_data.get_custom_data("solid") == true:
 			continue
-		warn.visible = true
+		_make_warn_visible(true)
 	return
 
 func _update_facing_dir() -> void:
@@ -315,12 +343,12 @@ func take_damage():
 	if has_node("CollisionShape2D"):
 		$CollisionShape2D.set_deferred("disabled", true)
 	
-	var tween := create_tween()
-	tween.set_trans(Tween.TRANS_LINEAR)
-	tween.set_ease(Tween.EASE_IN)
+	var tweenie := create_tween()
+	tweenie.set_trans(Tween.TRANS_LINEAR)
+	tweenie.set_ease(Tween.EASE_IN)
 	
-	tween.tween_property(self, "modulate:a", 0.0, 0.2)
+	tweenie.tween_property(self, "modulate:a", 0.0, 0.2)
 	
 	#await get_tree().create_timer(0.5).timeout
 	
-	tween.finished.connect(queue_free)
+	tweenie.finished.connect(queue_free)
