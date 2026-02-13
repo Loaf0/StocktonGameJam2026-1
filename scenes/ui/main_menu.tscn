@@ -74,7 +74,7 @@ font_size = 24
 
 [sub_resource type="LabelSettings" id="LabelSettings_n4uci"]
 font = ExtResource("2_uhagc")
-font_size = 30
+font_size = 24
 
 [sub_resource type="LabelSettings" id="LabelSettings_8ekit"]
 font = ExtResource("2_uhagc")
@@ -218,6 +218,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="IntroMenu" type="Control" parent="." unique_id=263725973]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -361,12 +362,12 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -222.0
-offset_top = -46.0
+offset_left = -278.0
+offset_top = -79.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_uhagc")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxEmpty_7suek")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_otr3d")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_8ekit")
@@ -375,6 +376,28 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_877pj")
 text = "Credits"
 
 [node name="button_effects_module" type="Node" parent="MainMenu/Credits" unique_id=67236354]
+script = ExtResource("1_sl1te")
+rotation_amount = 0.0
+metadata/_custom_type_script = "uid://b71313trp45m3"
+
+[node name="Tutorial" type="Button" parent="MainMenu" unique_id=571870677]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -83.0
+offset_right = 274.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_uhagc")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7suek")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_otr3d")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8ekit")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_n4uci")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_877pj")
+text = "Tutorial"
+
+[node name="button_effects_module" type="Node" parent="MainMenu/Tutorial" unique_id=821447507]
 script = ExtResource("1_sl1te")
 rotation_amount = 0.0
 metadata/_custom_type_script = "uid://b71313trp45m3"
@@ -746,6 +769,78 @@ script = ExtResource("1_sl1te")
 rotation_amount = 0.0
 metadata/_custom_type_script = "uid://b71313trp45m3"
 
+[node name="Tutorial" type="Control" parent="." unique_id=1644314196]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Tutorial" unique_id=1198219432]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Tutorial/MarginContainer" unique_id=298243282]
+layout_mode = 2
+
+[node name="Options" type="Label" parent="Tutorial/MarginContainer/VBoxContainer" unique_id=1349968801]
+layout_mode = 2
+text = "Tutorial"
+label_settings = SubResource("LabelSettings_uhagc")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Tutorial/MarginContainer/VBoxContainer" unique_id=1570822551]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Options2" type="Label" parent="Tutorial/MarginContainer/VBoxContainer" unique_id=403982808]
+layout_mode = 2
+text = "Each character has their own beat
+inside of each measure
+
+Turn Order
+(shown on the bottom of the screen)
+Mage -> Knight -> Enemy -> Attack
+
+To be granted an attack on the attack phase
+you must move 1 tile on your turn
+
+ALl enemies alternate 
+moving and attacking each measure"
+label_settings = SubResource("LabelSettings_n4uci")
+horizontal_alignment = 1
+
+[node name="HSeparator5" type="HSeparator" parent="Tutorial/MarginContainer/VBoxContainer" unique_id=425330746]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 70
+
+[node name="Button" type="Button" parent="Tutorial/MarginContainer/VBoxContainer" unique_id=326566036]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_uhagc")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_uhagc")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_btxxm")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_wb0q5")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_q85j6")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8g5eo")
+text = "Back"
+
+[node name="button_effects_module" type="Node" parent="Tutorial/MarginContainer/VBoxContainer/Button" unique_id=1594304960]
+script = ExtResource("1_sl1te")
+rotation_amount = 0.0
+metadata/_custom_type_script = "uid://b71313trp45m3"
+
 [node name="IntroAnim" type="AnimatedSprite2D" parent="." unique_id=1512805378]
 position = Vector2(577, 324)
 scale = Vector2(0.60104173, 0.59999996)
@@ -767,6 +862,7 @@ bus = &"Music"
 [connection signal="pressed" from="MainMenu/MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MainMenu/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="MainMenu/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="MainMenu/Tutorial" to="." method="_on_tutorial_pressed"]
 [connection signal="pressed" from="Difficulty/MarginContainer/VBoxContainer/Easy" to="." method="_on_easy_pressed"]
 [connection signal="pressed" from="Difficulty/MarginContainer/VBoxContainer/Medium" to="." method="_on_normal_pressed"]
 [connection signal="pressed" from="Difficulty/MarginContainer/VBoxContainer/Hard" to="." method="_on_hard_pressed"]
@@ -778,3 +874,4 @@ bus = &"Music"
 [connection signal="value_changed" from="Options/MarginContainer/VBoxContainer/MUSIC" to="." method="_on_msfx_volume_value_changed"]
 [connection signal="pressed" from="Options/MarginContainer/VBoxContainer/Button" to="." method="_on_options_return_pressed"]
 [connection signal="pressed" from="Credits/MarginContainer/VBoxContainer/Button" to="." method="_on_options_return_pressed"]
+[connection signal="pressed" from="Tutorial/MarginContainer/VBoxContainer/Button" to="." method="_on_options_return_pressed"]
