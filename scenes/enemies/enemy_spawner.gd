@@ -46,8 +46,6 @@ func spawn_room_enemies(tilemap: TileMapLayer, spawn_points: Array[Vector2], ast
 		
 		get_tree().get_first_node_in_group("enemy manager").add_child(enemy)
 
-
-
 func _choose_enemy_scene(difficulty : float) -> PackedScene:
 	var cannon_weight = min(5 * difficulty, 15)
 	var skeleton_weight = min(15.0 * difficulty, 30.0)
