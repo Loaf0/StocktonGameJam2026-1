@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d1avodwxv5dwr" path="res://scenes/ui/death_menu.gd" id="1_0g38q"]
 [ext_resource type="Script" uid="uid://bd5xy1y65nc2i" path="res://scenes/ui/main_menu_background.gd" id="2_qow1p"]
-[ext_resource type="Shader" uid="uid://coyiir01h5uj1" path="res://scenes/ui/death_menu_background.gdshader" id="3_jpvm0"]
+[ext_resource type="Shader" path="res://scenes/ui/death_menu_background.gdshader" id="3_jpvm0"]
 [ext_resource type="Shader" uid="uid://bm55ncrd1j05u" path="res://scripts/shaders/radial_transparancy_mask.gdshader" id="4_k4u72"]
 [ext_resource type="Texture2D" uid="uid://b4m61ljxf4xcq" path="res://assets/sprites/misc/death_splash.png" id="5_jpvm0"]
 [ext_resource type="FontFile" uid="uid://drf8cub21w07x" path="res://assets/font/ARCADE_N.TTF" id="6_0tptm"]

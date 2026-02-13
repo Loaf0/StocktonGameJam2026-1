@@ -570,6 +570,7 @@ animation = &"atk_down"
 script = ExtResource("4_q642i")
 
 [node name="UpNext" type="Sprite2D" parent="Player1/Sprite2D" unique_id=637326884]
+modulate = Color(1, 1, 1, 0.27058825)
 position = Vector2(0, -19)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_edaao")
@@ -595,6 +596,7 @@ animation = &"idle_down"
 script = ExtResource("4_q642i")
 
 [node name="UpNext" type="Sprite2D" parent="Player2/Sprite2D" unique_id=28889257]
+modulate = Color(1, 1, 1, 0.27058825)
 position = Vector2(0, -21)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_edaao")
@@ -657,7 +659,7 @@ anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -255.0
 offset_right = 255.0
-offset_bottom = 97.0
+offset_bottom = 63.0
 grow_horizontal = 2
 alignment = 1
 

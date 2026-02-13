@@ -45,6 +45,7 @@ func _display_scores_and_difficulty() -> void:
 				Global.h_high_score = Global.curr_score
 			high_score.text = "High Score: " + str(Global.h_high_score)
 	score.text = "Score: " + str(Global.curr_score)
+	Save.save_settings()
 
 
 func _on_return_to_menu_pressed() -> void:

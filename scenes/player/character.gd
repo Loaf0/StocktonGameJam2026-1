@@ -18,7 +18,7 @@ var acted_this_beat := false
 var facing_direction: Vector2i = Vector2i.DOWN
 var is_moving := false
 
-@export var flash_duration: float = 0.1
+@export var flash_duration: float = 0.15
 var _default_modulate: Color
 var flash_color: Color
 var move_tween: Tween
@@ -369,7 +369,7 @@ func _pop_up_next():
 	up_next_tween.parallel().tween_property(
 		up_next,
 		"modulate:a",
-		1.0,
+		0.5,
 		0.08
 	)
 
