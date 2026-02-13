@@ -5,6 +5,7 @@ enum MenuState {
 	MAIN,
 	DIFFICULTY,
 	OPTIONS,
+	TUTORIAL,
 	CREDITS
 }
 var current_state: MenuState = MenuState.INTRO
@@ -38,6 +39,9 @@ var slider_click = preload("res://assets/audio/ui_effects/Switch.mp3")
 
 #credits
 @onready var credits: Control = $Credits
+
+#tutorial
+@onready var tutorial : Control = $Tutorial
 
 func _ready() -> void:
 	_set_menu_state(MenuState.INTRO)
@@ -112,6 +116,7 @@ func _set_menu_state(state: MenuState) -> void:
 	difficulty_menu.visible = state == MenuState.DIFFICULTY
 	options.visible = state == MenuState.OPTIONS
 	credits.visible = state == MenuState.CREDITS
+	tutorial.visible = state == MenuState.TUTORIAL
 
 func _go_to_main_menu() -> void:
 	_set_menu_state(MenuState.MAIN)
@@ -124,6 +129,10 @@ func _on_options_pressed() -> void:
 
 func _on_credits_pressed() -> void:
 	_set_menu_state(MenuState.CREDITS)
+
+func _on_tutorial_pressed() -> void:
+	_set_menu_state(MenuState.TUTORIAL)
+
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
