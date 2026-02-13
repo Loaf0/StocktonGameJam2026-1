@@ -4,6 +4,7 @@
 	fix queue issue after death - queue death 1 beat late?
 	if knight takes dmg she doesnt deal dmg
 	
+	DONE fire and maybe cannons stay after level change
 	DONE enemys on death trigger next level currently f1
 	DONE SCORE - multiply ingame difficulty by chosen difficulty by enemy type
 	DONE DEATH MENU - almost done just needs highscore display and difficulty text

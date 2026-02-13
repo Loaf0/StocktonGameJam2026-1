@@ -65,7 +65,7 @@ func _ready():
 	BeatManager.beat.connect(_on_beat)
 	
 	_default_modulate = sprite.modulate
-
+	
 	flash_timer.one_shot = true
 	flash_timer.wait_time = flash_duration
 	flash_timer.timeout.connect(_end_flash)
@@ -84,7 +84,7 @@ func _ready():
 
 func _on_beat(_beat_count: int):
 	time_since_beat = 0.0
-
+	
 	if can_act:
 		if buffered_direction != Vector2i.ZERO and buffer_active:
 			try_resolve_buffer()
@@ -103,7 +103,7 @@ func attack():
 			sprite.play("atk_left")
 		Vector2i.RIGHT:
 			sprite.play("atk_right")
-
+	
 	await sprite.animation_finished
 	_update_facing_visual()
 
@@ -111,7 +111,7 @@ func _do_melee_attack() -> void:
 	var melee_attack : Node2D = $"Node2D"
 	var melee_sprite : Sprite2D = melee_attack.get_child(0)
 	var melee_area : Area2D = melee_sprite.get_child(0)
-
+	
 	match facing_direction:
 		Vector2i.UP:
 			melee_attack.rotation_degrees = 180
@@ -121,11 +121,13 @@ func _do_melee_attack() -> void:
 			melee_attack.rotation_degrees = 90
 		Vector2i.RIGHT:
 			melee_attack.rotation_degrees = 270
-
+	for body in melee_area.get_overlapping_bodies():
+		if body is CharacterBody2D and body.is_in_group("enemy"):
+			body.take_damage()
 	melee_attack.visible = true
 	melee_attack.scale = Vector2.ONE * 0.6
 	melee_attack.modulate = Color(1, 1, 1, 0)
-
+	
 	var tween := create_tween()
 	tween.set_trans(Tween.TRANS_BACK)
 	tween.set_ease(Tween.EASE_OUT)
@@ -133,11 +135,7 @@ func _do_melee_attack() -> void:
 	tween.parallel().tween_property(melee_attack, "modulate:a", 1.0, 0.05)
 	tween.tween_interval(0.1)
 	tween.tween_property(melee_attack, "modulate:a", 0.0, 0.08)
-
-	for body in melee_area.get_overlapping_bodies():
-		if body is CharacterBody2D and body.is_in_group("enemy"):
-			body.take_damage()
-
+	
 	tween.finished.connect(func():
 		melee_attack.visible = false
 		melee_attack.scale = Vector2.ONE
