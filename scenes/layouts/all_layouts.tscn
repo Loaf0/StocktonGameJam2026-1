@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://be7ykq5q0hoel"]
+
+[ext_resource type="PackedScene" uid="uid://8cv1d65ovpib" path="res://scenes/layouts/001.tscn" id="1_44ul6"]
+[ext_resource type="PackedScene" uid="uid://dudhaiifdp35k" path="res://scenes/layouts/002.tscn" id="2_sk4va"]
+[ext_resource type="PackedScene" uid="uid://b1dtai20w0gm8" path="res://scenes/layouts/003.tscn" id="3_eqvgq"]
+[ext_resource type="PackedScene" uid="uid://dbqe1ukhfuorr" path="res://scenes/layouts/004.tscn" id="4_xi4fp"]
+[ext_resource type="PackedScene" uid="uid://b5mprofcc82q1" path="res://scenes/layouts/005.tscn" id="5_6myx8"]
+[ext_resource type="PackedScene" uid="uid://2kggt1bd7jbp" path="res://scenes/layouts/006.tscn" id="6_qnrkc"]
+[ext_resource type="PackedScene" uid="uid://b2sg11ex6wbt8" path="res://scenes/layouts/007.tscn" id="7_afxw3"]
+[ext_resource type="PackedScene" uid="uid://bwtpggb83heds" path="res://scenes/layouts/008.tscn" id="8_ecohw"]
+[ext_resource type="PackedScene" uid="uid://bvnef83yoo7jj" path="res://scenes/layouts/009.tscn" id="9_sk4va"]
+
+[node name="AllLayouts" type="Node2D" unique_id=1771108406]
+
+[node name="TileMapLayer" parent="." unique_id=772815230 instance=ExtResource("1_44ul6")]
+
+[node name="TileMapLayer2" parent="." unique_id=1707150295 instance=ExtResource("2_sk4va")]
+position = Vector2(393, 0)
+
+[node name="TileMapLayer3" parent="." unique_id=1654926894 instance=ExtResource("3_eqvgq")]
+position = Vector2(1084, 0)
+
+[node name="TileMapLayer4" parent="." unique_id=1459003458 instance=ExtResource("4_xi4fp")]
+position = Vector2(1775, 25)
+
+[node name="TileMapLayer5" parent="." unique_id=1201128687 instance=ExtResource("5_6myx8")]
+position = Vector2(0, 456)
+
+[node name="TileMapLayer6" parent="." unique_id=1384317994 instance=ExtResource("6_qnrkc")]
+position = Vector2(513, 456)
+
+[node name="TileMapLayer7" parent="." unique_id=1539244149 instance=ExtResource("7_afxw3")]
+position = Vector2(1174, 456)
+
+[node name="TileMapLayer8" parent="." unique_id=1269425113 instance=ExtResource("8_ecohw")]
+position = Vector2(1805, 456)
+
+[node name="TileMapLayer9" parent="." unique_id=989627112 instance=ExtResource("9_sk4va")]
+position = Vector2(0, 924)

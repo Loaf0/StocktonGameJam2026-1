@@ -23,6 +23,8 @@ var tile_map_scenes = [
 		preload("res://scenes/layouts/005.tscn"),
 		preload("res://scenes/layouts/006.tscn"),
 		preload("res://scenes/layouts/007.tscn"),
+		preload("res://scenes/layouts/008.tscn"),
+		preload("res://scenes/layouts/009.tscn"),
 	]
 var recent_maps: Array = []
 const MAX_RECENT := 3
