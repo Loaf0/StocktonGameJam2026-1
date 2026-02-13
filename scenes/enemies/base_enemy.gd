@@ -45,6 +45,7 @@ var is_moving := false
 var first_turn := true
 var atk_turn: bool = false
 var wait_turn: bool = true
+var just_waited: bool = false
 
 #on ready / player enter room / end of beat 2(3rd)
 ##locate the player CHECK
@@ -94,6 +95,8 @@ func on_phase_changed(phase: int):
 	if phase == 3:
 		_attack()
 		return
+	if just_waited:
+		just_waited = false
 	
 	can_act = (phase == my_phase)
 
@@ -178,8 +181,9 @@ func is_blocked(cell: Vector2i) -> bool:
 func _attack() -> void:
 	if wait_turn and atk_turn:
 		wait_turn = false
+		just_waited = true
 		return
-	if atk_turn:
+	if atk_turn and !just_waited:
 		#attack_anim
 		for box in atk_boxes:
 			for body in box.get_overlapping_bodies():
