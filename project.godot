@@ -10,11 +10,11 @@ config_version=5
 
 [application]
 
-config/name="StocktonGameJam2026-1"
+config/name="Syncodate"
 run/main_scene="uid://damn8tiwcswt1"
 config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/show_image=false
-config/icon="res://icon.svg"
+config/icon="uid://cm04k7wt24usq"
 
 [audio]
 

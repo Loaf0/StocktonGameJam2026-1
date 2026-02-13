@@ -26,8 +26,8 @@ func load_settings():
 	if err != OK:
 		return
 	
-	var sfx_value := float(save_file.get_value("Audio", "SFX_VOLUME", 1.0))
-	var msfx_value := float(save_file.get_value("Audio", "MSFX_VOLUME", 1.0))
+	var sfx_value := float(save_file.get_value("Audio", "SFX_VOLUME", 0.45))
+	var msfx_value := float(save_file.get_value("Audio", "MSFX_VOLUME", 0.45))
 	var high_score = int(save_file.get_value("Score", "HIGH_SCORE", 0))
 	
 	Global.sfx_volume = sfx_value

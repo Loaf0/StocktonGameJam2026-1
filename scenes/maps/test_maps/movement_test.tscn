@@ -268,7 +268,15 @@ script = ExtResource("5_0pwie")
 script = ExtResource("6_ssfqi")
 
 [node name="BaseEnemy" parent="EnemyManager" unique_id=141113670 instance=ExtResource("11_3ei2h")]
-position = Vector2(161, 55)
+position = Vector2(159, 48)
+enemy_multiplier = 1
+my_phase = 2
+move_duration = 0.12
+ease_type = 0
+trans_type = 0
+anim_duration = 0.07
+scale_amount = Vector2(1.1, 1.1)
+rotation_amount = 3.0
 
 [node name="CharacterContainer" parent="." unique_id=1429600210 instance=ExtResource("2_cne6s")]
 position = Vector2(159, 192)

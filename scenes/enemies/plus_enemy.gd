@@ -34,7 +34,9 @@ func _ready():
 	atk_boxes.append($AtkWarn2/AtkBox)
 	atk_boxes.append($AtkWarn3/AtkBox)
 	atk_boxes.append($AtkWarn4/AtkBox)
-
+	for warn in atk_warns:
+		warn.visible = true
+		warn.scale = Vector2.ZERO
 
 func _draw_attack_warning() -> void:
 	if dead:
@@ -51,5 +53,5 @@ func _draw_attack_warning() -> void:
 		var tile_data = tilemap.get_cell_tile_data(cell)
 		if tile_data.get_custom_data("solid") == true:
 			continue
-		warn.visible = true
+		_make_warn_visible(true)
 	return

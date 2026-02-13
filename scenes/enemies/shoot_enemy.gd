@@ -24,7 +24,9 @@ func _ready():
 	_target_player()
 	_update_facing_visual(true)
 	atk_warns.append(atk_warn)
-
+	for warn in atk_warns:
+		warn.visible = true
+		warn.scale = Vector2.ZERO
 
 func _attack() -> void:
 	if wait_turn and atk_turn:
@@ -40,8 +42,7 @@ func _attack() -> void:
 		#print(temp.global_position)
 		atk_turn = false
 		wait_turn = true
-		for warn in atk_warns:
-			warn.visible = false
+		_make_warn_visible(false)
 		pivot.visible = true
 		match (facing_direction):
 			Vector2i.UP:
@@ -88,5 +89,5 @@ func _draw_attack_warning() -> void:
 		var tile_data = tilemap.get_cell_tile_data(cell)
 		if tile_data.get_custom_data("solid") == true:
 			continue
-		warn.visible = true
+		_make_warn_visible(true)
 	return

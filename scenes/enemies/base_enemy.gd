@@ -16,7 +16,8 @@ var dead := false
 @export var scale_amount : Vector2 = Vector2(1.1, 1.1)
 @export var rotation_amount : float = 3.0
 
-var tween : Tween
+var tween_warn : Tween
+var tween_arrow : Tween
 
 var grid: AStarGrid2D
 var initialized := false
@@ -68,6 +69,9 @@ func _ready():
 	_update_facing_visual(true)
 	atk_warns.append(atk_warn)
 	atk_boxes.append($AtkWarn/AtkBox)
+	for warn in atk_warns:
+		warn.visible = true
+		warn.scale = Vector2.ZERO
 
 func _my_turn():
 	if acted_this_beat == false:
@@ -184,18 +188,18 @@ func _attack() -> void:
 					#print("damaged")
 		atk_turn = false
 		wait_turn = true
-		for warn in atk_warns:
-			_make_warn_visible(false)
+		_make_warn_visible(false)
 		pivot.visible = true
 		pivot.scale = Vector2.ONE * 0.6
 		pivot.modulate = Color(1, 1, 1, 0)
-		var tween := create_tween()
-		tween.set_trans(Tween.TRANS_BACK)
-		tween.set_ease(Tween.EASE_OUT)
-		tween.parallel().tween_property(pivot, "scale", Vector2.ONE, 0.04)
-		tween.parallel().tween_property(pivot, "modulate:a", 1.0, 0.05)
-		tween.tween_interval(0.1)
-		tween.tween_property(pivot, "modulate:a", 0.0, 0.08)
+		
+		var tween2 := create_tween()
+		tween2.set_trans(Tween.TRANS_BACK)
+		tween2.set_ease(Tween.EASE_OUT)
+		tween2.parallel().tween_property(pivot, "scale", Vector2.ONE, 0.04)
+		tween2.parallel().tween_property(pivot, "modulate:a", 1.0, 0.05)
+		tween2.tween_interval(0.1)
+		tween2.tween_property(pivot, "modulate:a", 0.0, 0.08)
 		match (facing_direction):
 			Vector2i.UP:
 				sprite.play("atk_up")
@@ -205,7 +209,7 @@ func _attack() -> void:
 				sprite.play("atk_left")
 			Vector2i.RIGHT:
 				sprite.play("atk_right")
-		tween.finished.connect(func():
+		tween2.finished.connect(func():
 			pivot.visible = false
 			pivot.scale = Vector2.ONE
 		)
@@ -238,25 +242,32 @@ func _draw_move_arrow() -> void:
 	#print(Global.enemy_intent_cells)
 	_make_arrow_visible(true)
 
-func _make_arrow_visible(hovered : bool) -> void:
-	reset_tween()
-	tween.tween_property(move_pivot, "scale", 
-		scale_amount if hovered else Vector2.ONE, anim_duration)
-	tween.tween_property(move_pivot, "rotation_degrees", 
-		rotation_amount * [-1,1].pick_random() if hovered else 0.0, anim_duration)
+func _make_arrow_visible(active : bool) -> void:
+	if not move_pivot.visible:
+		move_pivot.visible = true
+	
+	if tween_arrow and tween_arrow.is_running():
+		tween_arrow.kill()
+	tween_arrow = create_tween()
+	tween_arrow.set_ease(ease_type)
+	tween_arrow.set_trans(trans_type)
 
-func _make_warn_visible(hovered : bool) -> void:
-	reset_tween()
+	if active:
+		tween_arrow.parallel().tween_property(move_pivot, "scale", Vector2.ONE, anim_duration)
+	else:
+		tween_arrow.parallel().tween_property(move_pivot, "scale", Vector2.ZERO, anim_duration)
+
+func _make_warn_visible(active : bool) -> void:
+	if tween_warn and tween_warn.is_running():
+		tween_warn.kill()
+	tween_warn = create_tween()
+	tween_warn.set_ease(ease_type)
+	tween_warn.set_trans(trans_type)
 	for warn in atk_warns:
-		tween.tween_property(warn, "scale", 
-			scale_amount if hovered else Vector2.ONE, anim_duration)
-		tween.tween_property(warn, "rotation_degrees", 
-			rotation_amount * [-1,1].pick_random() if hovered else 0.0, anim_duration)
-
-func reset_tween() -> void:
-	if tween:
-		tween.kill()
-	tween = create_tween().set_ease(ease_type).set_trans(trans_type).set_parallel(true)
+		if active:
+			tween_warn.parallel().tween_property(warn, "scale", Vector2.ONE, anim_duration)
+		else:
+			tween_warn.parallel().tween_property(warn, "scale", Vector2.ZERO, anim_duration)
 	
 func _draw_attack_warning() -> void:
 	if dead:
