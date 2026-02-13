@@ -24,7 +24,9 @@ var max_distance_tiles = 16
 const max_score_multiplier = 6
 var score_multiplier = 1
 var curr_score = 0
-var high_score = 0
+var e_high_score = 0
+var n_high_score = 0
+var h_high_score = 0
 var do_not_act : bool = false
 
 var difficulty : float = 1.0
