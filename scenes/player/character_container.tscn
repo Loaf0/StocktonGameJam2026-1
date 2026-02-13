@@ -612,9 +612,36 @@ visible = false
 position = Vector2(3, 31)
 texture = ExtResource("7_p0eso")
 
-[node name="Area2D" type="Area2D" parent="Player2/Node2D/atk_down" unique_id=1896454934]
+[node name="AtkAreas" type="Node2D" parent="Player2" unique_id=809001734]
+visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2/Node2D/atk_down/Area2D" unique_id=248685669]
+[node name="area_up" type="Area2D" parent="Player2/AtkAreas" unique_id=857018566]
+position = Vector2(0, -32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2/AtkAreas/area_up" unique_id=946453319]
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_p0eso")
+
+[node name="area_down" type="Area2D" parent="Player2/AtkAreas" unique_id=1896454934]
+position = Vector2(0, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2/AtkAreas/area_down" unique_id=248685669]
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_p0eso")
+
+[node name="area_left" type="Area2D" parent="Player2/AtkAreas" unique_id=2031460080]
+position = Vector2(-32, 0)
+rotation = 1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2/AtkAreas/area_left" unique_id=1561310802]
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_p0eso")
+
+[node name="area_right" type="Area2D" parent="Player2/AtkAreas" unique_id=1728624945]
+position = Vector2(32, 0)
+rotation = -1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2/AtkAreas/area_right" unique_id=1202616342]
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_p0eso")
 

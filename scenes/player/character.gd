@@ -109,18 +109,23 @@ func attack():
 
 func _do_melee_attack() -> void:
 	var melee_attack : Node2D = $"Node2D"
-	var melee_sprite : Sprite2D = melee_attack.get_child(0)
-	var melee_area : Area2D = melee_sprite.get_child(0)
+	var melee_areas : Node2D = $"AtkAreas"
+	var melee_area : Area2D
 	
 	match facing_direction:
 		Vector2i.UP:
 			melee_attack.rotation_degrees = 180
+			melee_area = melee_areas.get_child(0)
 		Vector2i.DOWN:
 			melee_attack.rotation_degrees = 0
+			melee_area = melee_areas.get_child(1)
 		Vector2i.LEFT:
 			melee_attack.rotation_degrees = 90
+			melee_area = melee_areas.get_child(2)
 		Vector2i.RIGHT:
 			melee_attack.rotation_degrees = 270
+			melee_area = melee_areas.get_child(3)
+	await get_tree().process_frame
 	for body in melee_area.get_overlapping_bodies():
 		if body is CharacterBody2D and body.is_in_group("enemy"):
 			body.take_damage()
