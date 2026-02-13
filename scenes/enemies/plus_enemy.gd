@@ -35,28 +35,6 @@ func _ready():
 	atk_boxes.append($AtkWarn3/AtkBox)
 	atk_boxes.append($AtkWarn4/AtkBox)
 
-func _my_turn():
-	if acted_this_beat == false:
-		#move or attack logic here
-		if first_turn:
-			_declare_action()
-			first_turn = false
-		elif !atk_turn:
-			_move()
-			atk_turn = true
-		
-
-		_target_player()
-		acted_this_beat = true
-	return
-
-func _declare_action() -> void:
-	if !atk_turn:
-		_draw_move_arrow()
-	else:
-		_draw_attack_warning()
-	return
-
 
 func _draw_attack_warning() -> void:
 	if dead:

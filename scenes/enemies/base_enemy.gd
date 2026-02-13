@@ -4,6 +4,7 @@ class_name Enemy
 const HIT_ENEMY = preload("res://assets/audio/hit_enemy.wav")
 var dead := false
 
+@export var enemy_multiplier: int = 1
 @export var my_phase: int = 2
 @export var tilemap: TileMapLayer
 
@@ -178,6 +179,15 @@ func _attack() -> void:
 		for warn in atk_warns:
 			warn.visible = false
 		pivot.visible = true
+		pivot.scale = Vector2.ONE * 0.6
+		pivot.modulate = Color(1, 1, 1, 0)
+		var tween := create_tween()
+		tween.set_trans(Tween.TRANS_BACK)
+		tween.set_ease(Tween.EASE_OUT)
+		tween.parallel().tween_property(pivot, "scale", Vector2.ONE, 0.04)
+		tween.parallel().tween_property(pivot, "modulate:a", 1.0, 0.05)
+		tween.tween_interval(0.1)
+		tween.tween_property(pivot, "modulate:a", 0.0, 0.08)
 		match (facing_direction):
 			Vector2i.UP:
 				sprite.play("atk_up")
@@ -187,8 +197,10 @@ func _attack() -> void:
 				sprite.play("atk_left")
 			Vector2i.RIGHT:
 				sprite.play("atk_right")
-		await sprite.animation_finished
-		pivot.visible = false
+		tween.finished.connect(func():
+			pivot.visible = false
+			pivot.scale = Vector2.ONE
+		)
 		_draw_move_arrow()
 	return
 
@@ -292,7 +304,7 @@ func take_damage():
 	sprite.play("death")
 	sprite.frame = 0
 	Global._play_one_shot_sfx(HIT_ENEMY, 0.05, 0.0, 0.0, "SFX")
-	Global.add_score(ceil(100 * Global.score_multiplier))
+	Global.add_score(ceil(100 * Global.score_multiplier * enemy_multiplier))
 	var cell = tilemap.local_to_map(global_position)
 	Global.occupied_cells.erase(cell)
 

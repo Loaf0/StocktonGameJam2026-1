@@ -45,7 +45,7 @@ func take_damage(damage_amt : int):
 		death()
 
 func death():
-	pass
+	LevelTransition.death_fade("res://scenes/ui/death_menu.tscn", )
 
 func _play_one_shot_sfx(sfx: AudioStream, pitch_range: float = 0.05, start_time: float = 0.0, volume_db: float = 0.0, bus_name: String = "SFX") -> void:
 	var player := AudioStreamPlayer.new()

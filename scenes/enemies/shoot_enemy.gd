@@ -25,20 +25,6 @@ func _ready():
 	_update_facing_visual(true)
 	atk_warns.append(atk_warn)
 
-func _my_turn():
-	if acted_this_beat == false:
-		#move or attack logic here
-		if first_turn:
-			_declare_action()
-			first_turn = false
-		elif !atk_turn:
-			_move()
-			atk_turn = true
-		
-
-		_target_player()
-		acted_this_beat = true
-	return
 
 func _attack() -> void:
 	if wait_turn and atk_turn:
@@ -70,13 +56,6 @@ func _attack() -> void:
 		await get_tree().create_timer(0.15).timeout
 		pivot.visible = false
 		_draw_move_arrow()
-	return
-
-func _declare_action() -> void:
-	if !atk_turn:
-		_draw_move_arrow()
-	else:
-		_draw_attack_warning()
 	return
 
 

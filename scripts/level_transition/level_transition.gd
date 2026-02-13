@@ -84,7 +84,7 @@ func start_game(scene_path: String, bpm: float) -> void:
 	BeatManager.start_song(bpm)
 	is_transitioning = false
 
-func death_fade(scene_path: String, bpm: float) -> void:
+func death_fade(scene_path: String) -> void:
 	if is_transitioning:
 		return
 	
@@ -93,11 +93,6 @@ func death_fade(scene_path: String, bpm: float) -> void:
 	is_transitioning = true
 	scene_to_load = scene_path
 	
-	BeatManager.bpm = bpm
-	
-	var fade_time := 60.0 / bpm
-	
-	get_tree().paused = true
 	fade_overlay.visible = true
 	
 	var mat := fade_overlay.material as ShaderMaterial
@@ -109,15 +104,16 @@ func death_fade(scene_path: String, bpm: float) -> void:
 		mat,
 		"shader_parameter/radius",
 		0.0,
-		fade_time
+		0.5
 	)
 	
 	await transition_tween.finished
 	
+	get_tree().paused = true
+	
 	match_lose.play()
 	await match_lose.finished
 	
-	get_tree().paused = false
 	get_tree().change_scene_to_file(scene_to_load)
 	
 	await get_tree().create_timer(0.1).timeout
@@ -130,7 +126,7 @@ func death_fade(scene_path: String, bpm: float) -> void:
 		mat,
 		"shader_parameter/radius",
 		2.0,
-		fade_time
+		0.5
 	)
 	
 	await transition_tween.finished

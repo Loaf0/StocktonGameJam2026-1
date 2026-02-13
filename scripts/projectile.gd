@@ -43,6 +43,8 @@ func animate_move(from_pos: Vector2, to_pos: Vector2):
 
 func _on_move_finished():
 	is_moving = false
+	if !tilemap:
+		return
 	
 	var cell = tilemap.local_to_map(global_position)
 	#check for entity
@@ -52,9 +54,27 @@ func _on_move_finished():
 			print("player")
 			if body.has_method("take_damage"):
 				body.take_damage()
-		queue_free()
+		_on_death()
 	#check for wall
 	var tile_data = tilemap.get_cell_tile_data(cell)
-	if tile_data.get_custom_data("solid") == true:
-		queue_free()
+	if tile_data == null:
+		_on_death()
+		return
 	
+	if tile_data.get_custom_data("solid") == true:
+		_on_death()
+
+func _on_death() -> void:
+	if move_tween and move_tween.is_running():
+		move_tween.kill()
+
+	var pop_tween := create_tween()
+	pop_tween.set_trans(Tween.TRANS_BACK)
+	pop_tween.set_ease(Tween.EASE_OUT) 
+	pop_tween.parallel().tween_property(self, "scale", Vector2.ONE * 1.4, 0.08)
+
+	pop_tween.parallel().tween_property(self, "modulate:a", 0.0, 0.18)
+
+	pop_tween.tween_property(self, "scale", Vector2.ONE * 0.6, 0.08)
+	
+	pop_tween.finished.connect(queue_free)

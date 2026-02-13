@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cbmw8cs3cfkri"]
 
-[ext_resource type="Script" path="res://scenes/enemies/shoot_enemy.gd" id="1_gkyy6"]
+[ext_resource type="Script" uid="uid://d3w3e0sjk4mwo" path="res://scenes/enemies/shoot_enemy.gd" id="1_gkyy6"]
 [ext_resource type="Texture2D" uid="uid://bmuh5h33os836" path="res://assets/sprites/misc/Arrow.png" id="2_m6w3j"]
 [ext_resource type="Texture2D" uid="uid://c0xp6y684tcpl" path="res://assets/sprites/entities/Cannon.png" id="3_gkyy6"]
 [ext_resource type="Script" uid="uid://b4e158hic5jg3" path="res://scripts/bpm_based_step_animation.gd" id="4_ydmpp"]
@@ -287,6 +287,7 @@ animations = [{
 
 [node name="ShootEnemy" type="CharacterBody2D" unique_id=141113670]
 script = ExtResource("1_gkyy6")
+enemy_multiplier = 4
 
 [node name="Line2D" type="Line2D" parent="." unique_id=821246944]
 top_level = true

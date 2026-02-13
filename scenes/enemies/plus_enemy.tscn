@@ -309,6 +309,7 @@ animations = [{
 
 [node name="PlusEnemy" type="CharacterBody2D" unique_id=141113670]
 script = ExtResource("1_7d1g6")
+enemy_multiplier = 2
 
 [node name="Line2D" type="Line2D" parent="." unique_id=821246944]
 top_level = true
