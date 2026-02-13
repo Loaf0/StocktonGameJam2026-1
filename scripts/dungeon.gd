@@ -12,6 +12,9 @@ var astar_grid: AStarGrid2D
 @export var enemy_scene : PackedScene
 @export var player_positions := [Vector2(0,0), Vector2(0,1)]
 
+@onready var tutorial_ui: CanvasLayer = $TutorialUI
+@onready var p_2: MarginContainer = $TutorialUI/P2
+
 var tile_map_scenes = [
 		preload("res://scenes/layouts/001.tscn"),
 		preload("res://scenes/layouts/002.tscn"),
@@ -30,6 +33,8 @@ func _ready() -> void:
 		if node.has_method("set_tile_map"):
 			node.set_tile_map(tilemap)
 			#print("assigned tile map to " + str(node) )
+	
+	p_2.visible = Global.two_player_mode
 	
 	setup_astar()
 	
@@ -62,6 +67,9 @@ func change_layout() -> void:
 		await get_tree().process_frame
 	Global.difficulty += 0.1
 	Global.do_not_act = true
+	
+	tutorial_ui.hide()
+	p_2.hide()
 	
 	var fade_time = 60.0 / BeatManager.bpm * 2
 	var tween = create_tween()

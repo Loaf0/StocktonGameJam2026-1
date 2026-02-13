@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://8cv1d65ovpib" path="res://scenes/layouts/001.tscn" id="2_0f8sa"]
 [ext_resource type="PackedScene" uid="uid://djrxlocjpshxj" path="res://scenes/player/character_container.tscn" id="2_cne6s"]
 [ext_resource type="Texture2D" uid="uid://d8riw06s55de" path="res://assets/sprites/tileset/Tiles.png" id="2_dlq7p"]
+[ext_resource type="Texture2D" uid="uid://dg8cqus7mnrn" path="res://assets/ui/keyboard_arrow_right_outline.png" id="3_3tucu"]
 [ext_resource type="Script" uid="uid://b0bquy2c1sq8c" path="res://scenes/maps/test_maps/room.gd" id="4_07t4d"]
 [ext_resource type="PackedScene" uid="uid://bw2akpjviyb0u" path="res://scenes/ui/beat_bar.tscn" id="4_adaig"]
 [ext_resource type="PackedScene" uid="uid://cenaqrhx866th" path="res://scenes/ui/crt_vfx.tscn" id="4_db5eu"]
@@ -11,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://c6fhnrd8gltt8" path="res://scenes/ui/transition.tscn" id="5_x2rh7"]
 [ext_resource type="Script" uid="uid://tdp65ebwh5tb" path="res://scenes/enemies/enemy_manager.gd" id="6_ssfqi"]
 [ext_resource type="PackedScene" uid="uid://bqa1074lpp3ab" path="res://scenes/enemies/base_enemy.tscn" id="11_3ei2h"]
+[ext_resource type="FontFile" uid="uid://drf8cub21w07x" path="res://assets/font/ARCADE_N.TTF" id="12_j66eh"]
+[ext_resource type="Texture2D" uid="uid://bmrgkrru05wna" path="res://assets/ui/keyboard_d_outline.png" id="13_dhjmb"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_adaig"]
 
@@ -240,9 +243,18 @@ custom_data_layer_0/name = "solid"
 custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_x2rh7")
 
+[sub_resource type="LabelSettings" id="LabelSettings_m1j5w"]
+font = ExtResource("12_j66eh")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_1b8na"]
+font = ExtResource("12_j66eh")
+
 [node name="Node2D" type="Node2D" unique_id=1208966285]
 script = ExtResource("1_suivh")
 new_tilemap_scene = ExtResource("2_0f8sa")
+
+[node name="Tutorial" type="Node2D" parent="." unique_id=1505030992]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1886383761]
 tile_map_data = PackedByteArray("AAAAAAAAAAAIAAQAAAAAAAEAAAAGAAIAAAABAAAAAAACAAYAAAABAAEAAAAIAAYAAAAAAAIAAAAGAAIAAAAAAAMAAAAGAAIAAAAAAAQAAAAGAAIAAAAAAAUAAAAGAAIAAAAAAAYAAAAGAAIAAAAAAAcAAAAAAAQAAAABAAIAAAAIAAYAAAABAAMAAAAIAAYAAAABAAQAAAAIAAYAAAABAAUAAAAIAAYAAAABAAYAAAAIAAYAAAABAAcAAAACAAYAAAACAAAAAAACAAYAAAACAAEAAAAIAAYAAAACAAIAAAAIAAYAAAACAAMAAAAIAAYAAAACAAQAAAAIAAYAAAACAAUAAAAIAAYAAAACAAYAAAAIAAYAAAACAAcAAAACAAYAAAADAAAAAAACAAYAAAADAAEAAAAIAAYAAAADAAIAAAAIAAYAAAADAAUAAAAIAAYAAAADAAYAAAAIAAYAAAADAAcAAAACAAYAAAAEAAAAAAACAAYAAAAEAAEAAAAIAAYAAAAEAAIAAAAIAAYAAAAEAAUAAAAIAAYAAAAEAAYAAAAIAAYAAAAEAAcAAAACAAYAAAAFAAAAAAACAAYAAAAFAAEAAAAIAAYAAAAFAAIAAAAIAAYAAAAFAAUAAAAIAAYAAAAFAAYAAAAIAAYAAAAFAAcAAAACAAYAAAAGAAAAAAACAAYAAAAGAAEAAAAIAAYAAAAGAAIAAAAIAAYAAAAGAAUAAAAIAAYAAAAGAAYAAAAIAAYAAAAGAAcAAAACAAYAAAAHAAAAAAACAAYAAAAHAAEAAAAIAAYAAAAHAAIAAAAIAAYAAAAHAAUAAAAIAAYAAAAHAAYAAAAIAAYAAAAHAAcAAAACAAYAAAAIAAAAAAACAAYAAAAIAAEAAAAIAAYAAAAIAAIAAAAIAAYAAAAIAAMAAAAIAAYAAAAIAAQAAAAIAAYAAAAIAAUAAAAIAAYAAAAIAAYAAAAIAAYAAAAIAAcAAAACAAYAAAAEAAMAAAACAAAAAAAEAAQAAAACAAQAAAAFAAMAAAACAAAAAAAFAAQAAAACAAQAAAAGAAMAAAAEAAAAAAAGAAQAAAAEAAQAAAADAAMAAAAAAAAAAAADAAQAAAAAAAQAAAAJAAAAAAAKAAQAAAAJAAEAAAAGAAIAAAAJAAIAAAAKAAAAAAAJAAMAAAAGAAIAAAAJAAQAAAAGAAIAAAAJAAUAAAAGAAIAAAAJAAYAAAAGAAIAAAAJAAcAAAAEAAQAAAAHAAMAAAAIAAYAAAAHAAQAAAAIAAYAAAA=")
@@ -266,3 +278,81 @@ position = Vector2(159, 192)
 [node name="Transition" parent="." unique_id=1598174226 instance=ExtResource("5_x2rh7")]
 
 [node name="CRTvfx" parent="." unique_id=30923113 instance=ExtResource("4_db5eu")]
+
+[node name="TutorialUI" type="CanvasLayer" parent="." unique_id=1460938427]
+
+[node name="Label2" type="Label" parent="TutorialUI" unique_id=1138609853]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -136.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Act On the Beat!"
+label_settings = SubResource("LabelSettings_m1j5w")
+horizontal_alignment = 1
+
+[node name="P1" type="MarginContainer" parent="TutorialUI" unique_id=971681625]
+anchors_preset = -1
+anchor_top = 0.725
+anchor_right = 0.202
+anchor_bottom = 1.0
+offset_top = 4.1999817
+offset_right = -0.36283875
+grow_vertical = 0
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TutorialUI/P1" unique_id=2127083437]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TutorialUI/P1/VBoxContainer" unique_id=587706470]
+layout_mode = 2
+text = "Player ONE"
+label_settings = SubResource("LabelSettings_1b8na")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="TutorialUI/P1/VBoxContainer" unique_id=760018062]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="Player One" type="TextureRect" parent="TutorialUI/P1/VBoxContainer" unique_id=1100124789]
+layout_mode = 2
+texture = ExtResource("13_dhjmb")
+stretch_mode = 5
+
+[node name="P2" type="MarginContainer" parent="TutorialUI" unique_id=1108115284]
+anchors_preset = -1
+anchor_left = 0.79800004
+anchor_top = 0.725
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.36279297
+offset_top = 0.19998169
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TutorialUI/P2" unique_id=481921950]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TutorialUI/P2/VBoxContainer" unique_id=653912655]
+layout_mode = 2
+text = "Player Two"
+label_settings = SubResource("LabelSettings_1b8na")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="TutorialUI/P2/VBoxContainer" unique_id=2050475864]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="Player One" type="TextureRect" parent="TutorialUI/P2/VBoxContainer" unique_id=1812008417]
+layout_mode = 2
+texture = ExtResource("3_3tucu")
+stretch_mode = 5
