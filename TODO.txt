@@ -1,7 +1,6 @@
 # Things to do
 
 # FINAL LIST
-	
 	fix queue issue after death - queue death 1 beat late?
 	if knight takes dmg she doesnt deal dmg
 	
